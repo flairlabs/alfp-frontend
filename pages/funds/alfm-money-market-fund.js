@@ -7,6 +7,15 @@ import "react-calendar/dist/Calendar.css";
 import PageText from "../../components/generic/page/page-text";
 import FundTable from "../../components/generic/tables/fund-table";
 import moment from "moment";
+import {
+    LineChart,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip,
+    Legend,
+    Line,
+} from "recharts";
 
 export default function Dummy() {
     const rawData = [
@@ -69,53 +78,66 @@ export default function Dummy() {
         video: null
     }
 
+    const [chartData, updateChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[0])
 
+    function setChartData(v) {
+        updateChartData(v)
+        console.log(v)
+    }
+
+    const [transformedChartData, updateTransformedChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[1])
+
+    function setTransformedChartData(v) {
+        updateTransformedChartData(v)
+        console.log(v)
+    }
 
     const first = new Date(rawData[rawData.length - 1][0])
     const lastWeek = moment(first).subtract(7, 'days')
-    const [chartStartDate, updateChartStartDate] = useState( lastWeek.toDate() )
+    const [chartStartDate, updateChartStartDate] = useState(lastWeek.toDate())
 
     function setChartStartDate(v) {
         updateChartStartDate(v)
     }
 
-    const [chartEndDate, updateChartEndDate] = useState(new Date(rawData[rawData.length -1][0]))
+    const [chartEndDate, updateChartEndDate] = useState(new Date(rawData[rawData.length - 1][0]))
 
     function setChartEndDate(v) {
         updateChartEndDate(v)
     }
 
     function updateDataSelection() {
-
-
-        setChartData(getDataPoints(chartStartDate, chartEndDate))
+        const data = getDataPoints(chartStartDate, chartEndDate)
+        setChartData(data[0])
+        setTransformedChartData(data[1])
 
     }
 
-    function getDataPoints(start, end){
+    function getDataPoints(start, end) {
         let dataPoints = []
-        for(let i = 0; i < rawData.length; i++){
-            let d = new Date(rawData[i][0])
-            if(d >= start && d <= end){
+        let transform = []
+        for (let i = 0; i < rawData.length; i++) {
+            let d = new Date(`${rawData[i][0]} 0:0:0`)
+            if (d >= start && d <= end) {
                 dataPoints.push(
                     [rawData[i][0], rawData[i][1]]
+                )
+                transform.push(
+                    {
+                        name: rawData[i][0],
+                        val: rawData[i][1]
+                    }
                 )
             }
         }
 
-        return dataPoints
+        return [dataPoints, transform]
     }
+
 
     useEffect(() => {
         updateDataSelection()
     }, [chartStartDate, chartEndDate])
-
-
-    const [chartData, updateChartData] = useState(getDataPoints(chartStartDate, chartEndDate))
-
-    function setChartData(v) {
-        updateChartData(v)
-    }
 
 
     return (
@@ -144,7 +166,7 @@ export default function Dummy() {
 
 
                                 <div className="my-1 px-1 w-full overflow-hidden">
-                                    <FundTable chartData={chartData} />
+                                    <FundTable chartData={chartData}/>
                                 </div>
 
                             </div>
@@ -169,6 +191,20 @@ export default function Dummy() {
                     minDate={chartStartDate}
                     maxDate={new Date(rawData[rawData.length - 1][0])}
                 />
+
+                <LineChart
+                    width={730}
+                    height={250}
+                    data={transformedChartData}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="val" stroke="#8884d8" />
+                </LineChart>
 
             </PageLayout>
         </>
