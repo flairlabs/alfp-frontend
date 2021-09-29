@@ -4,7 +4,10 @@ import PageTitle from "../components/generic/titles/page-title";
 import {CMS_NAME} from "../lib/constants";
 import PersonCard from "../components/generic/cards/person-card";
 
-const pageTitle = `About ${CMS_NAME}`
+const pageContext = {
+    title: `About`,
+    heading: `About ${CMS_NAME}`
+}
 const persons = [
     {
         name: "Juan dela Cruz",
@@ -31,8 +34,8 @@ const persons = [
 export default function About() {
     return (
         <>
-            <PageLayout title="About" preview={false}>
-                <PageTitle title={pageTitle} />
+            <PageLayout title={pageContext.title} preview={false}>
+                <PageTitle title={pageContext.heading} />
                 <Splash srcFull="/static/splash-01.png"/>
 
                 <div className="md:w-5/6 sm:w-full mx-auto my-4">

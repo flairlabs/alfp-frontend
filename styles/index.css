@@ -104,3 +104,10 @@
 .wp-block-media-text {
   @apply grid grid-cols-2 gap-4;
 }
+
+
+/* page text */
+.page-text p{
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}

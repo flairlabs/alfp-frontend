@@ -1,6 +1,13 @@
-export default function PageTitle({title}) {
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+
+export default function PageTitle({title, center=false}) {
     return (
-        <h1 className="font-bold sm:text-xl md:text-3xl sm:my-3 md: my-5 text-center">
+        <h1 className={classNames(
+            center ? 'text-center' : '',
+            'font-bold sm:text-3xl md:text-5xl sm:my-3 md: my-7'
+        )}>
             {title}
         </h1>
     )
