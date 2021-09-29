@@ -174,6 +174,26 @@ export default function Dummy() {
 
                 </div>
 
+                <div className="flex flex-wrap overflow-hidden">
+
+                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                        Historical Prices
+                    </div>
+
+                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                        Fund Fact Sheets
+                    </div>
+
+                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                        Announcements
+                    </div>
+
+                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                        File Library
+                    </div>
+
+                </div>
+
                 <DatePicker
                     onChange={e => setChartStartDate(e)}
                     value={chartStartDate}
