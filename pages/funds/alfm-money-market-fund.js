@@ -14,7 +14,7 @@ import {
     YAxis,
     Tooltip,
     Legend,
-    Line,
+    Line, ResponsiveContainer,
 } from "recharts";
 
 export default function Dummy() {
@@ -78,20 +78,6 @@ export default function Dummy() {
         video: null
     }
 
-    const [chartData, updateChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[0])
-
-    function setChartData(v) {
-        updateChartData(v)
-        console.log(v)
-    }
-
-    const [transformedChartData, updateTransformedChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[1])
-
-    function setTransformedChartData(v) {
-        updateTransformedChartData(v)
-        console.log(v)
-    }
-
     const first = new Date(rawData[rawData.length - 1][0])
     const lastWeek = moment(first).subtract(7, 'days')
     const [chartStartDate, updateChartStartDate] = useState(lastWeek.toDate())
@@ -132,6 +118,18 @@ export default function Dummy() {
         }
 
         return [dataPoints, transform]
+    }
+
+    const [chartData, updateChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[0])
+
+    function setChartData(v) {
+        updateChartData(v)
+    }
+
+    const [transformedChartData, updateTransformedChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[1])
+
+    function setTransformedChartData(v) {
+        updateTransformedChartData(v)
     }
 
 
@@ -192,19 +190,19 @@ export default function Dummy() {
                     maxDate={new Date(rawData[rawData.length - 1][0])}
                 />
 
-                <LineChart
-                    width={730}
-                    height={250}
-                    data={transformedChartData}
-                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="val" stroke="#8884d8" />
-                </LineChart>
+                <ResponsiveContainer width={'99%'} height={300}>
+                        <LineChart
+                            data={transformedChartData}
+                            margin={{top: 5, right: 30, left: 20, bottom: 5}}
+                        >
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey="name"/>
+                            <YAxis/>
+                            <Tooltip/>
+                            <Legend/>
+                            <Line type="monotone" dataKey="val" stroke="#8884d8"/>
+                        </LineChart>
+                </ResponsiveContainer>
 
             </PageLayout>
         </>
