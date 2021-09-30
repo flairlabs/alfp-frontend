@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - echo Installing app dependencies...
+      - yarn install
+      - npm install -g serverless
+      - yarn add @sls-next/serverless-component@1.20.0-alpha.28
+
+  build:
+    commands:
+      - export NODE_OPTIONS=--max_old_space_size=8192
+      - cp serverless-staging.yml serverless.yml
+      # - aws s3 sync s3://magpie-serverless-state-bucket/alfm-frontend/staging/.serverless .serverless --delete
+      - npx serverless
+      - aws s3 sync .serverless s3://magpie-serverless-state-bucket/alfm-frontend/staging/.serverless --delete
