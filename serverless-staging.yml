@@ -16,3 +16,10 @@ magpie-dashboard:
         defaultTTL: 50
         forward:
           headers: [Origin, Authorization]
+    build:
+      env:
+        WORDPRESS_API_URL: http://18.141.13.165/graphql/
+        ENV_ALIAS: staging
+        ENV_URL: http://18.141.13.165/
+        EXPORT_MODE: true
+        PUBLIC_URL: http://18.141.13.165/alfm-staging
