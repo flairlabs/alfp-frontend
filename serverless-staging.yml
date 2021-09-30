@@ -1,5 +1,5 @@
-name: magpie-dashboard
-magpie-dashboard:
+name: alfm-frontend-staging
+alfm-frontend-staging:
   component: "@sls-next/serverless-component@1.20.0-alpha.28"
   inputs:
     domain: ["alfm-frontend-staging", "magpie.ph"]
