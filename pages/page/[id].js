@@ -117,6 +117,6 @@ export async function getStaticPaths() {
 
     return {
         paths: allPages.edges.map(({node}) => `/page/${node.id}`) || [],
-        fallback: true,
+        fallback: false,
     }
 }

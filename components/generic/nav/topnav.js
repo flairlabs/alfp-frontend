@@ -3,13 +3,7 @@ import {useRouter} from 'next/router'
 import Container from "../../container";
 import {Disclosure} from "@headlessui/react";
 import {MenuIcon, XIcon} from "@heroicons/react/outline";
-
-const navigation = [
-    {name: 'Home', href: '/', current: false},
-    {name: "Mutual Funds", href: '#', current: false},
-    {name: 'About ALFM', href: '/about', current: false},
-    {name: 'Related Sites', href: '#', current: false},
-]
+import {PAGE_URLS} from "../../../lib/constants";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -17,6 +11,15 @@ function classNames(...classes) {
 
 export default function TopNav() {
     const router = useRouter()
+    const env = process.env.NODE_ENV
+    const nav_urls = PAGE_URLS[env]
+
+    const navigation = [
+        {name: 'Home', href: nav_urls.home.url, current: false},
+        {name: "Mutual Funds", href: nav_urls.funds.alfm_money_market_fund.url, current: false},
+        {name: 'About ALFM', href: nav_urls.about.url, current: false},
+        {name: 'Related Sites', href: '#', current: false},
+    ]
     return (
         <Disclosure as="nav" className="bg-white">
             {({open}) => (

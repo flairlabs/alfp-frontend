@@ -1,21 +1,12 @@
 import PageLayout from "../../layouts/PageLayout";
 import PageTitle from "../../components/generic/titles/page-title";
-import {useState, useEffect} from "react";
+import {useEffect, useState} from "react";
 import DatePicker from "react-date-picker/dist/entry.nostyle";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
-import PageText from "../../components/generic/page/page-text";
 import FundTable from "../../components/generic/tables/fund-table";
 import moment from "moment";
-import {
-    LineChart,
-    CartesianGrid,
-    XAxis,
-    YAxis,
-    Tooltip,
-    Legend,
-    Line, ResponsiveContainer,
-} from "recharts";
+import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis,} from "recharts";
 
 export default function Dummy() {
     const rawData = [

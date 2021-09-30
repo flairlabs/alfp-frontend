@@ -19,10 +19,10 @@ export default function Index({allPosts: {edges}, preview, allPages}) {
                     <title>{CMS_NAME}</title>
                 </Head>
                 <Container>
-                    <GenericNavbar></GenericNavbar>
+                    <GenericNavbar/>
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                        <Ticker></Ticker>
+                        <Ticker/>
                         <Intro/>
 
                         {heroPost && (
