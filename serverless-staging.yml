@@ -1,0 +1,18 @@
+name: magpie-dashboard
+magpie-dashboard:
+  component: "@sls-next/serverless-component@1.20.0-alpha.28"
+  inputs:
+    domain: ["alfm-frontend-staging", "magpie.ph"]
+    roleArn: "arn:aws:iam::347059883387:role/alfm-frontend"
+    certificateArn: "arn:aws:acm:us-east-1:347059883387:certificate/05801cdb-4e42-4ad9-a4b6-76beb5adf5f9"
+    timeout:
+      defaultLambda: 30
+      apiLambda: 30
+      imageLambda: 30
+    cloudfront:
+      api/*:
+        minTTL: 10
+        maxTTL: 100
+        defaultTTL: 50
+        forward:
+          headers: [Origin, Authorization]
