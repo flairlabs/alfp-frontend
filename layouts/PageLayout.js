@@ -15,12 +15,12 @@ export default function PageLayout({preview, title, children}) {
                 <title>{title} | {CMS_NAME}</title>
             </Head>
             <div className="min-h-screen">
-                <TopNav></TopNav>
+                <TopNav/>
                 <Container>
-                    <GenericNavbar></GenericNavbar>
+                    <GenericNavbar/>
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                        <Ticker></Ticker>
+                        <Ticker/>
                         <main>{children}</main>
                     </div>
                 </Container>

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 
 export default function Avatar({ author }) {
   const name = author
@@ -9,9 +9,9 @@ export default function Avatar({ author }) {
 
   return (
     <div className="flex items-center">
-      <div className="w-12 h-12 relative mr-4">
-        image
-      </div>
+      {/*<div className="w-12 h-12 relative mr-4">*/}
+      {/*  image*/}
+      {/*</div>*/}
       <div className="text-xl font-bold">{name}</div>
     </div>
   )

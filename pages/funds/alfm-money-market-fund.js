@@ -1,12 +1,12 @@
 import PageLayout from "../../layouts/PageLayout";
 import PageTitle from "../../components/generic/titles/page-title";
-import {useState, useEffect} from "react";
+import {useEffect, useState} from "react";
 import DatePicker from "react-date-picker/dist/entry.nostyle";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
-import PageText from "../../components/generic/page/page-text";
 import FundTable from "../../components/generic/tables/fund-table";
 import moment from "moment";
+import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis,} from "recharts";
 
 export default function Dummy() {
     const rawData = [
@@ -69,53 +69,64 @@ export default function Dummy() {
         video: null
     }
 
-
-
     const first = new Date(rawData[rawData.length - 1][0])
     const lastWeek = moment(first).subtract(7, 'days')
-    const [chartStartDate, updateChartStartDate] = useState( lastWeek.toDate() )
+    const [chartStartDate, updateChartStartDate] = useState(lastWeek.toDate())
 
     function setChartStartDate(v) {
         updateChartStartDate(v)
     }
 
-    const [chartEndDate, updateChartEndDate] = useState(new Date(rawData[rawData.length -1][0]))
+    const [chartEndDate, updateChartEndDate] = useState(new Date(rawData[rawData.length - 1][0]))
 
     function setChartEndDate(v) {
         updateChartEndDate(v)
     }
 
     function updateDataSelection() {
-
-
-        setChartData(getDataPoints(chartStartDate, chartEndDate))
+        const data = getDataPoints(chartStartDate, chartEndDate)
+        setChartData(data[0])
+        setTransformedChartData(data[1])
 
     }
 
-    function getDataPoints(start, end){
+    function getDataPoints(start, end) {
         let dataPoints = []
-        for(let i = 0; i < rawData.length; i++){
-            let d = new Date(rawData[i][0])
-            if(d >= start && d <= end){
+        let transform = []
+        for (let i = 0; i < rawData.length; i++) {
+            let d = new Date(`${rawData[i][0]} 0:0:0`)
+            if (d >= start && d <= end) {
                 dataPoints.push(
                     [rawData[i][0], rawData[i][1]]
+                )
+                transform.push(
+                    {
+                        name: rawData[i][0],
+                        val: rawData[i][1]
+                    }
                 )
             }
         }
 
-        return dataPoints
+        return [dataPoints, transform]
     }
 
-    useEffect(() => {
-        updateDataSelection()
-    }, [chartStartDate, chartEndDate])
-
-
-    const [chartData, updateChartData] = useState(getDataPoints(chartStartDate, chartEndDate))
+    const [chartData, updateChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[0])
 
     function setChartData(v) {
         updateChartData(v)
     }
+
+    const [transformedChartData, updateTransformedChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[1])
+
+    function setTransformedChartData(v) {
+        updateTransformedChartData(v)
+    }
+
+
+    useEffect(() => {
+        updateDataSelection()
+    }, [chartStartDate, chartEndDate])
 
 
     return (
@@ -144,12 +155,32 @@ export default function Dummy() {
 
 
                                 <div className="my-1 px-1 w-full overflow-hidden">
-                                    <FundTable chartData={chartData} />
+                                    <FundTable chartData={chartData}/>
                                 </div>
 
                             </div>
                         </div>
 
+                    </div>
+
+                </div>
+
+                <div className="flex flex-wrap overflow-hidden">
+
+                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                        Historical Prices
+                    </div>
+
+                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                        Fund Fact Sheets
+                    </div>
+
+                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                        Announcements
+                    </div>
+
+                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                        File Library
                     </div>
 
                 </div>
@@ -169,6 +200,20 @@ export default function Dummy() {
                     minDate={chartStartDate}
                     maxDate={new Date(rawData[rawData.length - 1][0])}
                 />
+
+                <ResponsiveContainer width={'99%'} height={300}>
+                        <LineChart
+                            data={transformedChartData}
+                            margin={{top: 5, right: 30, left: 20, bottom: 5}}
+                        >
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey="name"/>
+                            <YAxis/>
+                            <Tooltip/>
+                            <Legend/>
+                            <Line type="monotone" dataKey="val" stroke="#8884d8"/>
+                        </LineChart>
+                </ResponsiveContainer>
 
             </PageLayout>
         </>
