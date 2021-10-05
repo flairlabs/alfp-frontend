@@ -4,7 +4,7 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import {CMS_NAME} from "../../../lib/constants";
 
 const navigation = [
-    { name: 'Investing 101', href: '#', current: false },
+    { name: 'Investing 101', href: '/page/cG9zdDo3', current: false },
     { name: "Fund Manager's Corner", href: '#', current: false },
     { name: 'FAQs', href: '#', current: false },
 ]

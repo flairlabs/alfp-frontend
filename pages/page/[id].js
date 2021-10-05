@@ -11,6 +11,9 @@ import {CMS_NAME} from '../../lib/constants'
 import {GenericHero} from "../../components/generic/hero/generic-hero";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import PageLayout from "../../layouts/PageLayout";
+import PageTitle from "../../components/generic/titles/page-title";
+import CoverImage from "../../components/cover-image";
 
 export default function Page({page}) {
     const router = useRouter()
@@ -20,85 +23,37 @@ export default function Page({page}) {
         return <ErrorPage statusCode={404}/>
     }
 
-    const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 3,
-            slidesToSlide: 3 // optional, default to 1.
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2,
-            slidesToSlide: 2 // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            slidesToSlide: 1 // optional, default to 1.
-        }
-    };
+    const pageContext = {
+        title: page.title,
+        heading: `${page.title} ${CMS_NAME}`,
+        coverImage: page.featuredImage?.node
+    }
+
+    console.log(pageContext)
+
 
     return (
-        <Layout preview={false}>
-            <Container>
-                <Header/>
-                {router.isFallback ? (
-                    <PostTitle>Loading…</PostTitle>
-                ) : (
-                    <>
-                        <article>
-                            <Head>
-                                <title>
-                                    {page.title} | Next.js Blog Example with {CMS_NAME}
-                                </title>
+        <PageLayout title={pageContext.title} preview={false}>
+            <PageTitle title={pageContext.heading}/>
+            {router.isFallback ? (
+                <PostTitle>Loading…</PostTitle>
+            ) : (
+                <>
+                    <article>
+                        {pageContext.coverImage && (
+                            <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
+                                        slug={pageContext.slug}/>
+                        )}
 
-                            </Head>
-                            <h3>{page.title}</h3>
-                            <Carousel
-                                swipeable={false}
-                                draggable={true}
-                                showDots={true}
-                                responsive={responsive}
-                                ssr={false} // means to render carousel on server-side.
-                                infinite={true}
-                                autoPlay={false}
-                                autoPlaySpeed={1000}
-                                keyBoardControl={true}
-                                customTransition="all .5"
-                                transitionDuration={500}
-                                containerClass="carousel-container"
-                                removeArrowOnDeviceType={["tablet", "mobile"]}
-                                dotListClass="custom-dot-list-style"
-                                itemClass="carousel-item-padding-40-px"
-                            >
-                                <div>
-                                    <img src={"https://images.unsplash.com/photo-1601588418480-f9923200a05f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"} />
-                                </div>
-                                <div>Item 2</div>
-                                <div>Item 3</div>
-                                <div>Item 4</div>
-                            </Carousel>
+                        <PostBody content={page.content}/>
+
+                    </article>
 
 
-                            <GenericHero
-                                title={
-                                    <h4>Generic Hero Title</h4>
-                                }
-                                description={"desc"}
-                                button={
-                                    <a href={"#"}>button</a>
-                                }
-                            />
+                </>
+            )}
 
-                            <PostBody content={page.content}/>
-
-                        </article>
-
-
-                    </>
-                )}
-            </Container>
-        </Layout>
+        </PageLayout>
     )
 }
 
