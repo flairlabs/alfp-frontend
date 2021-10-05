@@ -86,7 +86,7 @@ export default function Ticker() {
                 autoPlayStrategy="none"
                 autoPlayInterval={3000}
                 animationDuration={1000}
-                animationType="fadeout"
+                animationType="slide"
                 infinite
                 touchTracking={false}
                 disableDotsControls
