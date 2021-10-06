@@ -132,7 +132,9 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
     )
 }
 
-export async function getStaticProps({preview = false}) {
+// export async function getStaticProps({preview = false}) {
+export async function getServerSideProps({params,req,res,query,preview = false,previewData,resolvedUrl,locale,locales,defaultLocale}) {
+
     const allPosts = await getAllPostsForHome(preview)
     const env = process.env.NODE_ENV
     const front_page_urls = PAGE_URLS[env].frontpage
