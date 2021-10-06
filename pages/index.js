@@ -13,7 +13,7 @@ import HeroPage from "../components/hero-page";
 export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems=null}) {
     // const heroPost = edges[0]?.node
     const heroPage = frontPages["investment-basics"] ? frontPages["investment-basics"] : null
-    const morePosts = edges.slice(1)
+    // const morePosts = edges.slice(1)
 
     return (
         <>
@@ -111,7 +111,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                                 Call to Action
                             </h1>
                             <div className="w-full mb-4">
-                                <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
+                                <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"/>
                             </div>
                             <h3 className="my-4 text-3xl">
                                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.

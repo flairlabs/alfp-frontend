@@ -1,15 +1,9 @@
 import {useRouter} from 'next/router'
 import ErrorPage from 'next/error'
-import Container from '../../components/container'
 import PostBody from '../../components/post-body'
-import Header from '../../components/header'
-import Layout from '../../components/layout'
-import {getAllPages, getAllPostsWithSlug, getPage} from '../../lib/api'
+import {getPage} from '../../lib/api'
 import PostTitle from '../../components/post-title'
-import Head from 'next/head'
 import {CMS_NAME} from '../../lib/constants'
-import {GenericHero} from "../../components/generic/hero/generic-hero";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import PageLayout from "../../layouts/PageLayout";
 import PageTitle from "../../components/generic/titles/page-title";
