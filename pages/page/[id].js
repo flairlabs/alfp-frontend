@@ -29,8 +29,6 @@ export default function Page({page}) {
         coverImage: page.featuredImage?.node
     }
 
-    console.log(pageContext)
-
 
     return (
         <PageLayout title={pageContext.title} preview={false}>
@@ -57,7 +55,8 @@ export default function Page({page}) {
     )
 }
 
-export async function getStaticProps({params, preview = false, previewData}) {
+// export async function getStaticProps({params, preview = false, previewData}) {
+export async function getServerSideProps({params,req,res,query,preview = false,previewData,resolvedUrl,locale,locales,defaultLocale}) {
     const data = await getPage(params.id)
     return {
         props: {
@@ -67,11 +66,11 @@ export async function getStaticProps({params, preview = false, previewData}) {
     }
 }
 
-export async function getStaticPaths() {
-    const allPages = await getAllPages()
-
-    return {
-        paths: allPages.edges.map(({node}) => `/page/${node.id}`) || [],
-        fallback: false,
-    }
-}
+// export async function getStaticPaths() {
+//     const allPages = await getAllPages()
+//
+//     return {
+//         paths: allPages.edges.map(({node}) => `/page/${node.id}`) || [],
+//         fallback: false,
+//     }
+// }
