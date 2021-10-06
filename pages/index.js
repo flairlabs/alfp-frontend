@@ -4,13 +4,13 @@ import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import {getAllPages, getAllPostsForHome, getPagePreview} from '../lib/api'
+import {getAllPages, getAllPostsForHome, getMainCarouselItems, getPagePreview} from '../lib/api'
 import {CMS_NAME, PAGE_URLS} from '../lib/constants'
 import GenericNavbar from "../components/generic/nav/navbar";
 import Ticker from "../components/generic/ticker/ticker";
 import HeroPage from "../components/hero-page";
 
-export default function Index({allPosts: {edges}, preview, frontPages}) {
+export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems=null}) {
     // const heroPost = edges[0]?.node
     const heroPage = frontPages["investment-basics"] ? frontPages["investment-basics"] : null
     const morePosts = edges.slice(1)
@@ -26,7 +26,7 @@ export default function Index({allPosts: {edges}, preview, frontPages}) {
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                         <Ticker/>
-                        <Intro/>
+                        <Intro carouselItems={allMainCarouselItems}/>
 
                         {heroPage && (
                             <HeroPage
@@ -137,6 +137,7 @@ export async function getStaticProps({preview = false}) {
     const env = process.env.NODE_ENV
     const front_page_urls = PAGE_URLS[env].frontpage
 
+    const allMainCarouselItems = await getMainCarouselItems()
     let frontPages = {}
     for (let i = 0; i < front_page_urls.length; i++) {
         const slug = front_page_urls[i].slug
@@ -151,6 +152,6 @@ export async function getStaticProps({preview = false}) {
     }
 
     return {
-        props: {allPosts, preview, frontPages},
+        props: {allPosts, preview, frontPages, allMainCarouselItems},
     }
 }
