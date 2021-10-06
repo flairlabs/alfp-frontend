@@ -14,6 +14,7 @@ const handleDragStart = (e) => e.preventDefault();
 // ];
 
 export default function Intro({carouselItems}) {
+    console.log(carouselItems)
     let items = []
     for(let i = 0; i < carouselItems.length; i++){
         items.push(
