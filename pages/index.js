@@ -9,6 +9,7 @@ import {CMS_NAME, PAGE_URLS} from '../lib/constants'
 import GenericNavbar from "../components/generic/nav/navbar";
 import Ticker from "../components/generic/ticker/ticker";
 import HeroPage from "../components/hero-page";
+import MasterNavbar from "../components/generic/nav/master-nav";
 
 export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems=null}) {
     // const heroPost = edges[0]?.node
@@ -22,7 +23,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                     <title>{CMS_NAME}</title>
                 </Head>
                 <Container>
-                    <GenericNavbar/>
+
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                         <Ticker/>

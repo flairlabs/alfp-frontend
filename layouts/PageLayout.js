@@ -6,6 +6,7 @@ import GenericNavbar from "../components/generic/nav/navbar";
 import TopNav from "../components/generic/nav/topnav";
 import Container from "../components/container";
 import Ticker from "../components/generic/ticker/ticker";
+import MasterNavbar from "../components/generic/nav/master-nav";
 
 export default function PageLayout({preview, title, children}) {
     return (
@@ -15,9 +16,8 @@ export default function PageLayout({preview, title, children}) {
                 <title>{title} | {CMS_NAME}</title>
             </Head>
             <div className="min-h-screen">
-                <TopNav/>
+                <MasterNavbar />
                 <Container>
-                    <GenericNavbar/>
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                         <Ticker/>
