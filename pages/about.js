@@ -3,6 +3,8 @@ import PageLayout from "../layouts/PageLayout";
 import PageTitle from "../components/generic/titles/page-title";
 import {CMS_NAME} from "../lib/constants";
 import PersonCard from "../components/generic/cards/person-card";
+import {useContext} from "react";
+import GlobalContext from "../lib/global-context";
 
 const pageContext = {
     title: `About`,
@@ -32,6 +34,9 @@ const persons = [
 ]
 
 export default function About() {
+    const global = useContext(GlobalContext)
+
+    global.currentSection = 2
     return (
         <>
             <PageLayout title={pageContext.title} preview={false}>

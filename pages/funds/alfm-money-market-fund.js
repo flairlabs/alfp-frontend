@@ -1,14 +1,19 @@
 import PageLayout from "../../layouts/PageLayout";
 import PageTitle from "../../components/generic/titles/page-title";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import DatePicker from "react-date-picker/dist/entry.nostyle";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import FundTable from "../../components/generic/tables/fund-table";
 import moment from "moment";
 import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis,} from "recharts";
+import GlobalContext from "../../lib/global-context";
 
-export default function Dummy() {
+export default function MoneyMarketFund() {
+    const global = useContext(GlobalContext)
+
+    global.currentSection = 1
+
     const rawData = [
         ["2021-08-13", 159.33],
         ["2021-08-14", 546.60],
