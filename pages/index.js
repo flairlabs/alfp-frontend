@@ -10,11 +10,17 @@ import GenericNavbar from "../components/generic/nav/navbar";
 import Ticker from "../components/generic/ticker/ticker";
 import HeroPage from "../components/hero-page";
 import MasterNavbar from "../components/generic/nav/master-nav";
+import {useContext} from "react";
+import GlobalContext from "../lib/global-context";
 
 export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems=null}) {
     // const heroPost = edges[0]?.node
     const heroPage = frontPages["investment-basics"] ? frontPages["investment-basics"] : null
     // const morePosts = edges.slice(1)
+
+    const global = useContext(GlobalContext)
+
+    global.currentSection = 0
 
     return (
         <>
