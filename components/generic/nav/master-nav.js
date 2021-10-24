@@ -17,7 +17,7 @@ export default function MasterNavbar() {
         {
             name: 'Home', href: nav_urls.home.url, current: false, slug: 0, children:
                 [
-                    {name: 'Investing 101', href: '/page/cG9zdDo3', current: false, children: null},
+                    {name: 'Investing 101', href: 'investment-basics', current: false, children: null},
                     {name: "Fund Manager's Corner", href: '#', current: false, children: null},
                     {name: 'FAQs', href: '#', current: false, children: null}
                 ]
@@ -98,7 +98,7 @@ export default function MasterNavbar() {
 
     let navigation = changeParentNav(global.currentSection)
 
-    const [nav, setNav] = useState(0)
+    const [nav, setNav] = useState(global.currentSection)
 
     function updateNav() {
         navigation = changeParentNav(nav)
@@ -116,7 +116,7 @@ export default function MasterNavbar() {
                         <div className="max-w-7xl mx-auto">
                             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="hidden sm:block sm:ml-6">
-                                    <div className="flex justify-items-center">
+                                    <div className="flex justify-items-center" id="navWrapperMain">
 
                                         {top_navigation.map((item, idx) => (
                                             <a
@@ -125,7 +125,7 @@ export default function MasterNavbar() {
                                                 onMouseOver={event => setNav(idx)}
                                                 className={classNames(
                                                     global.currentSection === item.slug ? 'bg-accent-1 text-gray-800' : 'text-gray-600 hover:bg-accent-1',
-                                                    'px-3 py-2 text-sm font-medium display-block'
+                                                    'px-3 py-2 font-medium display-block'
                                                 )}
                                                 aria-current={global.currentSection === item.slug ? 'page' : undefined}
                                             >
@@ -163,14 +163,14 @@ export default function MasterNavbar() {
                                 <div className="hidden sm:block sm:ml-12">
                                     <div className="flex space-x-4">
                                         {top_navigation[nav].children.map((item) => (
-                                            <>
+                                            <div key={item.slug} id="navWrapperSub">
                                                 {hasChildren(item) ? (
-                                                    <Menu as="a" className="relative inline-block text-left" key={item.slug}>
+                                                    <Menu as="div" className="relative inline-block text-left" key={item.slug}>
                                                         <div key={item.slug}>
                                                             <Menu.Button
                                                                 key={item.name}
                                                                 aria-current={item.current ? 'page' : undefined}
-                                                                className="inline-flex justify-center w-full px-3 py-2 rounded-md text-sm font-medium">
+                                                                className="inline-flex justify-center w-full px-3 py-2 rounded-md font-medium">
                                                                 {item.name}
                                                                 <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5"
                                                                                  aria-hidden="true"/>
@@ -189,10 +189,10 @@ export default function MasterNavbar() {
                                                         >
                                                             <Menu.Items
                                                                 className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                                                style={{zIndex: 999}}>
-                                                                <div className="py-1">
+                                                                style={{zIndex: 999}} key={item.slug}>
+                                                                <div className="py-1" key={item.slug}>
                                                                     {item.children.map((child) => (
-                                                                        <Menu.Item>
+                                                                        <Menu.Item key={child.name}>
                                                                             {({active}) => (
                                                                                 <a
                                                                                     key={child.name}
@@ -219,16 +219,15 @@ export default function MasterNavbar() {
                                                         href={item.href}
                                                         className={classNames(
                                                             item.current ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white',
-                                                            'px-3 py-2 rounded-md text-sm font-medium'
+                                                            'px-3 py-2 rounded-md font-medium'
                                                         )}
                                                         aria-current={item.current ? 'page' : undefined}
                                                     >
-
                                                         {item.name}
                                                     </a>
                                                 )}
 
-                                            </>
+                                            </div>
 
                                         ))}
                                     </div>
@@ -239,26 +238,26 @@ export default function MasterNavbar() {
                     </div>
 
                     <Disclosure.Panel className="sm:hidden">
-                        <div className="px-2 pt-2 pb-3 space-y-1">
+                        <div className="px-2 pt-2 pb-3 space-y-1" id="navWrapperMobileMain">
                             {top_navigation.map((item, idx) => (
-                                <>
+                                <span key={item.name}>
                                     <a
                                         key={item.name}
                                         href={item.href}
                                         className={classNames(
-                                            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                            'block px-3 py-2 rounded-md text-base font-medium'
+                                            global.currentSection === item.slug ? 'bg-accent-1 text-black' : 'text-accent-1 hover:bg-gray-700 hover:text-white',
+                                            'block px-3 py-2 rounded-md font-bold'
                                         )}
                                         aria-current={item.current ? 'page' : undefined}
                                     >
                                         {item.name}
                                     </a>
                                     {item.children && item.children.map((child) => (
-                                        <>
+                                        <div className="ml-3">
                                             <a
                                                 key={child.name}
                                                 href={child.href}
-                                                className='block px-3 ml-3 py-2 rounded-md text-base font-medium'
+                                                className='block px-3 ml-2 py-2 rounded-md text-base font-medium'
                                             >
                                                 {child.name}
                                             </a>
@@ -266,14 +265,14 @@ export default function MasterNavbar() {
                                                 <a
                                                     key={subchild.name}
                                                     href={subchild.href}
-                                                    className='block px-3 ml-5 py-2 rounded-md text-base font-medium'
+                                                    className='block px-3 ml-5 pl-5 py-2 rounded-md text-base font-medium'
                                                 >
                                                     {subchild.name}
                                                 </a>
                                             ))}
-                                        </>
+                                        </div>
                                     ))}
-                                </>
+                                </span>
                             ))}
                         </div>
                     </Disclosure.Panel>

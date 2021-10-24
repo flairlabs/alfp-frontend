@@ -111,3 +111,13 @@
   margin-bottom: 2rem;
   font-size: 1.1rem;
 }
+
+
+/* nav */
+#navWrapperMain {
+  font-size: 1.2rem !important;
+}
+
+#navWrapperSub {
+  font-size: 1.05rem !important;
+}

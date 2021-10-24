@@ -4,15 +4,48 @@ import {useContext, useEffect, useState} from "react";
 import DatePicker from "react-date-picker/dist/entry.nostyle";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
-import FundTable from "../../components/generic/tables/fund-table";
 import moment from "moment";
 import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis,} from "recharts";
 import GlobalContext from "../../lib/global-context";
+import InfoTable from "../../components/generic/tables/info-table";
+import {useRouter} from "next/router";
+import ErrorPage from "next/error";
+import {getFund} from "../../lib/api";
 
-export default function MoneyMarketFund() {
+export default function Fund({fund = null}) {
     const global = useContext(GlobalContext)
+    const router = useRouter()
+
+    if (!router.isFallback && !fund?.id) {
+        return <ErrorPage statusCode={404}/>
+    }
 
     global.currentSection = 1
+
+    const rawInfoTable = fund.funds?.infoTable
+    let infoTable = []
+
+    function parseRawInfo() {
+        let infoByLine = rawInfoTable.split(/\r\n/)
+        for (let i = 0; i < infoByLine.length; i++) {
+            let info = infoByLine[i].trim()
+            let infoByCol = info.split(":")
+            if (infoByCol.length < 2) {
+                continue;
+            }
+            let heading = infoByCol[0]
+            let data = ""
+            if (infoByCol.length > 2) {
+                data = infoByCol.slice(1).join(":")
+            } else {
+                data = infoByCol[1].trim()
+            }
+            let row = [heading, data]
+            infoTable.push(row)
+        }
+    }
+
+    parseRawInfo()
 
     const rawData = [
         ["2021-08-13", 159.33],
@@ -68,9 +101,10 @@ export default function MoneyMarketFund() {
     ]
 
     const pageContext = {
-        title: "ALFM Money Market Fund",
-        heading: "ALFM Money Market Fund",
-        content: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque dignissim enim sit amet. Egestas egestas fringilla phasellus faucibus scelerisque eleifend. Purus ut faucibus pulvinar elementum integer enim. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Aliquet lectus proin nibh nisl condimentum id venenatis a. Cursus vitae congue mauris rhoncus aenean vel. Quis hendrerit dolor magna eget. Ut venenatis tellus in metus vulputate eu scelerisque felis. Neque convallis a cras semper auctor. Quis viverra nibh cras pulvinar mattis. Feugiat nibh sed pulvinar proin gravida hendrerit. Duis tristique sollicitudin nibh sit amet commodo nulla. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Condimentum mattis pellentesque id nibh tortor id.</p><p>Laoreet non curabitur gravida arcu ac tortor. Vitae aliquet nec ullamcorper sit amet risus nullam eget. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Vestibulum lectus mauris ultrices eros. Senectus et netus et malesuada fames ac turpis egestas sed. Praesent tristique magna sit amet purus. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Consequat mauris nunc congue nisi vitae. Nullam ac tortor vitae purus faucibus ornare suspendisse sed nisi. Senectus et netus et malesuada fames ac turpis egestas maecenas. Lacus sed viverra tellus in hac habitasse platea dictumst. Pharetra vel turpis nunc eget lorem dolor.</p>",
+        title: fund.title,
+        heading: fund.title,
+        infoTable: infoTable,
+        content: fund.content,
         video: null
     }
 
@@ -160,7 +194,8 @@ export default function MoneyMarketFund() {
 
 
                                 <div className="my-1 px-1 w-full overflow-hidden">
-                                    <FundTable chartData={chartData}/>
+                                    <InfoTable data={infoTable}/>
+
                                 </div>
 
                             </div>
@@ -172,19 +207,23 @@ export default function MoneyMarketFund() {
 
                 <div className="flex flex-wrap overflow-hidden">
 
-                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                    <div
+                        className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
                         Historical Prices
                     </div>
 
-                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                    <div
+                        className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
                         Fund Fact Sheets
                     </div>
 
-                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                    <div
+                        className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
                         Announcements
                     </div>
 
-                    <div className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
+                    <div
+                        className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
                         File Library
                     </div>
 
@@ -207,20 +246,41 @@ export default function MoneyMarketFund() {
                 />
 
                 <ResponsiveContainer width={'99%'} height={300}>
-                        <LineChart
-                            data={transformedChartData}
-                            margin={{top: 5, right: 30, left: 20, bottom: 5}}
-                        >
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="name"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend/>
-                            <Line type="monotone" dataKey="val" stroke="#8884d8"/>
-                        </LineChart>
+                    <LineChart
+                        data={transformedChartData}
+                        margin={{top: 5, right: 30, left: 20, bottom: 5}}
+                    >
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="name"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend/>
+                        <Line type="monotone" dataKey="val" stroke="#8884d8"/>
+                    </LineChart>
                 </ResponsiveContainer>
 
             </PageLayout>
         </>
     )
+}
+
+export async function getServerSideProps({
+                                             params,
+                                             req,
+                                             res,
+                                             query,
+                                             preview = false,
+                                             previewData,
+                                             resolvedUrl,
+                                             locale,
+                                             locales,
+                                             defaultLocale
+                                         }) {
+    const data = await getFund(params.id)
+    return {
+        props: {
+            preview,
+            fund: data
+        },
+    }
 }
