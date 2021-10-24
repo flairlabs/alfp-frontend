@@ -1,13 +1,13 @@
 export default function BlogArchive() {
     return (
-        <div className="container w-full md:max-w-3xl mx-auto pt-20">
+        <div className="container w-full mx-auto pt-20">
 
             <div className="w-full px-4 md:px-6 text-gray-800 leading-normal">
 
                 <div className="mb-6">
-                    <h2 className="break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">This
+                    <h2 className="break-normal text-gray-900 pt-6 pb-2">This
                         is a post</h2>
-                    <p className="text-sm md:text-base font-normal text-gray-600">October 10, 2021</p>
+                    <p className="text-sm bg-white flex items-center hover:bg-gray-200 p-3font-normal text-gray-600">October 10, 2021</p>
 
                     <p className="py-4">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
@@ -17,9 +17,9 @@ export default function BlogArchive() {
                 </div>
 
                 <div className="mb-6">
-                    <h2 className="break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">This
+                    <h2 className="break-normal text-gray-900 pt-6 pb-2">This
                         is a post</h2>
-                    <p className="text-sm md:text-base font-normal text-gray-600">October 10, 2021</p>
+                    <p className="text-sm bg-white flex items-center hover:bg-gray-200 p-3font-normal text-gray-600">October 10, 2021</p>
 
                     <p className="py-4">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
@@ -29,9 +29,9 @@ export default function BlogArchive() {
                 </div>
 
                 <div className="mb-6">
-                    <h2 className="break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">This
+                    <h2 className="break-normal text-gray-900 pt-6 pb-2">This
                         is a post</h2>
-                    <p className="text-sm md:text-base font-normal text-gray-600">October 10, 2021</p>
+                    <p className="text-sm bg-white flex items-center hover:bg-gray-200 p-3font-normal text-gray-600">October 10, 2021</p>
 
                     <p className="py-4">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been

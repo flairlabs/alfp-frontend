@@ -202,7 +202,7 @@ export default function Fund({fund = null}) {
                         <div
                             className="bg-white flex items-center hover:bg-gray-200 p-3">
                             <div className="w-1/4 mr-3 px-3">
-                                <Image src="/images/icons/finances.png" width="60%" height="60%"/>
+                                <img src="/images/icons/finances.png" width="60%" height="60%"/>
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">
@@ -217,7 +217,7 @@ export default function Fund({fund = null}) {
                         <div
                             className="bg-white flex items-center hover:bg-gray-200 p-3">
                             <div className="w-1/4 mr-3 px-3">
-                                <Image src="/images/icons/presentation.png" width="60%" height="60%"/>
+                                <img src="/images/icons/presentation.png" width="60%" height="60%"/>
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">Fund Fact Sheets</h3>
@@ -230,11 +230,11 @@ export default function Fund({fund = null}) {
                         <div
                             className="bg-white flex items-center hover:bg-gray-200 p-3">
                             <div className="w-1/4 mr-3 px-3">
-                                <Image src="/images/icons/loudspeaker.png" width="60%" height="60%"/>
+                                <img src="/images/icons/loudspeaker.png" width="60%" height="60%"/>
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                    <BlogArchiveModal btnText="Announcements" />
+                                    <a href="/posts/archive">Announcements</a>
                                 </h3>
 
                             </div>
@@ -245,7 +245,7 @@ export default function Fund({fund = null}) {
                         <div
                             className="bg-white flex items-center hover:bg-gray-200 p-3">
                             <div className="w-1/4 mr-3 px-3">
-                                <Image src="/images/icons/safebox.png" width="60%" height="60%"/>
+                                <img src="/images/icons/safebox.png" width="60%" height="60%"/>
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">File Library</h3>
