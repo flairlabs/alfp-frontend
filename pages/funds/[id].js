@@ -11,6 +11,10 @@ import InfoTable from "../../components/generic/tables/info-table";
 import {useRouter} from "next/router";
 import ErrorPage from "next/error";
 import {getFund} from "../../lib/api";
+import Image from 'next/image'
+import {SiteURL} from "../../lib/urls";
+import FundTableButtonModal from "../../components/generic/modals/fund-table-button-modal";
+import BlogArchiveModal from "../../components/generic/modals/blog-archive-modal";
 
 export default function Fund({fund = null}) {
     const global = useContext(GlobalContext)
@@ -172,9 +176,10 @@ export default function Fund({fund = null}) {
         <>
             <PageLayout title={pageContext.title} preview={false}>
                 <PageTitle title={pageContext.heading}/>
-                <div className="md:w-5/6 sm:w-full mx-auto my-4 flex flex-wrap mx-auto overflow-hidden">
+                <div className="md:w-5/6 sm:w-full ml-auto mr-0 my-4 flex flex-wrap mx-auto overflow-hidden">
                     <div className="my-1 px-1 w-full overflow-hidden sm:w-full md:w-full lg:w-2/3">
-                        <div className="page-text mb-3 page-text" dangerouslySetInnerHTML={{__html: pageContext.content}}/>
+                        <div className="page-text mb-3 page-text"
+                             dangerouslySetInnerHTML={{__html: pageContext.content}}/>
 
 
                         <iframe width="100%" height="315" src="https://www.youtube.com/embed/hDz4X3LEY0g"
@@ -190,28 +195,65 @@ export default function Fund({fund = null}) {
                 </div>
 
 
-
-                <div className="flex flex-wrap overflow-hidden">
-
-                    <div
-                        className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
-                        Historical Prices
-                    </div>
+                <div className="flex flex-wrap -mx-2 overflow-hidden">
 
                     <div
-                        className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
-                        Fund Fact Sheets
+                        className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
+                        <div
+                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            <div className="w-1/4 mr-3 px-3">
+                                <Image src="/images/icons/finances.png" width="60%" height="60%"/>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold text-gray-700 mb-2">
+                                    <FundTableButtonModal title="Historical Prices" chartData={chartData} btnText="Historical Prices" />
+                                </h3>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
+                        <div
+                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            <div className="w-1/4 mr-3 px-3">
+                                <Image src="/images/icons/presentation.png" width="60%" height="60%"/>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold text-gray-700 mb-2">Fund Fact Sheets</h3>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
+                        <div
+                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            <div className="w-1/4 mr-3 px-3">
+                                <Image src="/images/icons/loudspeaker.png" width="60%" height="60%"/>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold text-gray-700 mb-2">
+                                    <BlogArchiveModal btnText="Announcements" />
+                                </h3>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
+                        <div
+                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            <div className="w-1/4 mr-3 px-3">
+                                <Image src="/images/icons/safebox.png" width="60%" height="60%"/>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold text-gray-700 mb-2">File Library</h3>
+
+                            </div>
+                        </div>
                     </div>
 
-                    <div
-                        className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
-                        Announcements
-                    </div>
-
-                    <div
-                        className="bg-accent-1 p-4 mb-4 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-3 md:px-3 md:w-1/4 lg:my-3 lg:px-3 lg:w-1/4 xl:my-4 xl:px-4 xl:w-1/4">
-                        File Library
-                    </div>
 
                 </div>
 

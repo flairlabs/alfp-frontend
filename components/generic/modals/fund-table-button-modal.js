@@ -1,7 +1,7 @@
 import React from "react";
 import FundTable from "../tables/fund-table";
 
-export default function FundButtonModal({title, chartData, btnText}) {
+export default function FundTableButtonModal({title, chartData, btnText}) {
     const [showModal, setShowModal] = React.useState(false);
     return (
         <>
