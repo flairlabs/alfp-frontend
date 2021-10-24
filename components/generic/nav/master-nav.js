@@ -17,7 +17,7 @@ export default function MasterNavbar() {
         {
             name: 'Home', href: nav_urls.home.url, current: false, slug: 0, children:
                 [
-                    {name: 'Investing 101', href: 'investment-basics', current: false, children: null},
+                    {name: 'Investing 101', href: "page/investment-basics", current: false, children: null},
                     {name: "Fund Manager's Corner", href: '#', current: false, children: null},
                     {name: 'FAQs', href: '#', current: false, children: null}
                 ]

@@ -172,38 +172,24 @@ export default function Fund({fund = null}) {
         <>
             <PageLayout title={pageContext.title} preview={false}>
                 <PageTitle title={pageContext.heading}/>
+                <div className="md:w-5/6 sm:w-full mx-auto my-4 flex flex-wrap mx-auto overflow-hidden">
+                    <div className="my-1 px-1 w-full overflow-hidden sm:w-full md:w-full lg:w-2/3">
+                        <div className="page-text mb-3 page-text" dangerouslySetInnerHTML={{__html: pageContext.content}}/>
 
 
-                <div className="flex flex-wrap -mx-3 overflow-hidden sm:-mx-3 md:-mx-3 lg:-mx-3 xl:-mx-3">
-
-                    <div
-                        className="my-3 px-3 w-full overflow-hidden sm:my-3 sm:px-3 sm:w-full md:my-3 md:px-3 md:w-full lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2">
-                        <div className="page-text mb-3" dangerouslySetInnerHTML={{__html: pageContext.content}}/>
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/hDz4X3LEY0g"
+                                title="YouTube video player" frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                        />
                     </div>
-                    <div
-                        className="my-3 px-3 w-full overflow-hidden sm:my-3 sm:px-3 sm:w-full md:my-3 md:px-3 md:w-full lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2">
-
-                        <div className="flex flex-wrap -mx-1 overflow-hidden">
-
-                            <div className="my-1 px-1 w-full overflow-hidden">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/hDz4X3LEY0g"
-                                        title="YouTube video player" frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                />
-
-
-                                <div className="my-1 px-1 w-full overflow-hidden">
-                                    <InfoTable data={infoTable}/>
-
-                                </div>
-
-                            </div>
-                        </div>
-
+                    <div className="my-1 px-1 w-full overflow-hidden sm:w-full md:w-full lg:w-1/3">
+                        <InfoTable data={infoTable}/>
                     </div>
 
                 </div>
+
+
 
                 <div className="flex flex-wrap overflow-hidden">
 
