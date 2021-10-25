@@ -109,8 +109,11 @@ export default function Fund({fund = null}) {
         heading: fund.title,
         infoTable: infoTable,
         content: fund.content,
-        video: null
+        factSheet: fund.funds?.factSheet,
+        fileLibrary: fund.funds?.fileLibrary
     }
+
+    console.log(pageContext)
 
     const first = new Date(rawData[rawData.length - 1][0])
     const lastWeek = moment(first).subtract(7, 'days')
@@ -182,11 +185,6 @@ export default function Fund({fund = null}) {
                              dangerouslySetInnerHTML={{__html: pageContext.content}}/>
 
 
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/hDz4X3LEY0g"
-                                title="YouTube video player" frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                        />
                     </div>
                     <div className="my-1 px-1 w-full overflow-hidden sm:w-full md:w-full lg:w-1/3">
                         <InfoTable data={infoTable}/>
@@ -220,7 +218,11 @@ export default function Fund({fund = null}) {
                                 <img src="/images/icons/presentation.png" width="60%" height="60%"/>
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-gray-700 mb-2">Fund Fact Sheets</h3>
+                                <h3 className="text-xl font-bold text-gray-700 mb-2">
+                                    <a href={pageContext.factSheet.uri}>
+                                        Fund Fact Sheets
+                                    </a>
+                                </h3>
 
                             </div>
                         </div>
@@ -248,7 +250,11 @@ export default function Fund({fund = null}) {
                                 <img src="/images/icons/safebox.png" width="60%" height="60%"/>
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-gray-700 mb-2">File Library</h3>
+                                <h3 className="text-xl font-bold text-gray-700 mb-2">
+                                    <a href={pageContext.fileLibrary.uri}>
+                                        File Library
+                                    </a>
+                                </h3>
 
                             </div>
                         </div>
