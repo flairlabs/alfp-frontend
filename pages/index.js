@@ -1,22 +1,15 @@
 import Head from 'next/head'
 import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import {getAllPages, getAllPostsForHome, getMainCarouselItems, getPagePreview} from '../lib/api'
+import {getAllPostsForHome, getFundValues, getMainCarouselItems, getPagePreview} from '../lib/api'
 import {CMS_NAME, PAGE_URLS} from '../lib/constants'
-import GenericNavbar from "../components/generic/nav/navbar";
 import Ticker from "../components/generic/ticker/ticker";
 import HeroPage from "../components/hero-page";
-import MasterNavbar from "../components/generic/nav/master-nav";
 import {useContext} from "react";
 import GlobalContext from "../lib/global-context";
-import Image from "next/image";
-import FundTableButtonModal from "../components/generic/modals/fund-table-button-modal";
-import BlogArchiveModal from "../components/generic/modals/blog-archive-modal";
 
-export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems=null}) {
+export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems=null, tickerData}) {
     // const heroPost = edges[0]?.node
     const heroPage = frontPages["investment-basics"] ? frontPages["investment-basics"] : null
     // const morePosts = edges.slice(1)
@@ -35,7 +28,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
 
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                        <Ticker/>
+                        <Ticker tickerData={tickerData}/>
                         <Intro carouselItems={allMainCarouselItems}/>
 
                         {heroPage && (
@@ -250,7 +243,9 @@ export async function getServerSideProps({params,req,res,query,preview = false,p
         }
     }
 
+    const tickerData = await getFundValues(2)
+
     return {
-        props: {allPosts, preview, frontPages, allMainCarouselItems},
+        props: {allPosts, preview, frontPages, allMainCarouselItems, tickerData},
     }
 }

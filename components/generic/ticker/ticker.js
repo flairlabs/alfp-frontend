@@ -4,7 +4,38 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 
 const handleDragStart = (e) => e.preventDefault();
 
-const fundValues = [
+const fundKeys = {
+    "alfmDollarBondFund": {
+        name: "Dollar Bond Fund",
+        url: ""
+    },
+    "alfmEuroBondFund": {
+        name: "Euro Bond Fund",
+        url: ""
+    },
+    "alfmGlobalMultiAssetIncomeFund": {
+        name: "Global Multi-Asset Income Fund",
+        url: ""
+    },
+    "alfmGrowthFund": {
+        name: "Growth Fund",
+        url: ""
+    },
+    "alfmMoneyMarketFund": {
+        name: "Money Market Fund",
+        url: ""
+    },
+    "alfmPesoBondFund": {
+        name: "Peso Bond Fund",
+        url: ""
+    },
+    "alfmPhilippineStockIndexFund": {
+        name: "Philippine Stock Index Fund",
+        url: ""
+    },
+}
+
+let fundValues = [
     {
         name: "ALFM Money Market Fund",
         value: 130.75,
@@ -48,7 +79,47 @@ const responsive = {
     1200: {items: 3}
 };
 
-export default function Ticker() {
+function parseTickerData(rawTickerData) {
+    let parsedFundValues = []
+    for(let i = 0; i < rawTickerData.length; i++){
+
+        let rtd = rawTickerData[i]
+        let fundValueForDay = []
+        for(let f in rtd.fundValueFields){
+            let parsedFundValue = {}
+            for(let fk in fundKeys){
+                if(f === fk){
+                    parsedFundValue = {
+                        name: fundKeys[f].name,
+                        value: rtd.fundValueFields[f],
+                        date: rtd.fundValueFields.date,
+                        url: fundKeys[f].url
+                    }
+                    fundValueForDay.push(parsedFundValue)
+                }
+            }
+
+        }
+        parsedFundValues.push(fundValueForDay)
+    }
+    for(let i = 0; i < parsedFundValues[0].length; i++){
+        let currVal = parsedFundValues[0][i].value
+        let prevVal = parsedFundValues[1][i].value
+
+        if(currVal >= prevVal){
+            parsedFundValues[0][i].trend = "up"
+        }else{
+            parsedFundValues[0][i].trend = "down"
+        }
+    }
+    return parsedFundValues
+}
+
+export default function Ticker(tickerData = []) {
+
+    if(tickerData.tickerData.length > 0){
+        fundValues = parseTickerData(tickerData.tickerData)[0]
+    }
 
     let items = []
     for(let i = 0; i < fundValues.length; i++){
