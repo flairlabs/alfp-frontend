@@ -129,7 +129,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                                     </p>
                                 </div>
                                 <div className="px-6 pt-4 pb-2">
-                                    <a href="#!"
+                                    <a href="funds/alfm-money-market-fund"
                                        className="text-accent-1 hover:bg-accent-7 hover:text-white py-2 px-4 rounded-full block">
                                         ALFM Global Multi-Asset Income Fund
                                     </a>

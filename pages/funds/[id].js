@@ -181,7 +181,7 @@ export default function Fund({fund = null}) {
                 <PageTitle title={pageContext.heading}/>
                 <div className="md:w-5/6 sm:w-full ml-auto mr-0 my-4 flex flex-wrap mx-auto overflow-hidden">
                     <div className="my-1 px-1 w-full overflow-hidden sm:w-full md:w-full lg:w-2/3">
-                        <div className="page-text mb-3 page-text"
+                        <div className="page-text mb-3 page-text pr-3 mr-3"
                              dangerouslySetInnerHTML={{__html: pageContext.content}}/>
 
 
