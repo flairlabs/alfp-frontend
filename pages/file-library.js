@@ -44,7 +44,43 @@ export default function FileLibrary({fileLibraryItems, tickerData}) {
                             fileLibraryNodes.map(fileLibraryItem => (
 
                                     fileLibraryItem.fileLibraryTaxonomyFields.fileLibraryType === "flat" ? <FileLibraryItemGroup props={fileLibraryItem} /> : (
-                                        fileLibraryItem.fileLibraryTaxonomyFields.fileLibraryType === "fund_fact_sheet" ? "fund fact sheet" : "null"
+                                        fileLibraryItem.fileLibraryTaxonomyFields.fileLibraryType === "fund_fact_sheet" ?
+                                            <div className="flex flex-wrap -mx-1 overflow-hidden">
+
+                                                <div className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
+                                                    <label>Year</label>
+                                                    <input type="number" name="fundFactSheetYear" />
+                                                </div>
+
+                                                <div className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
+                                                    <label>Month</label>
+                                                    <select name="fundFactSheetMonth">
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
+
+                                                <div className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
+                                                    <label>Fund</label>
+                                                </div>
+
+                                                <div className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
+                                                    <a className="btn-primary" href="#!">Search</a>
+                                                </div>
+
+                                            </div>
+
+                                            : "null"
                                     )
                                 )
                             )
