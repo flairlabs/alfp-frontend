@@ -6,7 +6,7 @@ import Container from "../components/container";
 import Ticker from "../components/generic/ticker/ticker";
 import MasterNavbar from "../components/generic/nav/master-nav";
 
-export default function PageLayout({preview, title, children}) {
+export default function PageLayout({preview, title, children, tickerData}) {
     return (
         <>
             <Meta/>
@@ -18,7 +18,7 @@ export default function PageLayout({preview, title, children}) {
                 <Container>
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                        <Ticker/>
+                        <Ticker tickerData={tickerData}/>
                         <main>{children}</main>
                     </div>
                 </Container>

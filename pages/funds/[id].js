@@ -10,13 +10,10 @@ import GlobalContext from "../../lib/global-context";
 import InfoTable from "../../components/generic/tables/info-table";
 import {useRouter} from "next/router";
 import ErrorPage from "next/error";
-import {getFund} from "../../lib/api";
-import Image from 'next/image'
-import {SiteURL} from "../../lib/urls";
+import {getFund, getFundValues} from "../../lib/api";
 import FundTableButtonModal from "../../components/generic/modals/fund-table-button-modal";
-import BlogArchiveModal from "../../components/generic/modals/blog-archive-modal";
 
-export default function Fund({fund = null}) {
+export default function Fund({fund = null, tickerData}) {
     const global = useContext(GlobalContext)
     const router = useRouter()
 
@@ -187,6 +184,7 @@ export default function Fund({fund = null}) {
 
                     </div>
                     <div className="my-1 px-1 w-full overflow-hidden sm:w-full md:w-full lg:w-1/3">
+
                         <InfoTable data={infoTable}/>
                     </div>
 
@@ -311,10 +309,12 @@ export async function getServerSideProps({
                                              defaultLocale
                                          }) {
     const data = await getFund(params.id)
+    const tickerData = await getFundValues(2)
     return {
         props: {
             preview,
-            fund: data
+            fund: data,
+            tickerData
         },
     }
 }

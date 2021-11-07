@@ -6,9 +6,9 @@ import "react-calendar/dist/Calendar.css";
 import GlobalContext from "../../lib/global-context";
 import {useRouter} from "next/router";
 import ErrorPage from "next/error";
-import {getFactSheet} from "../../lib/api";
+import {getFactSheet, getFundValues} from "../../lib/api";
 
-export default function FactSheet({fund = null}) {
+export default function FactSheet({fund = null, tickerData}) {
     const global = useContext(GlobalContext)
     const router = useRouter()
 
@@ -58,10 +58,12 @@ export async function getServerSideProps({
                                              defaultLocale
                                          }) {
     const data = await getFactSheet(params.id)
+    const tickerData = await getFundValues(2)
     return {
         props: {
             preview,
-            fund: data
+            fund: data,
+            tickerData
         },
     }
 }

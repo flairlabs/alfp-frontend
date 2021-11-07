@@ -7,13 +7,13 @@ import Header from '../../components/header'
 import PostHeader from '../../components/post-header'
 import SectionSeparator from '../../components/section-separator'
 import Layout from '../../components/layout'
-import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
+import {getAllPostsWithSlug, getFundValues, getPostAndMorePosts} from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import Head from 'next/head'
 import { CMS_NAME } from '../../lib/constants'
 import Tags from '../../components/tags'
 
-export default function Post({ post, posts, preview }) {
+export default function Post({ post, posts, preview, tickerData }) {
   const router = useRouter()
   const morePosts = posts?.edges
 
@@ -63,12 +63,13 @@ export default function Post({ post, posts, preview }) {
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const data = await getPostAndMorePosts(params.slug, preview, previewData)
-
+  const tickerData = await getFundValues(2)
   return {
     props: {
       preview,
       post: data.post,
       posts: data.posts,
+      tickerData
     },
   }
 }
