@@ -13,6 +13,7 @@ import {CustomSelect} from "../components/generic/form/custom-select";
 import {FundFactSheetItems} from "../components/generic/file-library/fund-fact-sheet";
 import {FileLibraryListGroup} from "../components/generic/file-library/file-library-list-group";
 import {GenericListWrapper} from "../components/generic/file-library/generic-list-wrapper";
+import {OtherFileLibraryItems} from "../components/generic/file-library/others";
 
 
 export default function FileLibrary({
@@ -265,6 +266,9 @@ export default function FileLibrary({
 
                                 </form>
 
+                            </Collapsible>
+                            <Collapsible trigger="Others">
+                                <OtherFileLibraryItems items={otherFileItems} />
                             </Collapsible>
                         </div>
                     </div>
