@@ -168,3 +168,64 @@
     display: block;
     padding: 3px 3px 3px 40px;
 }
+
+/* accordion */
+.tabs {
+
+}
+
+.tab {
+    width: 100%;
+    overflow: hidden;
+}
+.tab-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    /*background: #2c3e50;*/
+    font-weight: bold;
+    cursor: pointer;
+    /* Icon */
+}
+.tab-label:hover {
+    background: #8adec1;
+}
+.tab-label::after {
+    content: "❯";
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transition: all 0.35s;
+}
+.tab-content {
+    max-height: 0;
+    padding: 0 1em;
+    /*color: #2c3e50;*/
+    background: white;
+    transition: all 0.35s;
+}
+.tab-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    /*background: #2c3e50;*/
+    cursor: pointer;
+}
+.tab-close:hover {
+    background: #8adec1;
+}
+
+.tab input:checked + .tab-label {
+    background: #8adec1;
+}
+.tab input:checked + .tab-label::after {
+    transform: rotate(90deg);
+}
+.tab input:checked ~ .tab-content {
+    max-height: 100vh;
+    padding: 1em;
+}
+.hidden-radio {
+
+}

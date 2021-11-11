@@ -1,4 +1,6 @@
-import {getFileLibraryItems, getFundValues, getFunds} from "../lib/api";
+import React, {useState} from 'react';
+import Collapsible from 'react-collapsible';
+import {getFileLibraryItemByTypeSlug, getFunds, getFundValues} from "../lib/api";
 import Head from "next/head";
 import {CMS_NAME} from "../lib/constants";
 import Container from "../components/container";
@@ -6,36 +8,81 @@ import Ticker from "../components/generic/ticker/ticker";
 import Layout from "../components/layout";
 import {FileLibraryItemGroup} from "../components/generic/file-library/file-library-item-group";
 import {CustomInputText} from "../components/generic/form/custom-input-text";
-import {useEffect, useState} from "react";
-import {filterFundFactSheet, getFundFactSheets, prepFileLibraryItemGroups} from "../lib/file-library"
-import {useForm, FormContext} from "react-hook-form";
+import {filterAnnualGeneralMeeting, filterAnnualReport, filterFundFactSheet} from "../lib/file-library"
 import {CustomSelect} from "../components/generic/form/custom-select";
 import {FundFactSheetItems} from "../components/generic/file-library/fund-fact-sheet";
+import {FileLibraryListGroup} from "../components/generic/file-library/file-library-list-group";
+import {GenericListWrapper} from "../components/generic/file-library/generic-list-wrapper";
 
 
-export default function FileLibrary({fileLibraryItems, funds, tickerData}) {
-    const fileLibraryNodes = prepFileLibraryItemGroups(fileLibraryItems)
+export default function FileLibrary({
+                                        funds,
+                                        tickerData,
+                                        prospecti,
+                                        fundSheets,
+                                        bpi_individual,
+                                        bpi_institutional,
+                                        bimi_individual,
+                                        bimi_institutional,
+                                        productHighlightSheet,
+                                        annualReports,
+                                        annualGeneralMeeting
+                                    }) {
+    // const fileLibraryNodes = prepFileLibraryItemGroups(fileLibraryItems)
 
     const [formFundFactSheet, updateFormFundFactSheet] = useState({})
     let [fundFactSheets, updateFundFactSheets] = useState([])
 
     function setFormFundFactSheet(e) {
         e.preventDefault()
-        let items = getFundFactSheets(fileLibraryItems)
+        let items = fundSheets[0].fileLibraryItems.nodes
 
         let year = e.target[0].value
         let month = e.target[1].value
         let fund = e.target[2].value
 
-        if(items.length > 0) {
+        if (items.length > 0) {
             updateFundFactSheets(filterFundFactSheet(items, year, month, fund))
         }
-        console.log(fundFactSheets)
     }
 
     function updateFormFundFactSheetState() {
 
     }
+
+    let [annualReportList, updateAnnualReportList] = useState([])
+    function setAnnualReportList(e) {
+        e.preventDefault()
+        if(!annualReports){
+            return
+        }
+        let items = annualReports[0]?.fileLibraryItems?.nodes
+
+        let year = e.target[0].value
+
+
+        if(items.length > 0){
+            updateAnnualReportList(filterAnnualReport(items, year))
+        }
+        console.log(annualReportList)
+    }
+
+    let [annualGeneralMeetingList, updateAnnualGeneralMeetingList] = useState([])
+    function setAnnualGeneralMeetingList(e) {
+        e.preventDefault()
+        if(!annualGeneralMeeting) {
+            return
+        }
+        let items = annualGeneralMeeting[0].fileLibraryItems.nodes
+
+        let year = e.target[0].value
+        let fund = e.target[2].value
+
+        if (items.length > 0) {
+            updateFundFactSheets(filterAnnualGeneralMeeting(items, year, fund))
+        }
+    }
+
 
     return (
         <>
@@ -49,67 +96,170 @@ export default function FileLibrary({fileLibraryItems, funds, tickerData}) {
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                         <Ticker tickerData={tickerData}/>
 
-                        {
-                            fileLibraryNodes.map(fileLibraryItem => (
 
-                                    fileLibraryItem.fileLibraryTaxonomyFields.fileLibraryType === "flat" ?
-                                        <FileLibraryItemGroup props={fileLibraryItem}/> : (
-                                            fileLibraryItem.fileLibraryTaxonomyFields.fileLibraryType === "fund_fact_sheet" ?
-                                                <>
-                                                    <form className="flex flex-wrap -mx-1 overflow-hidden justify-center  align-center"
-                                                          onSubmit={setFormFundFactSheet}>
+                        <div className="tabs">
+                            <Collapsible trigger="Prospectus">
+                                <FileLibraryItemGroup props={prospecti}/>
+                            </Collapsible>
+                            <Collapsible trigger="Product Highlight Sheet">
+                                <FileLibraryItemGroup props={productHighlightSheet}/>
+                            </Collapsible>
 
-                                                        <div
-                                                            className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
-                                                            <label
-                                                                className="block text-gray-700 text-sm font-bold mb-2">Year</label>
-                                                            <CustomInputText name="fundFactSheetYear" id="fundFactSheetYear"
-                                                                             type="number"/>
-                                                        </div>
+                            <Collapsible trigger="Fund Fact Sheets">
+                                <form
+                                    className="flex flex-row justify-between overflow-hidden items-stretch"
+                                    onSubmit={setFormFundFactSheet}>
 
-                                                        <div
-                                                            className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
+                                    <div className="mr-2">
+                                        <label
+                                            className="block text-gray-700 text-sm font-bold mb-2">Year</label>
+                                        <CustomInputText name="fundFactSheetYear" id="fundFactSheetYear"
+                                                         type="number"/>
+                                    </div>
 
-                                                            <label
-                                                                className="block text-gray-700 text-sm font-bold mb-2">Month</label>
-                                                            <select name="fundFactSheetMonth" id="fundFactSheetMonth" className="w-full border bg-white rounded px-3 py-2 outline-none">
-                                                                <option></option>
-                                                                <option value="0">January</option>
-                                                                <option value="1">February</option>
-                                                                <option value="2">March</option>
-                                                                <option value="3">April</option>
-                                                                <option value="4">May</option>
-                                                                <option value="5">June</option>
-                                                                <option value="6">July</option>
-                                                                <option value="7">August</option>
-                                                                <option value="8">September</option>
-                                                                <option value="9">October</option>
-                                                                <option value="10">November</option>
-                                                                <option value="11">December</option>
-                                                            </select>
-                                                        </div>
+                                    <div className="mr-2">
 
-                                                        <div
-                                                            className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
-                                                            <label
-                                                                className="block text-gray-700 text-sm font-bold mb-2">Fund</label>
-                                                            <CustomSelect name="fundFactSheetFund" id="fundFactSheetFund" options={funds} />
-                                                        </div>
+                                        <label
+                                            className="block text-gray-700 text-sm font-bold mb-2">Month</label>
+                                        <select name="fundFactSheetMonth" id="fundFactSheetMonth"
+                                                className="w-full border bg-white rounded px-3 py-2 outline-none">
+                                            <option></option>
+                                            <option value="0">January</option>
+                                            <option value="1">February</option>
+                                            <option value="2">March</option>
+                                            <option value="3">April</option>
+                                            <option value="4">May</option>
+                                            <option value="5">June</option>
+                                            <option value="6">July</option>
+                                            <option value="7">August</option>
+                                            <option value="8">September</option>
+                                            <option value="9">October</option>
+                                            <option value="10">November</option>
+                                            <option value="11">December</option>
+                                        </select>
+                                    </div>
 
-                                                        <div
-                                                            className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 flex align-center justify-center">
-                                                            <button type="submit" className="w-full bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">Search</button>
-                                                        </div>
+                                    <div className="mr-2">
+                                        <label
+                                            className="block text-gray-700 text-sm font-bold mb-2">Fund</label>
+                                        <CustomSelect name="fundFactSheetFund" id="fundFactSheetFund"
+                                                      options={funds}/>
+                                    </div>
 
-                                                    </form>
-                                                    {fundFactSheets.length > 0 ? <FundFactSheetItems items={fundFactSheets} /> : ""}
-                                                </>
-                                                : "null"
-                                        )
-                                )
-                            )
+                                    <div className="flex items-center">
+                                        <button type="submit"
+                                                className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
+                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round"
+                                                      strokeWidth={2}
+                                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
 
-                        }
+                                </form>
+                                {fundFactSheets.length > 0 ?
+                                    <FundFactSheetItems items={fundFactSheets}/> : ""}
+                            </Collapsible>
+
+                            <Collapsible trigger="Forms">
+                                <div className="flex">
+                                    <div className="w-1/2 md:w-full">
+                                        <h3>I'm a BPI Client</h3>
+                                        <ul>
+                                            <li>
+                                                Individual
+                                                {bpi_individual.length > 0 ?
+                                                    <FileLibraryListGroup props={bpi_individual}/> : ""}
+                                            </li>
+                                            <li>
+                                                Institutional
+                                                {bpi_institutional.length > 0 ?
+                                                    <FileLibraryListGroup props={bpi_institutional}/> : ""}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="w-1/2 md:w-full">
+                                        <h3>I'm a BIMI Agent Client</h3>
+                                        <ul>
+                                            <li>
+                                                Individual
+                                                {bimi_individual.length > 0 ?
+                                                    <FileLibraryListGroup props={bimi_individual}/> : ""}
+                                            </li>
+                                            <li>
+                                                Institutional
+                                                {bimi_institutional.length > 0 ?
+                                                    <FileLibraryListGroup props={bimi_institutional}/> : ""}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </Collapsible>
+
+                            <Collapsible trigger="Annual Reports">
+                                <form
+                                    className="flex flex-row justify-between overflow-hidden items-stretch"
+                                    onSubmit={setAnnualReportList}>
+
+                                    <div className="mr-2">
+                                        <label
+                                            className="block text-gray-700 text-sm font-bold mb-2">Year</label>
+                                        <CustomInputText name="annualReportYear" id="annualReportYear"
+                                                         type="number"/>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <button type="submit"
+                                                className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
+                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round"
+                                                      strokeWidth={2}
+                                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    {annualReportList.length > 0 ? <GenericListWrapper items={annualReportList} /> : ""}
+                                </form>
+                            </Collapsible>
+
+                            <Collapsible trigger="Annual General Meeting">
+                                <form
+                                    className="flex flex-row justify-between overflow-hidden items-stretch"
+                                    onSubmit={setAnnualGeneralMeetingList}>
+
+                                    <div className="mr-2">
+                                        <label
+                                            className="block text-gray-700 text-sm font-bold mb-2">Year</label>
+                                        <CustomInputText name="annualGeneralMeetingYear" id="annualGeneralMeetingYear"
+                                                         type="number"/>
+                                    </div>
+
+                                    <div className="mr-2">
+                                        <label
+                                            className="block text-gray-700 text-sm font-bold mb-2">Fund</label>
+                                        <CustomSelect name="annualGeneralMeetingFund" id="annualGeneralMeetingFund"
+                                                      options={funds}/>
+                                    </div>
+
+                                    <div className="flex items-center">
+                                        <button type="submit"
+                                                className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
+                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round"
+                                                      strokeWidth={2}
+                                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    {annualGeneralMeetingList.length > 0 ? <GenericListWrapper items={annualGeneralMeetingList} /> : ""}
+
+                                </form>
+
+                            </Collapsible>
+                        </div>
                     </div>
                 </Container>
             </Layout>
@@ -120,15 +270,32 @@ export default function FileLibrary({fileLibraryItems, funds, tickerData}) {
 }
 
 export async function getServerSideProps() {
-    const fileLibraryItems = await getFileLibraryItems()
     const funds = await getFunds()
     const tickerData = await getFundValues(2)
 
+    const prospecti = await getFileLibraryItemByTypeSlug("prospectus")
+    const fundSheets = await getFileLibraryItemByTypeSlug("fund-fact-sheet")
+    const bpi_individual = await getFileLibraryItemByTypeSlug("bpi-individual")
+    const bpi_institutional = await getFileLibraryItemByTypeSlug("bpi-institutional")
+    const bimi_individual = await getFileLibraryItemByTypeSlug("bimi-individual")
+    const bimi_institutional = await getFileLibraryItemByTypeSlug("bimi-institutional")
+    const productHighlightSheet = await getFileLibraryItemByTypeSlug("product-highlight-sheet")
+    const annualReports = await getFileLibraryItemByTypeSlug("annual-report")
+    const annualGeneralMeeting = await getFileLibraryItemByTypeSlug("annual-general-meeting")
+
     return {
         props: {
-            fileLibraryItems,
             tickerData,
-            funds
+            funds,
+            prospecti,
+            fundSheets,
+            bpi_individual,
+            bpi_institutional,
+            bimi_individual,
+            bimi_institutional,
+            productHighlightSheet,
+            annualReports,
+            annualGeneralMeeting
         }
     }
 }

@@ -106,11 +106,9 @@ export default function Fund({fund = null, tickerData}) {
         heading: fund.title,
         infoTable: infoTable,
         content: fund.content,
-        factSheet: fund.funds?.factSheet,
-        fileLibrary: fund.funds?.fileLibrary
+        factSheet: null, //fund.funds?.factSheet,
+        fileLibrary: null // fund.funds?.fileLibrary
     }
-
-    console.log(pageContext)
 
     const first = new Date(rawData[rawData.length - 1][0])
     const lastWeek = moment(first).subtract(7, 'days')
@@ -217,9 +215,7 @@ export default function Fund({fund = null, tickerData}) {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                    <a href={pageContext.factSheet.uri}>
-                                        Fund Fact Sheets
-                                    </a>
+                                    // fact sheets
                                 </h3>
 
                             </div>
@@ -249,9 +245,7 @@ export default function Fund({fund = null, tickerData}) {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                    <a href={pageContext.fileLibrary.uri}>
-                                        File Library
-                                    </a>
+                                    // file library
                                 </h3>
 
                             </div>
