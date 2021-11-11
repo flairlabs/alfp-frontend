@@ -79,7 +79,8 @@ export default function FileLibrary({
         let fund = e.target[2].value
 
         if (items.length > 0) {
-            updateFundFactSheets(filterAnnualGeneralMeeting(items, year, fund))
+            let res = filterAnnualGeneralMeeting(items, year, fund)
+            updateAnnualGeneralMeetingList(res)
         }
     }
 
