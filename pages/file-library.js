@@ -8,7 +8,7 @@ import Ticker from "../components/generic/ticker/ticker";
 import Layout from "../components/layout";
 import {FileLibraryItemGroup} from "../components/generic/file-library/file-library-item-group";
 import {CustomInputText} from "../components/generic/form/custom-input-text";
-import {filterAnnualGeneralMeeting, filterAnnualReport, filterFundFactSheet} from "../lib/file-library"
+import {filterAnnualGeneralMeeting, filterAnnualReport, filterFundFactSheet, prepOtherFiles} from "../lib/file-library"
 import {CustomSelect} from "../components/generic/form/custom-select";
 import {FundFactSheetItems} from "../components/generic/file-library/fund-fact-sheet";
 import {FileLibraryListGroup} from "../components/generic/file-library/file-library-list-group";
@@ -26,16 +26,20 @@ export default function FileLibrary({
                                         bimi_institutional,
                                         productHighlightSheet,
                                         annualReports,
-                                        annualGeneralMeeting
+                                        annualGeneralMeeting,
+                                        otherFiles
                                     }) {
     // const fileLibraryNodes = prepFileLibraryItemGroups(fileLibraryItems)
+
+    const otherFileItems = prepOtherFiles(otherFiles[0]?.fileLibraryItems?.nodes)
+    console.log(otherFileItems)
 
     const [formFundFactSheet, updateFormFundFactSheet] = useState({})
     let [fundFactSheets, updateFundFactSheets] = useState([])
 
     function setFormFundFactSheet(e) {
         e.preventDefault()
-        let items = fundSheets[0].fileLibraryItems.nodes
+        let items = fundSheets[0]?.fileLibraryItems?.nodes
 
         let year = e.target[0].value
         let month = e.target[1].value
@@ -51,9 +55,10 @@ export default function FileLibrary({
     }
 
     let [annualReportList, updateAnnualReportList] = useState([])
+
     function setAnnualReportList(e) {
         e.preventDefault()
-        if(!annualReports){
+        if (!annualReports) {
             return
         }
         let items = annualReports[0]?.fileLibraryItems?.nodes
@@ -61,19 +66,19 @@ export default function FileLibrary({
         let year = e.target[0].value
 
 
-        if(items.length > 0){
+        if (items.length > 0) {
             updateAnnualReportList(filterAnnualReport(items, year))
         }
-        console.log(annualReportList)
     }
 
     let [annualGeneralMeetingList, updateAnnualGeneralMeetingList] = useState([])
+
     function setAnnualGeneralMeetingList(e) {
         e.preventDefault()
-        if(!annualGeneralMeeting) {
+        if (!annualGeneralMeeting) {
             return
         }
-        let items = annualGeneralMeeting[0].fileLibraryItems.nodes
+        let items = annualGeneralMeeting[0]?.fileLibraryItems?.nodes
 
         let year = e.target[0].value
         let fund = e.target[2].value
@@ -221,7 +226,7 @@ export default function FileLibrary({
                                             </svg>
                                         </button>
                                     </div>
-                                    {annualReportList.length > 0 ? <GenericListWrapper items={annualReportList} /> : ""}
+                                    {annualReportList.length > 0 ? <GenericListWrapper items={annualReportList}/> : ""}
                                 </form>
                             </Collapsible>
 
@@ -255,7 +260,8 @@ export default function FileLibrary({
                                             </svg>
                                         </button>
                                     </div>
-                                    {annualGeneralMeetingList.length > 0 ? <GenericListWrapper items={annualGeneralMeetingList} /> : ""}
+                                    {annualGeneralMeetingList.length > 0 ?
+                                        <GenericListWrapper items={annualGeneralMeetingList}/> : ""}
 
                                 </form>
 
@@ -283,6 +289,7 @@ export async function getServerSideProps() {
     const productHighlightSheet = await getFileLibraryItemByTypeSlug("product-highlight-sheet")
     const annualReports = await getFileLibraryItemByTypeSlug("annual-report")
     const annualGeneralMeeting = await getFileLibraryItemByTypeSlug("annual-general-meeting")
+    const otherFiles = await getFileLibraryItemByTypeSlug("other-documents-and-announcements")
 
     return {
         props: {
@@ -296,7 +303,8 @@ export async function getServerSideProps() {
             bimi_institutional,
             productHighlightSheet,
             annualReports,
-            annualGeneralMeeting
+            annualGeneralMeeting,
+            otherFiles
         }
     }
 }
