@@ -140,7 +140,7 @@
 
 /* nav */
 #navWrapperMain {
-    font-size: 1.2rem !important;
+    font-size: 1.05rem !important;
 }
 
 #navWrapperSub {
@@ -163,69 +163,35 @@
     margin: 8px 16px;
 }
 
-.file-library-content ul li a {
-    background: transparent url( "/images/icons/download.png" ) no-repeat left center;
+.file-library-content ul li a, .file-library-item-group .file-library-item {
+    background: transparent url( "/images/icons/download.png" ) no-repeat .5rem .5rem;
+    background-size: 22px;
     display: block;
-    padding: 3px 3px 3px 40px;
+    padding: 3px 10px 3px 40px;
 }
 
 /* accordion */
-.tabs {
-
+.Collapsible {
+    box-shadow: 0 0 1rem 0 #ccc;
+    padding: 1rem;
+    margin: 1rem auto;
 }
 
-.tab {
-    width: 100%;
-    overflow: hidden;
-}
-.tab-label {
+.Collapsible__trigger {
     display: flex;
     justify-content: space-between;
-    padding: 1em;
-    /*background: #2c3e50;*/
+    align-items: center;
+    font-size: 1.2rem;
     font-weight: bold;
-    cursor: pointer;
-    /* Icon */
-}
-.tab-label:hover {
-    background: #8adec1;
-}
-.tab-label::after {
-    content: "❯";
-    width: 1em;
-    height: 1em;
-    text-align: center;
-    transition: all 0.35s;
-}
-.tab-content {
-    max-height: 0;
-    padding: 0 1em;
-    /*color: #2c3e50;*/
-    background: white;
-    transition: all 0.35s;
-}
-.tab-close {
-    display: flex;
-    justify-content: flex-end;
-    padding: 1em;
-    font-size: 0.75em;
-    /*background: #2c3e50;*/
-    cursor: pointer;
-}
-.tab-close:hover {
-    background: #8adec1;
+    color: rgba(75, 85, 99, 1);
 }
 
-.tab input:checked + .tab-label {
-    background: #8adec1;
+.Collapsible__trigger.is-open svg {
+    transform: rotate(180deg);
 }
-.tab input:checked + .tab-label::after {
-    transform: rotate(90deg);
-}
-.tab input:checked ~ .tab-content {
-    max-height: 100vh;
-    padding: 1em;
-}
-.hidden-radio {
 
+.Collapsible__contentInner {
+    margin: 1rem auto;
+    padding: 1rem;
+    border: 1px solid #ddd;
 }

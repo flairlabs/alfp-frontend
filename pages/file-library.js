@@ -14,6 +14,7 @@ import {FundFactSheetItems} from "../components/generic/file-library/fund-fact-s
 import {FileLibraryListGroup} from "../components/generic/file-library/file-library-list-group";
 import {GenericListWrapper} from "../components/generic/file-library/generic-list-wrapper";
 import {OtherFileLibraryItems} from "../components/generic/file-library/others";
+import {BsChevronDown} from "react-icons/bs"; //react-icon
 
 
 export default function FileLibrary({
@@ -33,7 +34,6 @@ export default function FileLibrary({
     // const fileLibraryNodes = prepFileLibraryItemGroups(fileLibraryItems)
 
     const otherFileItems = prepOtherFiles(otherFiles[0]?.fileLibraryItems?.nodes)
-    console.log(otherFileItems)
 
     const [formFundFactSheet, updateFormFundFactSheet] = useState({})
     let [fundFactSheets, updateFundFactSheets] = useState([])
@@ -105,14 +105,14 @@ export default function FileLibrary({
 
 
                         <div className="tabs">
-                            <Collapsible trigger="Prospectus">
+                            <Collapsible trigger={["Prospectus", <BsChevronDown/>]}>
                                 <FileLibraryItemGroup props={prospecti}/>
                             </Collapsible>
-                            <Collapsible trigger="Product Highlight Sheet">
+                            <Collapsible trigger={["Product Highlight Sheets", <BsChevronDown/>]}>
                                 <FileLibraryItemGroup props={productHighlightSheet}/>
                             </Collapsible>
 
-                            <Collapsible trigger="Fund Fact Sheets">
+                            <Collapsible trigger={["Fund Fact Sheets", <BsChevronDown/>]}>
                                 <form
                                     className="flex flex-row justify-between overflow-hidden items-stretch"
                                     onSubmit={setFormFundFactSheet}>
@@ -167,10 +167,13 @@ export default function FileLibrary({
 
                                 </form>
                                 {fundFactSheets.length > 0 ?
-                                    <FundFactSheetItems items={fundFactSheets}/> : ""}
+                                    <div className="block my-3">
+                                        <FundFactSheetItems items={fundFactSheets}/>
+                                    </div>
+                                    : ""}
                             </Collapsible>
 
-                            <Collapsible trigger="Forms">
+                            <Collapsible trigger={["Forms", <BsChevronDown/>]}>
                                 <div className="flex">
                                     <div className="w-1/2 md:w-full">
                                         <h3>I'm a BPI Client</h3>
@@ -205,7 +208,7 @@ export default function FileLibrary({
                                 </div>
                             </Collapsible>
 
-                            <Collapsible trigger="Annual Reports">
+                            <Collapsible trigger={["Annual Reports", <BsChevronDown/>]}>
                                 <form
                                     className="flex flex-row justify-between overflow-hidden items-stretch"
                                     onSubmit={setAnnualReportList}>
@@ -231,7 +234,7 @@ export default function FileLibrary({
                                 </form>
                             </Collapsible>
 
-                            <Collapsible trigger="Annual General Meeting">
+                            <Collapsible trigger={["Annual General Meetings", <BsChevronDown/>]}>
                                 <form
                                     className="flex flex-row justify-between overflow-hidden items-stretch"
                                     onSubmit={setAnnualGeneralMeetingList}>
@@ -267,8 +270,8 @@ export default function FileLibrary({
                                 </form>
 
                             </Collapsible>
-                            <Collapsible trigger="Others">
-                                <OtherFileLibraryItems items={otherFileItems} />
+                            <Collapsible trigger={["Others", <BsChevronDown/>]}>
+                                <OtherFileLibraryItems items={otherFileItems}/>
                             </Collapsible>
                         </div>
                     </div>
