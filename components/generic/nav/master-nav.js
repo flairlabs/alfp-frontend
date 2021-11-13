@@ -19,7 +19,7 @@ export default function MasterNavbar() {
                 [
                     {name: 'Investing 101', href: "/page/investment-basics", current: false, children: null},
                     {name: "Fund Manager's Corner", href: '#', current: false, children: null},
-                    {name: 'FAQs', href: '#', current: false, children: null}
+                    {name: 'FAQs', href: '/faqs', current: false, children: null}
                 ]
         },
         {
