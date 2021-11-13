@@ -122,7 +122,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
 
     return (
         <>
-            <PageLayout title={pageContext.title} preview={false}>
+            <PageLayout title={pageContext.title} preview={false} tickerData={tickerData}>
                 <PageTitle title={pageContext.heading}/>
                 <div className="md:w-5/6 sm:w-full ml-auto mr-0 my-4 flex flex-wrap mx-auto overflow-hidden">
                     <div className="my-1 px-1 w-full overflow-hidden sm:w-full md:w-full lg:w-2/3">

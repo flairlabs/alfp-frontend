@@ -43,18 +43,6 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                             </HeroPage>
                         )}
 
-                        {/*{heroPost && (*/}
-                        {/*    <HeroPost*/}
-                        {/*        title={heroPost.title}*/}
-                        {/*        coverImage={heroPost.featuredImage?.node}*/}
-                        {/*        date={heroPost.date}*/}
-                        {/*        author={heroPost.author?.node}*/}
-                        {/*        slug={heroPost.slug}*/}
-                        {/*        excerpt={heroPost.excerpt}*/}
-                        {/*    />*/}
-                        {/*)}*/}
-                        {/*{morePosts.length > 0 && <MoreStories posts={morePosts}/>}*/}
-
                         <hr className="my-4"/>
 
 
@@ -196,25 +184,6 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                             </div>
                         </div>
 
-                        {/*<section className="container mx-auto text-center py-6 mb-12">*/}
-                        {/*    <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-accent-1">*/}
-                        {/*        Call to Action*/}
-                        {/*    </h1>*/}
-                        {/*    <div className="w-full mb-4">*/}
-                        {/*        <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"/>*/}
-                        {/*    </div>*/}
-                        {/*    <h3 className="my-4 text-3xl block">*/}
-                        {/*        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.*/}
-                        {/*    </h3>*/}
-                        {/*    <a href="#!"*/}
-                        {/*       className="my-4 mx-auto lg:mx-0 hover:bg-accent-7 bg-accent-1 hover:text-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline">*/}
-                        {/*        Go*/}
-                        {/*    </a>*/}
-                        {/*</section>*/}
-
-                        {/*{morePosts.length > 0 && <MoreStories posts={morePosts}/>}*/}
-
-
                     </div>
                 </Container>
             </Layout>
@@ -222,7 +191,6 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
     )
 }
 
-// export async function getStaticProps({preview = false}) {
 export async function getServerSideProps({params,req,res,query,preview = false,previewData,resolvedUrl,locale,locales,defaultLocale}) {
 
     const allPosts = await getAllPostsForHome(preview)
