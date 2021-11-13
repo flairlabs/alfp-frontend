@@ -17,7 +17,7 @@ export default function MasterNavbar() {
         {
             name: 'Home', href: nav_urls.home.url, current: false, slug: 0, children:
                 [
-                    {name: 'Investing 101', href: "page/investment-basics", current: false, children: null},
+                    {name: 'Investing 101', href: "/page/investment-basics", current: false, children: null},
                     {name: "Fund Manager's Corner", href: '#', current: false, children: null},
                     {name: 'FAQs', href: '#', current: false, children: null}
                 ]
@@ -73,9 +73,9 @@ export default function MasterNavbar() {
         },
         {
             name: 'About ALFM', href: '#', current: false, slug: 2, children: [
-                {name: 'Board of Directors', href: nav_urls.about.url, current: false, children: null},
-                {name: "Fund Manager", href: '#', current: false, children: null},
-                {name: 'Distributors', href: '#', current: false, children: null}
+                {name: 'Board of Directors', href: "/about/board-of-directors", current: false, children: null},
+                {name: "Fund Manager", href: '/about/fund-manager', current: false, children: null},
+                {name: 'Distributors', href: '/about/distributors', current: false, children: null}
             ]
         },
         {name: 'Related Sites', href: '#', current: false, slug: 3, children: []},
