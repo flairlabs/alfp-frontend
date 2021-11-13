@@ -2693,6 +2693,11 @@ react-calendar@^3.3.1:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
 
+react-collapsible@^2.8.4:
+  version "2.8.4"
+  resolved "https://registry.yarnpkg.com/react-collapsible/-/react-collapsible-2.8.4.tgz#319ff7471138c4381ce0afa3ac308ccde7f4e09f"
+  integrity sha512-oG4yOk6AGKswe0OD/8t3/nf4Rgj4UhlZUUvqL5jop0/ez02B3dBDmNvs3sQz0PcTpJvt0ai8zF7Atd1SzN/UNw==
+
 react-date-picker@^8.3.3:
   version "8.3.3"
   resolved "https://registry.yarnpkg.com/react-date-picker/-/react-date-picker-8.3.3.tgz#87e4df8be5a033fb22b6df7cb5d3f6ae31030477"
