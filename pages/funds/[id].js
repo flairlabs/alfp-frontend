@@ -12,8 +12,9 @@ import {useRouter} from "next/router";
 import ErrorPage from "next/error";
 import {getFund, getFundValues} from "../../lib/api";
 import FundTableButtonModal from "../../components/generic/modals/fund-table-button-modal";
+import {processFundValues} from "../../lib/fund-values";
 
-export default function Fund({fund = null, tickerData}) {
+export default function Fund({fund = null, tickerData, fundValues}) {
     const global = useContext(GlobalContext)
     const router = useRouter()
 
@@ -48,65 +49,14 @@ export default function Fund({fund = null, tickerData}) {
 
     parseRawInfo()
 
-    const rawData = [
-        ["2021-08-13", 159.33],
-        ["2021-08-14", 546.60],
-        ["2021-08-15", 309.95],
-        ["2021-08-16", 316.10],
-        ["2021-08-17", 663.81],
-        ["2021-08-18", 221.98],
-        ["2021-08-19", 446.52],
-        ["2021-08-20", 220.82],
-        ["2021-08-21", 271.58],
-        ["2021-08-22", 131.92],
-        ["2021-08-23", 514.55],
-        ["2021-08-24", 270.82],
-        ["2021-08-25", 270.92],
-        ["2021-08-26", 262.30],
-        ["2021-08-27", 640.13],
-        ["2021-08-28", 243.61],
-        ["2021-08-29", 427.20],
-        ["2021-08-30", 720.60],
-        ["2021-08-31", 172.24],
-        ["2021-09-01", 409.41],
-        ["2021-09-02", 585.24],
-        ["2021-09-03", 563.47],
-        ["2021-09-04", 556.35],
-        ["2021-09-05", 626.28],
-        ["2021-09-06", 531.43],
-        ["2021-09-07", 627.25],
-        ["2021-09-08", 308.12],
-        ["2021-09-09", 244.80],
-        ["2021-09-10", 162.43],
-        ["2021-09-11", 245.43],
-        ["2021-09-12", 438.21],
-        ["2021-09-13", 224.22],
-        ["2021-09-14", 448.87],
-        ["2021-09-15", 381.78],
-        ["2021-09-16", 217.12],
-        ["2021-09-17", 172.38],
-        ["2021-09-18", 534.49],
-        ["2021-09-19", 683.68],
-        ["2021-09-20", 436.89],
-        ["2021-09-21", 689.08],
-        ["2021-09-22", 136.51],
-        ["2021-09-23", 622.71],
-        ["2021-09-24", 708.43],
-        ["2021-09-25", 712.27],
-        ["2021-09-26", 196.85],
-        ["2021-09-27", 716.06],
-        ["2021-09-28", 661.13],
-        ["2021-09-29", 206.85],
-        ["2021-09-30", 511.41],
-        ["2021-10-01", 296.00]
-    ]
+    const rawData = processFundValues(fundValues, fund.funds.fundValueName)
 
     const pageContext = {
         title: fund.title,
         heading: fund.title,
         infoTable: infoTable,
         content: fund.content,
-        factSheet: null, //fund.funds?.factSheet,
+        factSheet: fund.funds?.factSheet,
         fileLibrary: null // fund.funds?.fileLibrary
     }
 
@@ -215,7 +165,9 @@ export default function Fund({fund = null, tickerData}) {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                    // fact sheets
+                                    <a href={fund.funds?.factSheet?.sourceUrl}>
+                                        Fact Sheet
+                                    </a>
                                 </h3>
 
                             </div>
@@ -245,7 +197,7 @@ export default function Fund({fund = null, tickerData}) {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                    // file library
+                                    <a href="/file-library">File Library</a>
                                 </h3>
 
                             </div>
@@ -304,11 +256,13 @@ export async function getServerSideProps({
                                          }) {
     const data = await getFund(params.id)
     const tickerData = await getFundValues(2)
+    const fundValues = await getFundValues(null)
     return {
         props: {
             preview,
             fund: data,
-            tickerData
+            tickerData,
+            fundValues
         },
     }
 }

@@ -23,7 +23,7 @@ const fundKeys = {
     },
     "alfmMoneyMarketFund": {
         name: "Money Market Fund",
-        url: ""
+        url: "/funds/alfm-money-market-fund"
     },
     "alfmPesoBondFund": {
         name: "Peso Bond Fund",
@@ -79,6 +79,10 @@ const responsive = {
     1200: {items: 3}
 };
 
+const tempStyle = {
+    "margin-right": "2px"
+}
+
 function parseTickerData(rawTickerData) {
     let parsedFundValues = []
     for(let i = 0; i < rawTickerData.length; i++){
@@ -129,7 +133,7 @@ export default function Ticker(tickerData = []) {
             <path fillRule="evenodd" d="M12 13a1 1 0 100 2h5a1 1 0 001-1V9a1 1 0 10-2 0v2.586l-4.293-4.293a1 1 0 00-1.414 0L8 9.586 3.707 5.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0L11 9.414 14.586 13H12z" clipRule="evenodd" />
         </svg>
 
-        let item = <div onDragStart={handleDragStart} role="presentation" className="flex flex-row items-end space-x-4 items-center mt-1 mb-2 bg-accent-7 text-accent-2 p-3 mr-1">
+        let item = <div onDragStart={handleDragStart} role="presentation" className="flex flex-row items-end space-x-4 items-center mt-1 mb-2 bg-accent-7 text-accent-2 p-3" style={tempStyle}>
             <div className="w-2/3">
                 <a className="block text-accent-1" href={fund.url}>{fund.name}</a>
                 <small>{fund.date}</small>
