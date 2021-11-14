@@ -31,9 +31,12 @@ module.exports = {
         custom: ["ProximaNova", "sans-serif"]
       },
       colors: {
-        'accent-1': '#8adec1',
-        'accent-2': '#EAEAEA',
+        'accent-1': '#a4d65e',
+        'accent-2': '#2c5236',
+        'accent-3': '#8adec1',
+        'accent-4': '#EAEAEA',
         'accent-7': '#333',
+        'gray-700': '#444',
         success: '#0070f3',
         cyan: '#79FFE1',
       },

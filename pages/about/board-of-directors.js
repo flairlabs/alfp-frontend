@@ -28,9 +28,9 @@ export default function BoardOfDirectors({tickerData, boardMembers}) {
         <>
             <PageLayout title={pageContext.title} preview={false} tickerData={tickerData}>
                 <PageTitle title={pageContext.heading}/>
-                <Splash srcFull="/images/featured-images/investment-basics.jpg" />
+                <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
 
-                <div className="md:w-5/6 sm:w-full mx-auto my-4">
+                <div className="max-w-2xl mx-auto my-4 page-text my-4">
                     {pageContext.persons.map(( person) => (
                         <PersonCard
                             name={person.boardMemberFields.name}

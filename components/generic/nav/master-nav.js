@@ -1,7 +1,7 @@
 import {useRouter} from 'next/router'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {BellIcon, MenuIcon, XIcon} from '@heroicons/react/outline'
-import {PAGE_URLS} from "../../../lib/constants";
+import {CMS_NAME, PAGE_URLS} from "../../../lib/constants";
 import {Fragment, useContext, useEffect, useState} from 'react'
 import {ChevronDownIcon} from '@heroicons/react/solid'
 import GlobalContext from "../../../lib/global-context";
@@ -155,8 +155,8 @@ export default function MasterNavbar() {
                                 <div className="flex-shrink-0 flex items-center">
                                     <img
                                         className="block h-8 w-auto"
-                                        src="/alfm-logo.png"
-                                        alt="{CMS_NAME}"
+                                        src="/images/logo.png"
+                                        alt={CMS_NAME}
                                     />
 
                                 </div>

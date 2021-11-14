@@ -8,6 +8,7 @@ import {getDistributors, getFundValues} from "../../lib/api";
 import {CMS_NAME} from "../../lib/constants";
 import {sorterDistributor} from "../../lib/utils";
 import PersonCard from "../../components/generic/cards/person-card";
+import Splash from "../../components/generic/splash/splash";
 
 export default function Distributors({tickerData, distributors}) {
     const global = useContext(GlobalContext)
@@ -27,8 +28,9 @@ export default function Distributors({tickerData, distributors}) {
         <>
             <PageLayout title={pageContext.title} preview={false} tickerData={tickerData}>
                 <PageTitle title={pageContext.heading}/>
+                <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
 
-                <div className="md:w-5/6 sm:w-full mx-auto my-4">
+                <div className="max-w-2xl mx-auto my-4 page-text">
                     {pageContext.persons.map(( person) => (
                         <PersonCard
                             name={person.distributorFields.name}

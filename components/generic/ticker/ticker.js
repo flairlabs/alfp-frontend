@@ -80,7 +80,7 @@ const responsive = {
 };
 
 const tempStyle = {
-    "margin-right": "2px"
+    "marginRight": "2px"
 }
 
 function parseTickerData(rawTickerData) {
@@ -136,9 +136,9 @@ export default function Ticker(tickerData = []) {
         let item = <div onDragStart={handleDragStart} role="presentation" className="flex flex-row items-end space-x-4 items-center mt-1 mb-2 bg-accent-7 text-accent-2 p-3" style={tempStyle}>
             <div className="w-2/3">
                 <a className="block text-accent-1" href={fund.url}>{fund.name}</a>
-                <small>{fund.date}</small>
+                <small className="text-white">{fund.date}</small>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 text-white">
                 <strong>{fund.value}</strong>
                 {icon}
             </div>

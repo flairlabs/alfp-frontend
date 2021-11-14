@@ -8,8 +8,8 @@ export default function Intro({carouselItems}) {
     let items = []
     for(let i = 0; i < carouselItems.length; i++){
         items.push(
-            <a href={carouselItems[i].mainCarouselItem?.url}>
-                <img src={carouselItems[i].featuredImage?.node?.sourceUrl} onDragStart={handleDragStart} role="presentation" />
+            <a href={carouselItems[i]?.mainCarouselItem?.url}>
+                <img src={carouselItems[i]?.featuredImage?.node?.sourceUrl} onDragStart={handleDragStart} role="presentation" />
             </a>
         )
     }
