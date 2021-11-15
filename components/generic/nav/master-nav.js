@@ -78,7 +78,7 @@ export default function MasterNavbar() {
                 {name: 'Distributors', href: '/about/distributors', current: false, children: null}
             ]
         },
-        {name: 'Related Sites', href: '#', current: false, slug: 3, children: []},
+        {name: 'Related Sites', href: '/related-sites', current: false, slug: 3, children: []},
     ]
 
     function classNames(...classes) {

@@ -33,7 +33,6 @@ export default function PostPreview({
         className="text-lg leading-relaxed mb-4"
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
-      <Avatar author={author} />
     </div>
   )
 }

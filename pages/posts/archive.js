@@ -8,8 +8,10 @@ import {CMS_NAME} from '../../lib/constants'
 import Ticker from "../../components/generic/ticker/ticker";
 import {useContext} from "react";
 import GlobalContext from "../../lib/global-context";
+import PageLayout from "../../layouts/PageLayout";
+import Splash from "../../components/generic/splash/splash";
 
-export default function PostArchive({ allPosts: { edges }, preview, tickerData }) {
+export default function PostArchive({allPosts: {edges}, preview, tickerData}) {
     const heroPost = edges[0]?.node
     const morePosts = edges.slice(1)
     const global = useContext(GlobalContext)
@@ -17,34 +19,21 @@ export default function PostArchive({ allPosts: { edges }, preview, tickerData }
     global.currentSection = 0
 
     return (
-        <>
-            <Layout preview={false}>
-                <Head>
-                    <title>{CMS_NAME}</title>
-                </Head>
-                <Container>
+        <PageLayout title="Home" preview={false} tickerData={tickerData}>
+                {heroPost && (
+                    <HeroPost
+                        title={heroPost.title}
+                        coverImage={heroPost.featuredImage?.node}
+                        date={heroPost.date}
+                        author={heroPost.author?.node}
+                        slug={heroPost.slug}
+                        excerpt={heroPost.excerpt}
+                    />
+                )}
+                {morePosts.length > 0 && <MoreStories posts={morePosts}/>}
 
 
-                    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                        <Ticker/>
-
-                        {heroPost && (
-                            <HeroPost
-                                title={heroPost.title}
-                                coverImage={heroPost.featuredImage?.node}
-                                date={heroPost.date}
-                                author={heroPost.author?.node}
-                                slug={heroPost.slug}
-                                excerpt={heroPost.excerpt}
-                            />
-                        )}
-                        {morePosts.length > 0 && <MoreStories posts={morePosts}/>}
-
-
-                    </div>
-                </Container>
-            </Layout>
-        </>
+        </PageLayout>
     )
 }
 

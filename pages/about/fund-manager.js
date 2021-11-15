@@ -11,6 +11,7 @@ import PersonCard from "../../components/generic/cards/person-card";
 import {CMS_NAME} from "../../lib/constants";
 import {sorterBoardMember} from "../../lib/utils";
 import Splash from "../../components/generic/splash/splash";
+import AboutHeader from "../../components/generic/about/about-header";
 
 export default function FundManager({tickerData, boardMembers, page}) {
     const global = useContext(GlobalContext)
@@ -20,7 +21,7 @@ export default function FundManager({tickerData, boardMembers, page}) {
 
     const pageContext = {
         title: page.title,
-        heading: `${page.title} ${CMS_NAME}`,
+        heading: `${page.title}`,
         content: page.content,
         coverImage: page.featuredImage?.node,
         persons: boardMembers
@@ -30,6 +31,7 @@ export default function FundManager({tickerData, boardMembers, page}) {
         <>
             <PageLayout title={pageContext.title} preview={false} tickerData={tickerData}>
                 <PageTitle title={pageContext.heading}/>
+
                 <article className="page-text">
                     {pageContext.coverImage ? (
                         <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
@@ -55,22 +57,22 @@ export default function FundManager({tickerData, boardMembers, page}) {
                 </div>
                 <div className="page-text">
                     <h2>Other Mutual Funds managed by BIMI</h2>
-                    <div className="flex flex-wrap -mx-1 overflow-hidden">
+                    <div className="flex flex-wrap mb-2 -mx-1 overflow-hidden">
 
-                        <div className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
-                            // content
+                        <div className="my-2 px-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
+                            <img src="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
                         </div>
 
-                        <div className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
-                            // content
+                        <div className="my-2 px-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
+                            <img src="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
                         </div>
 
-                        <div className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
-                            // content
+                        <div className="my-2 px-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
+                            <img src="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
                         </div>
 
-                        <div className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
-                            // content
+                        <div className="my-2 px-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
+                            <img src="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
                         </div>
 
                     </div>

@@ -10,8 +10,11 @@ import {useContext} from "react";
 import GlobalContext from "../lib/global-context";
 import PageTitle from "../components/generic/titles/page-title";
 import PageLayout from "../layouts/PageLayout";
+import Link from "next/link";
+import Date from "../components/date";
+import Avatar from "../components/avatar";
 
-export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems=null, tickerData}) {
+export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems = null, tickerData}) {
     // const heroPost = edges[0]?.node
     const heroPage = frontPages["investment-basics"] ? frontPages["investment-basics"] : null
     // const morePosts = edges.slice(1)
@@ -40,6 +43,25 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
 
                 <hr className="my-4"/>
 
+                <div>
+                    <div>
+                        <h3 className="mb-4 text-4xl lg:text-6xl leading-tight">
+                            Mutual Funds
+                        </h3>
+                    </div>
+                    <div>
+                        <div className="text-lg leading-relaxed mb-4">
+                            ALFM Mutual Funds have six different fund types that meet various investment objectives.
+                            Investors can create their own diversified investment portfolio by investing in several
+                            funds
+                            with varying amounts depending on their tolerance for investment risk. For the appropriate
+                            mix
+                            that is suitable to you, you may contact your Mutual Funds Sales Agent who is prepared to
+                            advise
+                            you on the benefits, risks, and features of mutual funds investing.
+                        </div>
+                    </div>
+                </div>
 
                 <div
                     className="py-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
@@ -48,10 +70,6 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                         <img src="/images/revenue.png" className="w-full"/>
                         <div className="px-6 py-4">
                             <div className="font-bold text-xl mb-2">Fixed Income Fund</div>
-                            <p className="text-gray-700 text-base">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia,
-                                nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                            </p>
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <a href="/funds/alfm-money-market-fund"
@@ -78,10 +96,6 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                         <img src="/images/investing.png" className="w-full"/>
                         <div className="px-6 py-4">
                             <div className="font-bold text-xl mb-2">Equity Funds</div>
-                            <p className="text-gray-700 text-base">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia,
-                                nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                            </p>
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <a href="#!"
@@ -99,10 +113,6 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                         <img src="/images/factors.png" className="w-full"/>
                         <div className="px-6 py-4">
                             <div className="font-bold text-xl mb-2">Mixed Asset Funds</div>
-                            <p className="text-gray-700 text-base">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia,
-                                nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                            </p>
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <a href="#!"
@@ -118,37 +128,9 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                     <div className="flex flex-wrap -mx-2 overflow-hidden">
 
                         <div
-                            className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
+                            className="my-2 p-2 w-full overflow-hidden sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 sm:p-4 btn-card">
                             <div
-                                className="bg-white flex items-center hover:bg-gray-200 p-3">
-                                <div className="w-1/4 mr-3 px-3">
-                                    <img src="/images/icons/finances.png" width="60%" height="60%"/>
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                        <a href="#!">Historical Prices</a>
-                                    </h3>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
-                            <div
-                                className="bg-white flex items-center hover:bg-gray-200 p-3">
-                                <div className="w-1/4 mr-3 px-3">
-                                    <img src="/images/icons/presentation.png" width="60%" height="60%"/>
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-gray-700 mb-2">Fund Fact Sheets</h3>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
-                            <div
-                                className="bg-white flex items-center hover:bg-gray-200 p-3">
+                                className="bg-white flex items-center hover:bg-accent-1 p-3">
                                 <div className="w-1/4 mr-3 px-3">
                                     <img src="/images/icons/loudspeaker.png" width="60%" height="60%"/>
                                 </div>
@@ -162,14 +144,16 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                             </div>
                         </div>
                         <div
-                            className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
+                            className="my-2 p-2 w-full overflow-hidden sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 sm:p-4 btn-card">
                             <div
-                                className="bg-white flex items-center hover:bg-gray-200 p-3">
+                                className="bg-white flex items-center hover:bg-accent-1 p-3">
                                 <div className="w-1/4 mr-3 px-3">
                                     <img src="/images/icons/safebox.png" width="60%" height="60%"/>
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-700 mb-2">File Library</h3>
+                                    <h3 className="text-xl font-bold text-gray-700 mb-2">
+                                        <a href="/file-library">File Library</a>
+                                    </h3>
 
                                 </div>
                             </div>
@@ -183,7 +167,18 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
     )
 }
 
-export async function getServerSideProps({params,req,res,query,preview = false,previewData,resolvedUrl,locale,locales,defaultLocale}) {
+export async function getServerSideProps({
+                                             params,
+                                             req,
+                                             res,
+                                             query,
+                                             preview = false,
+                                             previewData,
+                                             resolvedUrl,
+                                             locale,
+                                             locales,
+                                             defaultLocale
+                                         }) {
 
     const allPosts = await getAllPostsForHome(preview)
     const env = process.env.NODE_ENV

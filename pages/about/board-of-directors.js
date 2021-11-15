@@ -4,13 +4,16 @@ import {useContext} from "react";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import GlobalContext from "../../lib/global-context";
-import {getBoardMembers, getFundValues} from "../../lib/api";
+import {getBoardMembers, getFundValues, getPageByURI} from "../../lib/api";
 import Splash from "../../components/generic/splash/splash";
 import PersonCard from "../../components/generic/cards/person-card";
 import {sorterBoardMember} from "../../lib/utils";
 import {CMS_NAME} from "../../lib/constants";
+import AboutHeader from "../../components/generic/about/about-header";
+import CoverImage from "../../components/cover-image";
+import PostBody from "../../components/post-body";
 
-export default function BoardOfDirectors({tickerData, boardMembers}) {
+export default function BoardOfDirectors({tickerData, boardMembers, page}) {
     const global = useContext(GlobalContext)
 
     global.currentSection = 2
@@ -18,9 +21,10 @@ export default function BoardOfDirectors({tickerData, boardMembers}) {
     boardMembers.sort(sorterBoardMember)
 
     const pageContext = {
-        title: "Board of Directors",
-        heading: `Board of Directors`,
-        content: "",
+        title: page.title,
+        heading: `${page.title}`,
+        content: page.content,
+        coverImage: page.featuredImage?.node,
         persons: boardMembers
     }
 
@@ -28,7 +32,16 @@ export default function BoardOfDirectors({tickerData, boardMembers}) {
         <>
             <PageLayout title={pageContext.title} preview={false} tickerData={tickerData}>
                 <PageTitle title={pageContext.heading}/>
-                <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
+
+                <article className="page-text">
+                    {pageContext.coverImage ? (
+                        <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
+                                    slug={pageContext.slug}/>
+                    ): <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" /> }
+
+                    <PostBody content={page.content}/>
+
+                </article>
 
                 <div className="max-w-2xl mx-auto my-4 page-text my-4">
                     {pageContext.persons.map(( person) => (
@@ -61,11 +74,13 @@ export async function getServerSideProps({
                                          }) {
     const tickerData = await getFundValues(2)
     const boardMembers = await getBoardMembers()
+    const page = await getPageByURI("/board-of-directors/")
     return {
         props: {
             preview,
             tickerData,
-            boardMembers
+            boardMembers,
+            page
         },
     }
 }
