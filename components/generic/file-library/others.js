@@ -1,13 +1,9 @@
 import {OtherFileLibraryItemsByYear} from "./others-by-year";
 
 const OtherFileLibraryItems = ({items}) => (
-    <div className="flex">
-        <div className="md:w-full lg:w-1/2">
-            <h3>By Year</h3>
+    <div className="flex flex-wrap -mx-2 overflow-hidden">
+        <div className="my-2 px-2 w-full overflow-hidden md:w-1/2 lg:w-1/2 xl:w-1/2">
             <OtherFileLibraryItemsByYear items={items.byYear} />
-        </div>
-        <div className="md:w-full lg:w-1/2">
-            <h3>Misc</h3>
         </div>
     </div>
 )

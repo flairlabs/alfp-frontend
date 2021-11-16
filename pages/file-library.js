@@ -164,38 +164,38 @@ export default function FileLibrary({
                         </form>
                         {fundFactSheets.length > 0 ?
                             <div className="block my-3">
-                                <FundFactSheetItems items={fundFactSheets}/>
+                                <GenericListWrapper items={fundFactSheets}/>
                             </div>
                             : ""}
                     </Collapsible>
 
                     <Collapsible trigger={["Forms", <BsChevronDown/>]}>
-                        <div className="flex">
-                            <div className="w-1/2 md:w-full">
-                                <h3>I'm a BPI Client</h3>
+                        <div className="flex flex-wrap -mx-2 overflow-hidden">
+                            <div className="my-2 px-2 w-full overflow-hidden md:w-1/2 lg:w-1/2 xl:w-1/2">
+                                <h3 className="text-2xl bold">I'm a BPI Client</h3>
                                 <ul>
-                                    <li>
-                                        Individual
+                                    <li className="ml-4">
+                                        <p className="text-xl my-2 border-b">Individual</p>
                                         {bpi_individual.length > 0 ?
                                             <FileLibraryListGroup props={bpi_individual}/> : ""}
                                     </li>
-                                    <li>
-                                        Institutional
+                                    <li className="ml-4">
+                                        <p className="text-xl my-2 border-b">Institutional</p>
                                         {bpi_institutional.length > 0 ?
                                             <FileLibraryListGroup props={bpi_institutional}/> : ""}
                                     </li>
                                 </ul>
                             </div>
-                            <div className="w-1/2 md:w-full">
-                                <h3>I'm a BIMI Agent Client</h3>
+                            <div className="my-2 px-2 w-full overflow-hidden md:w-1/2 lg:w-1/2 xl:w-1/2">
+                                <h3 className="text-2xl bold">I'm a BIMI Agent Client</h3>
                                 <ul>
-                                    <li>
-                                        Individual
+                                    <li className="ml-4">
+                                        <p className="text-xl my-2 border-b">Individual</p>
                                         {bimi_individual.length > 0 ?
                                             <FileLibraryListGroup props={bimi_individual}/> : ""}
                                     </li>
-                                    <li>
-                                        Institutional
+                                    <li className="ml-4">
+                                        <p className="text-xl my-2 border-b">Institutional</p>
                                         {bimi_institutional.length > 0 ?
                                             <FileLibraryListGroup props={bimi_institutional}/> : ""}
                                     </li>
@@ -226,8 +226,8 @@ export default function FileLibrary({
                                     </svg>
                                 </button>
                             </div>
-                            {annualReportList.length > 0 ? <GenericListWrapper items={annualReportList}/> : ""}
                         </form>
+                        {annualReportList.length > 0 ? <GenericListWrapper items={annualReportList}/> : ""}
                     </Collapsible>
 
                     <Collapsible trigger={["Annual General Meetings", <BsChevronDown/>]}>
@@ -260,10 +260,11 @@ export default function FileLibrary({
                                     </svg>
                                 </button>
                             </div>
-                            {annualGeneralMeetingList.length > 0 ?
-                                <GenericListWrapper items={annualGeneralMeetingList}/> : ""}
+
 
                         </form>
+                        {annualGeneralMeetingList.length > 0 ?
+                            <GenericListWrapper items={annualGeneralMeetingList}/> : ""}
 
                     </Collapsible>
                     <Collapsible trigger={["Others", <BsChevronDown/>]}>
