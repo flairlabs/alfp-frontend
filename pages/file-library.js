@@ -14,7 +14,10 @@ import {FundFactSheetItems} from "../components/generic/file-library/fund-fact-s
 import {FileLibraryListGroup} from "../components/generic/file-library/file-library-list-group";
 import {GenericListWrapper} from "../components/generic/file-library/generic-list-wrapper";
 import {OtherFileLibraryItems} from "../components/generic/file-library/others";
-import {BsChevronDown} from "react-icons/bs"; //react-icon
+import {BsChevronDown} from "react-icons/bs";
+import Splash from "../components/generic/splash/splash";
+import PageTitle from "../components/generic/titles/page-title";
+import PageLayout from "../layouts/PageLayout"; //react-icon
 
 
 export default function FileLibrary({
@@ -93,190 +96,181 @@ export default function FileLibrary({
 
     return (
         <>
-            <Layout preview={false}>
-                <Head>
-                    <title>{CMS_NAME}</title>
-                </Head>
-                <Container>
+            <PageLayout title="File Library" preview={false} tickerData={tickerData}>
+                <PageTitle title="File Library"/>
 
+                <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder"/>
+                <div className="tabs">
+                    <Collapsible trigger={["Prospectus", <BsChevronDown/>]}>
+                        <FileLibraryItemGroup props={prospecti}/>
+                    </Collapsible>
+                    <Collapsible trigger={["Product Highlight Sheets", <BsChevronDown/>]}>
+                        <FileLibraryItemGroup props={productHighlightSheet}/>
+                    </Collapsible>
 
-                    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                        <Ticker tickerData={tickerData}/>
+                    <Collapsible trigger={["Fund Fact Sheets", <BsChevronDown/>]}>
+                        <form
+                            className="flex flex-row justify-between overflow-hidden items-stretch"
+                            onSubmit={setFormFundFactSheet}>
 
+                            <div className="mr-2">
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Year</label>
+                                <CustomInputText name="fundFactSheetYear" id="fundFactSheetYear"
+                                                 type="number"/>
+                            </div>
 
-                        <div className="tabs">
-                            <Collapsible trigger={["Prospectus", <BsChevronDown/>]}>
-                                <FileLibraryItemGroup props={prospecti}/>
-                            </Collapsible>
-                            <Collapsible trigger={["Product Highlight Sheets", <BsChevronDown/>]}>
-                                <FileLibraryItemGroup props={productHighlightSheet}/>
-                            </Collapsible>
+                            <div className="mr-2">
 
-                            <Collapsible trigger={["Fund Fact Sheets", <BsChevronDown/>]}>
-                                <form
-                                    className="flex flex-row justify-between overflow-hidden items-stretch"
-                                    onSubmit={setFormFundFactSheet}>
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Month</label>
+                                <select name="fundFactSheetMonth" id="fundFactSheetMonth"
+                                        className="w-full border bg-white rounded px-3 py-2 outline-none">
+                                    <option></option>
+                                    <option value="0">January</option>
+                                    <option value="1">February</option>
+                                    <option value="2">March</option>
+                                    <option value="3">April</option>
+                                    <option value="4">May</option>
+                                    <option value="5">June</option>
+                                    <option value="6">July</option>
+                                    <option value="7">August</option>
+                                    <option value="8">September</option>
+                                    <option value="9">October</option>
+                                    <option value="10">November</option>
+                                    <option value="11">December</option>
+                                </select>
+                            </div>
 
-                                    <div className="mr-2">
-                                        <label
-                                            className="block text-gray-700 text-sm font-bold mb-2">Year</label>
-                                        <CustomInputText name="fundFactSheetYear" id="fundFactSheetYear"
-                                                         type="number"/>
-                                    </div>
+                            <div className="mr-2">
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Fund</label>
+                                <CustomSelect name="fundFactSheetFund" id="fundFactSheetFund"
+                                              options={funds}/>
+                            </div>
 
-                                    <div className="mr-2">
+                            <div className="flex items-center">
+                                <button type="submit"
+                                        className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              strokeWidth={2}
+                                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
 
-                                        <label
-                                            className="block text-gray-700 text-sm font-bold mb-2">Month</label>
-                                        <select name="fundFactSheetMonth" id="fundFactSheetMonth"
-                                                className="w-full border bg-white rounded px-3 py-2 outline-none">
-                                            <option></option>
-                                            <option value="0">January</option>
-                                            <option value="1">February</option>
-                                            <option value="2">March</option>
-                                            <option value="3">April</option>
-                                            <option value="4">May</option>
-                                            <option value="5">June</option>
-                                            <option value="6">July</option>
-                                            <option value="7">August</option>
-                                            <option value="8">September</option>
-                                            <option value="9">October</option>
-                                            <option value="10">November</option>
-                                            <option value="11">December</option>
-                                        </select>
-                                    </div>
+                        </form>
+                        {fundFactSheets.length > 0 ?
+                            <div className="block my-3">
+                                <FundFactSheetItems items={fundFactSheets}/>
+                            </div>
+                            : ""}
+                    </Collapsible>
 
-                                    <div className="mr-2">
-                                        <label
-                                            className="block text-gray-700 text-sm font-bold mb-2">Fund</label>
-                                        <CustomSelect name="fundFactSheetFund" id="fundFactSheetFund"
-                                                      options={funds}/>
-                                    </div>
-
-                                    <div className="flex items-center">
-                                        <button type="submit"
-                                                className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
-                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round"
-                                                      strokeWidth={2}
-                                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                </form>
-                                {fundFactSheets.length > 0 ?
-                                    <div className="block my-3">
-                                        <FundFactSheetItems items={fundFactSheets}/>
-                                    </div>
-                                    : ""}
-                            </Collapsible>
-
-                            <Collapsible trigger={["Forms", <BsChevronDown/>]}>
-                                <div className="flex">
-                                    <div className="w-1/2 md:w-full">
-                                        <h3>I'm a BPI Client</h3>
-                                        <ul>
-                                            <li>
-                                                Individual
-                                                {bpi_individual.length > 0 ?
-                                                    <FileLibraryListGroup props={bpi_individual}/> : ""}
-                                            </li>
-                                            <li>
-                                                Institutional
-                                                {bpi_institutional.length > 0 ?
-                                                    <FileLibraryListGroup props={bpi_institutional}/> : ""}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="w-1/2 md:w-full">
-                                        <h3>I'm a BIMI Agent Client</h3>
-                                        <ul>
-                                            <li>
-                                                Individual
-                                                {bimi_individual.length > 0 ?
-                                                    <FileLibraryListGroup props={bimi_individual}/> : ""}
-                                            </li>
-                                            <li>
-                                                Institutional
-                                                {bimi_institutional.length > 0 ?
-                                                    <FileLibraryListGroup props={bimi_institutional}/> : ""}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </Collapsible>
-
-                            <Collapsible trigger={["Annual Reports", <BsChevronDown/>]}>
-                                <form
-                                    className="flex flex-row justify-between overflow-hidden items-stretch"
-                                    onSubmit={setAnnualReportList}>
-
-                                    <div className="mr-2">
-                                        <label
-                                            className="block text-gray-700 text-sm font-bold mb-2">Year</label>
-                                        <CustomInputText name="annualReportYear" id="annualReportYear"
-                                                         type="number"/>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <button type="submit"
-                                                className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
-                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round"
-                                                      strokeWidth={2}
-                                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    {annualReportList.length > 0 ? <GenericListWrapper items={annualReportList}/> : ""}
-                                </form>
-                            </Collapsible>
-
-                            <Collapsible trigger={["Annual General Meetings", <BsChevronDown/>]}>
-                                <form
-                                    className="flex flex-row justify-between overflow-hidden items-stretch"
-                                    onSubmit={setAnnualGeneralMeetingList}>
-
-                                    <div className="mr-2">
-                                        <label
-                                            className="block text-gray-700 text-sm font-bold mb-2">Year</label>
-                                        <CustomInputText name="annualGeneralMeetingYear" id="annualGeneralMeetingYear"
-                                                         type="number"/>
-                                    </div>
-
-                                    <div className="mr-2">
-                                        <label
-                                            className="block text-gray-700 text-sm font-bold mb-2">Fund</label>
-                                        <CustomSelect name="annualGeneralMeetingFund" id="annualGeneralMeetingFund"
-                                                      options={funds}/>
-                                    </div>
-
-                                    <div className="flex items-center">
-                                        <button type="submit"
-                                                className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
-                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round"
-                                                      strokeWidth={2}
-                                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    {annualGeneralMeetingList.length > 0 ?
-                                        <GenericListWrapper items={annualGeneralMeetingList}/> : ""}
-
-                                </form>
-
-                            </Collapsible>
-                            <Collapsible trigger={["Others", <BsChevronDown/>]}>
-                                <OtherFileLibraryItems items={otherFileItems}/>
-                            </Collapsible>
+                    <Collapsible trigger={["Forms", <BsChevronDown/>]}>
+                        <div className="flex">
+                            <div className="w-1/2 md:w-full">
+                                <h3>I'm a BPI Client</h3>
+                                <ul>
+                                    <li>
+                                        Individual
+                                        {bpi_individual.length > 0 ?
+                                            <FileLibraryListGroup props={bpi_individual}/> : ""}
+                                    </li>
+                                    <li>
+                                        Institutional
+                                        {bpi_institutional.length > 0 ?
+                                            <FileLibraryListGroup props={bpi_institutional}/> : ""}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="w-1/2 md:w-full">
+                                <h3>I'm a BIMI Agent Client</h3>
+                                <ul>
+                                    <li>
+                                        Individual
+                                        {bimi_individual.length > 0 ?
+                                            <FileLibraryListGroup props={bimi_individual}/> : ""}
+                                    </li>
+                                    <li>
+                                        Institutional
+                                        {bimi_institutional.length > 0 ?
+                                            <FileLibraryListGroup props={bimi_institutional}/> : ""}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </Container>
-            </Layout>
+                    </Collapsible>
+
+                    <Collapsible trigger={["Annual Reports", <BsChevronDown/>]}>
+                        <form
+                            className="flex flex-row justify-between overflow-hidden items-stretch"
+                            onSubmit={setAnnualReportList}>
+
+                            <div className="mr-2">
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Year</label>
+                                <CustomInputText name="annualReportYear" id="annualReportYear"
+                                                 type="number"/>
+                            </div>
+                            <div className="flex items-center">
+                                <button type="submit"
+                                        className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              strokeWidth={2}
+                                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            {annualReportList.length > 0 ? <GenericListWrapper items={annualReportList}/> : ""}
+                        </form>
+                    </Collapsible>
+
+                    <Collapsible trigger={["Annual General Meetings", <BsChevronDown/>]}>
+                        <form
+                            className="flex flex-row justify-between overflow-hidden items-stretch"
+                            onSubmit={setAnnualGeneralMeetingList}>
+
+                            <div className="mr-2">
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Year</label>
+                                <CustomInputText name="annualGeneralMeetingYear" id="annualGeneralMeetingYear"
+                                                 type="number"/>
+                            </div>
+
+                            <div className="mr-2">
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Fund</label>
+                                <CustomSelect name="annualGeneralMeetingFund" id="annualGeneralMeetingFund"
+                                              options={funds}/>
+                            </div>
+
+                            <div className="flex items-center">
+                                <button type="submit"
+                                        className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              strokeWidth={2}
+                                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            {annualGeneralMeetingList.length > 0 ?
+                                <GenericListWrapper items={annualGeneralMeetingList}/> : ""}
+
+                        </form>
+
+                    </Collapsible>
+                    <Collapsible trigger={["Others", <BsChevronDown/>]}>
+                        <OtherFileLibraryItems items={otherFileItems}/>
+                    </Collapsible>
+                </div>
+            </PageLayout>
 
         </>
     )

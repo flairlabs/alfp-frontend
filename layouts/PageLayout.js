@@ -6,7 +6,7 @@ import Container from "../components/container";
 import Ticker from "../components/generic/ticker/ticker";
 import MasterNavbar from "../components/generic/nav/master-nav";
 
-export default function PageLayout({preview, title, children, tickerData}) {
+export default function PageLayout({preview, title, children, tickerData, theme}) {
     return (
         <>
             <Meta/>
@@ -14,7 +14,7 @@ export default function PageLayout({preview, title, children, tickerData}) {
                 <title>{title} | {CMS_NAME}</title>
             </Head>
             <div className="min-h-screen">
-                <MasterNavbar />
+                <MasterNavbar theme={theme} />
                 <Container>
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

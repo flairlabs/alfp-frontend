@@ -145,6 +145,11 @@
     color: #a4d65e;
 }
 
+.p350c h2, .p350c h3, .p350c h4 {
+    color: #2c5236 !important;
+}
+
+
 
 /* nav */
 #navWrapperMain {
@@ -172,7 +177,7 @@
 }
 
 .file-library-content ul li a, .file-library-item-group .file-library-item {
-    background: transparent url( "/images/icons/download.png" ) no-repeat .5rem .5rem;
+    background: transparent url("/images/icons/download.png") no-repeat .5rem .5rem;
     background-size: 22px;
     display: block;
     padding: 3px 10px 3px 40px;
@@ -202,4 +207,9 @@
     margin: 1rem auto;
     padding: 1rem;
     border: 1px solid #ddd;
+}
+
+
+body {
+    color: #333;
 }

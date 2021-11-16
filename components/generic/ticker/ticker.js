@@ -120,9 +120,12 @@ function parseTickerData(rawTickerData) {
 }
 
 export default function Ticker(tickerData = []) {
-    if(tickerData.tickerData?.length === 2){
-        fundValues = parseTickerData(tickerData.tickerData)[0]
+    if(tickerData){
+        if(tickerData.tickerData?.length === 2){
+            fundValues = parseTickerData(tickerData.tickerData)[0]
+        }
     }
+
 
     let items = []
     for(let i = 0; i < fundValues.length; i++){

@@ -7,11 +7,19 @@ import {ChevronDownIcon} from '@heroicons/react/solid'
 import GlobalContext from "../../../lib/global-context";
 
 
-export default function MasterNavbar() {
+export default function MasterNavbar({theme}) {
     const router = useRouter()
     const env = process.env.NODE_ENV
     const nav_urls = PAGE_URLS[env]
     const global = useContext(GlobalContext)
+
+    let topLinkNormal = "text-gray-600 hover:bg-accent-1"
+    let topLinkHover = "bg-accent-1 text-gray-800"
+
+    if(theme === "350c"){
+        topLinkNormal = "text-gray-600 hover:text-white hover:bg-accent-2"
+        topLinkHover = "bg-accent-2 text-white"
+    }
 
     const top_navigation = [
         {
@@ -124,7 +132,7 @@ export default function MasterNavbar() {
                                                 href={item.href}
                                                 onMouseOver={event => setNav(idx)}
                                                 className={classNames(
-                                                    global.currentSection === item.slug ? 'bg-accent-1 text-gray-800' : 'text-gray-600 hover:bg-accent-1',
+                                                    global.currentSection === item.slug ? topLinkHover : topLinkNormal,
                                                     'px-3 py-2 font-medium display-block'
                                                 )}
                                                 aria-current={global.currentSection === item.slug ? 'page' : undefined}
@@ -198,7 +206,7 @@ export default function MasterNavbar() {
                                                                                     key={child.name}
                                                                                     href={child.href}
                                                                                     className={classNames(
-                                                                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                                        active ? topLinkHover : topLinkNormal,
                                                                                         'block px-4 py-2 text-sm'
                                                                                     )}
                                                                                 >
@@ -218,7 +226,7 @@ export default function MasterNavbar() {
                                                         key={item.name}
                                                         href={item.href}
                                                         className={classNames(
-                                                            item.current ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white',
+                                                            item.current ? topLinkHover : topLinkNormal,
                                                             'px-3 py-2 rounded-md font-medium'
                                                         )}
                                                         aria-current={item.current ? 'page' : undefined}
@@ -245,7 +253,7 @@ export default function MasterNavbar() {
                                         key={item.name}
                                         href={item.href}
                                         className={classNames(
-                                            global.currentSection === item.slug ? 'bg-accent-1 text-black' : 'text-accent-1 hover:bg-gray-700 hover:text-white',
+                                            global.currentSection === item.slug ? topLinkHover : topLinkNormal,
                                             'block px-3 py-2 rounded-md font-bold'
                                         )}
                                         aria-current={item.current ? 'page' : undefined}
