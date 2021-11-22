@@ -213,3 +213,7 @@
 body {
     color: #333;
 }
+
+p, .leading-relaxed {
+    text-align: justify !important;
+}
