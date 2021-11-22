@@ -16,8 +16,8 @@ export default function InfoTable({data, theme}) {
                 <tbody>
                 {data.map( (d, idx) => (
                     <tr key={d[0]} className="my-1">
-                        <td className={classNames(topLinkHover, "text-sm font-semibold px-3 py-2")}>{d[0]}</td>
-                        <td className={classNames(idx % 2 === 0 ? "bg-gray-300" : "", "text-sm px-3 py-2")}>{d[1]}</td>
+                        <td className={classNames(idx % 2 === 0 ? topLinkHover : topLinkNormal, "text-sm font-semibold px-3 py-2 w-1/2")}>{d[0]}</td>
+                        <td className={classNames(idx % 2 === 0 ? "bg-gray-300" : "", "text-sm px-3 py-2 w-1/2")}>{d[1]}</td>
                     </tr>
                 ))}
                 </tbody>
