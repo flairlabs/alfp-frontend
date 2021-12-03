@@ -3,6 +3,7 @@ alfm-frontend:
   component: "@sls-next/serverless-component@3.6.0"
   inputs:
     domain: ["alfm-frontend", "magpie.ph"]
+    useServerlessTraceTarget: true
     roleArn: "arn:aws:iam::347059883387:role/alfm-frontend"
     certificateArn: "arn:aws:acm:us-east-1:347059883387:certificate/5fa0bb1d-caa2-4dc8-abe8-472afa5bff96"
     timeout:
