@@ -1,18 +1,10 @@
-import Head from 'next/head'
-import Container from '../components/container'
 import Intro from '../components/intro'
-import Layout from '../components/layout'
 import {getAllPostsForHome, getFundValues, getMainCarouselItems, getPagePreview} from '../lib/api'
-import {CMS_NAME, PAGE_URLS} from '../lib/constants'
-import Ticker from "../components/generic/ticker/ticker";
+import {PAGE_URLS} from '../lib/constants'
 import HeroPage from "../components/hero-page";
 import {useContext} from "react";
 import GlobalContext from "../lib/global-context";
-import PageTitle from "../components/generic/titles/page-title";
 import PageLayout from "../layouts/PageLayout";
-import Link from "next/link";
-import Date from "../components/date";
-import Avatar from "../components/avatar";
 
 export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems = null, tickerData}) {
     // const heroPost = edges[0]?.node

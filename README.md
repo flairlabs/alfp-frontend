@@ -42,16 +42,11 @@ When you’re done, make sure to **Publish** the posts.
 > **Note:** Only **published** posts and public fields will be rendered by the app unless [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) is enabled.
 
 ### Step 3. Set up environment variables
+See `.env.local`, `.env.staging`, and `.env.production`
 
-Copy the `.env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
+#### Serverless Deployment
+See `serverless-<stage>.yml` and `buildspec-<stage>.yml`
 
-```bash
-cp .env.local.example .env.local
-```
-
-Then open `.env.local` and set `WORDPRESS_API_URL` to be the URL to your GraphQL endpoint in WordPress. For example: `https://myapp.wpengine.com/graphql`.
-
-Your `.env.local` file should look like this:
 
 ```bash
 WORDPRESS_API_URL=...
@@ -60,3 +55,6 @@ WORDPRESS_API_URL=...
 # WORDPRESS_AUTH_REFRESH_TOKEN=
 # WORDPRESS_PREVIEW_SECRET=
 ```
+
+## Setting up navigation
+Internal page navigation is in `components/generic/nav/master-nav.js` and stored in the `top_navigation` variable

@@ -5,12 +5,78 @@ import {CMS_NAME, PAGE_URLS} from "../../../lib/constants";
 import {Fragment, useContext, useEffect, useState} from 'react'
 import {ChevronDownIcon} from '@heroicons/react/solid'
 import GlobalContext from "../../../lib/global-context";
+const env = process.env.NODE_ENV
+const nav_urls = PAGE_URLS[env]
+export const top_navigation = [
+    {
+        name: 'Home', href: nav_urls.home.url, current: false, slug: 0, children:
+            [
+                {name: 'Investing 101', href: "/page/investment-basics", current: false, children: null},
+                {name: "Fund Manager's Corner", href: '#', current: false, children: null},
+                {name: 'FAQs', href: '/faqs', current: false, children: null}
+            ]
+    },
+    {
+        name: "Mutual Funds", href: '#', current: false, slug: 1, children:
+            [
+                {
+                    name: 'Fixed Income', href: '#', current: false, children:
+                        [
+                            {
+                                name: 'ALFM Money Market Fund',
+                                href: nav_urls.funds.alfm_money_market_fund.url,
+                                current: false
 
+                            },
+                            {
+                                name: 'ALFM Peso Bond Fund', href: '#', current: false
+
+                            },
+                            {
+                                name: 'ALFM Dollar Bond Fund', href: '#', current: false
+
+                            },
+                            {
+                                name: 'ALFM Euro Bond Fund', href: '#', current: false
+
+                            },
+                        ]
+                },
+                {
+                    name: 'Mixed Assets', href: '#', current: false, children:
+                        [
+                            {
+                                name: 'ALFM Global Multi-Asset Income Fund', href: '#', current: false
+
+                            },
+                        ]
+                },
+                {
+                    name: 'Equity', href: '#', current: false, children: [
+                        {
+                            name: 'ALFM Growth Fund', href: '#', current: false
+
+                        },
+                        {
+                            name: 'Philippine Stock Index Fund', href: '#', current: false
+
+                        },
+                    ]
+                }
+            ]
+    },
+    {
+        name: 'About ALFM', href: '#', current: false, slug: 2, children: [
+            {name: 'Board of Directors', href: "/about/board-of-directors", current: false, children: null},
+            {name: "Fund Manager", href: '/about/fund-manager', current: false, children: null},
+            {name: 'Distributors', href: '/about/distributors', current: false, children: null}
+        ]
+    },
+    {name: 'Related Sites', href: '/related-sites', current: false, slug: 3, children: []},
+]
 
 export default function MasterNavbar({theme}) {
     const router = useRouter()
-    const env = process.env.NODE_ENV
-    const nav_urls = PAGE_URLS[env]
     const global = useContext(GlobalContext)
 
     let topLinkNormal = "text-gray-600 hover:bg-accent-1"
@@ -21,73 +87,7 @@ export default function MasterNavbar({theme}) {
         topLinkHover = "bg-accent-2 text-white"
     }
 
-    const top_navigation = [
-        {
-            name: 'Home', href: nav_urls.home.url, current: false, slug: 0, children:
-                [
-                    {name: 'Investing 101', href: "/page/investment-basics", current: false, children: null},
-                    {name: "Fund Manager's Corner", href: '#', current: false, children: null},
-                    {name: 'FAQs', href: '/faqs', current: false, children: null}
-                ]
-        },
-        {
-            name: "Mutual Funds", href: '#', current: false, slug: 1, children:
-                [
-                    {
-                        name: 'Fixed Income', href: '#', current: false, children:
-                            [
-                                {
-                                    name: 'ALFM Money Market Fund',
-                                    href: nav_urls.funds.alfm_money_market_fund.url,
-                                    current: false
 
-                                },
-                                {
-                                    name: 'ALFM Peso Bond Fund', href: '#', current: false
-
-                                },
-                                {
-                                    name: 'ALFM Dollar Bond Fund', href: '#', current: false
-
-                                },
-                                {
-                                    name: 'ALFM Euro Bond Fund', href: '#', current: false
-
-                                },
-                            ]
-                    },
-                    {
-                        name: 'Mixed Assets', href: '#', current: false, children:
-                            [
-                                {
-                                    name: 'ALFM Global Multi-Asset Income Fund', href: '#', current: false
-
-                                },
-                            ]
-                    },
-                    {
-                        name: 'Equity', href: '#', current: false, children: [
-                            {
-                                name: 'ALFM Growth Fund', href: '#', current: false
-
-                            },
-                            {
-                                name: 'Philippine Stock Index Fund', href: '#', current: false
-
-                            },
-                        ]
-                    }
-                ]
-        },
-        {
-            name: 'About ALFM', href: '#', current: false, slug: 2, children: [
-                {name: 'Board of Directors', href: "/about/board-of-directors", current: false, children: null},
-                {name: "Fund Manager", href: '/about/fund-manager', current: false, children: null},
-                {name: 'Distributors', href: '/about/distributors', current: false, children: null}
-            ]
-        },
-        {name: 'Related Sites', href: '/related-sites', current: false, slug: 3, children: []},
-    ]
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
