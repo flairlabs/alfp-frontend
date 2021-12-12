@@ -128,7 +128,7 @@ export default function MasterNavbar({theme}) {
 
                                         {top_navigation.map((item, idx) => (
                                             <a
-                                                key={item.name}
+                                                key={"topNav-" + item.name}
                                                 href={item.href}
                                                 onMouseOver={event => setNav(idx)}
                                                 className={classNames(
@@ -171,12 +171,12 @@ export default function MasterNavbar({theme}) {
                                 <div className="hidden sm:block sm:ml-12">
                                     <div className="flex space-x-4">
                                         {top_navigation[nav].children.map((item) => (
-                                            <div key={item.slug} id="navWrapperSub">
+                                            <div key={"navWrapperSub-" + item.name} id="navWrapperSub">
                                                 {hasChildren(item) ? (
-                                                    <Menu as="div" className="relative inline-block text-left" key={item.slug}>
-                                                        <div key={item.slug}>
+                                                    <Menu as="div" className="relative inline-block text-left" key={"menuItem-" + item.slug}>
+                                                        <div key={"divItem-" + item.slug}>
                                                             <Menu.Button
-                                                                key={item.name}
+                                                                key={"menuItemButtom-" + item.name}
                                                                 aria-current={item.current ? 'page' : undefined}
                                                                 className="inline-flex justify-center w-full px-3 py-2 rounded-md font-medium">
                                                                 {item.name}
@@ -186,7 +186,7 @@ export default function MasterNavbar({theme}) {
                                                         </div>
 
                                                         <Transition
-                                                            key={item.slug}
+                                                            key={"transition-" + item.slug}
                                                             as={Fragment}
                                                             enter="transition ease-out duration-100"
                                                             enterFrom="transform opacity-0 scale-95"
@@ -197,13 +197,13 @@ export default function MasterNavbar({theme}) {
                                                         >
                                                             <Menu.Items
                                                                 className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                                                style={{zIndex: 999}} key={item.slug}>
-                                                                <div className="py-1" key={item.slug}>
+                                                                style={{zIndex: 999}} key={"menuItems-" + item.slug}>
+                                                                <div className="py-1" key={"divMenuItems-" + item.slug}>
                                                                     {item.children.map((child) => (
-                                                                        <Menu.Item key={child.name}>
+                                                                        <Menu.Item key={"menuItemChild-" + child.name}>
                                                                             {({active}) => (
                                                                                 <a
-                                                                                    key={child.name}
+                                                                                    key={"menuItemChildLink-" + child.name}
                                                                                     href={child.href}
                                                                                     className={classNames(
                                                                                         active ? topLinkHover : topLinkNormal,
@@ -223,7 +223,7 @@ export default function MasterNavbar({theme}) {
                                                     </Menu>
                                                 ) : (
                                                     <a
-                                                        key={item.name}
+                                                        key={"linkItem-" + item.name}
                                                         href={item.href}
                                                         className={classNames(
                                                             item.current ? topLinkHover : topLinkNormal,
@@ -248,9 +248,9 @@ export default function MasterNavbar({theme}) {
                     <Disclosure.Panel className="sm:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1" id="navWrapperMobileMain">
                             {top_navigation.map((item, idx) => (
-                                <span key={item.name}>
+                                <span key={"span-" + item.name}>
                                     <a
-                                        key={item.name}
+                                        key={"mobileDisclosureItem-" + item.name}
                                         href={item.href}
                                         className={classNames(
                                             global.currentSection === item.slug ? topLinkHover : topLinkNormal,
@@ -261,9 +261,9 @@ export default function MasterNavbar({theme}) {
                                         {item.name}
                                     </a>
                                     {item.children && item.children.map((child) => (
-                                        <div className="ml-3">
+                                        <div className="ml-3" key={"mobileDisclosureChildDiv-" + child.name}>
                                             <a
-                                                key={child.name}
+                                                key={"mobileDisclosureChildLink-" + child.name}
                                                 href={child.href}
                                                 className='block px-3 ml-2 py-2 rounded-md text-base font-medium'
                                             >
@@ -271,7 +271,7 @@ export default function MasterNavbar({theme}) {
                                             </a>
                                             {child.children && child.children.map((subchild) => (
                                                 <a
-                                                    key={subchild.name}
+                                                    key={"mobileDisclosureSubChildLink-" + subchild.name}
                                                     href={subchild.href}
                                                     className='block px-3 ml-5 pl-5 py-2 rounded-md text-base font-medium'
                                                 >
