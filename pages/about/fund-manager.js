@@ -4,7 +4,7 @@ import {useContext} from "react";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import GlobalContext from "../../lib/global-context";
-import {getBoardMembers, getFundValues, getPageByURI} from "../../lib/api";
+import {getBoardMembers, getFundValues, getOtherFunds, getPageByURI} from "../../lib/api";
 import CoverImage from "../../components/cover-image";
 import PostBody from "../../components/post-body";
 import PersonCard from "../../components/generic/cards/person-card";
@@ -13,7 +13,7 @@ import {sorterBoardMember} from "../../lib/utils";
 import Splash from "../../components/generic/splash/splash";
 import AboutHeader from "../../components/generic/about/about-header";
 
-export default function FundManager({tickerData, boardMembers, page}) {
+export default function FundManager({tickerData, boardMembers, page, otherFunds}) {
     const global = useContext(GlobalContext)
 
     global.currentSection = 2
@@ -24,7 +24,8 @@ export default function FundManager({tickerData, boardMembers, page}) {
         heading: `${page.title}`,
         content: page.content,
         coverImage: page.featuredImage?.node,
-        persons: boardMembers
+        persons: boardMembers,
+        otherFunds: otherFunds
     }
 
     return (
@@ -58,22 +59,13 @@ export default function FundManager({tickerData, boardMembers, page}) {
                 <div className="page-text">
                     <h2>Other Mutual Funds managed by BIMI</h2>
                     <div className="flex flex-wrap mb-2 -mx-1 overflow-hidden">
-
-                        <div className="my-2 px-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
-                            <img src="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
-                        </div>
-
-                        <div className="my-2 px-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
-                            <img src="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
-                        </div>
-
-                        <div className="my-2 px-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
-                            <img src="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
-                        </div>
-
-                        <div className="my-2 px-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4">
-                            <img src="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" />
-                        </div>
+                        {otherFunds.map( (otherFund) => (
+                            <div className="my-2 px-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4" key={"otherFunds-" + otherFund.title}>
+                                <a href={otherFund?.otherFundFields?.link}>
+                                    <img src={otherFund?.featuredImage?.node?.sourceUrl} />
+                                </a>
+                            </div>
+                        ))}
 
                     </div>
                 </div>
@@ -98,12 +90,14 @@ export async function getServerSideProps({
     const tickerData = await getFundValues(2)
     const boardMembers = await getBoardMembers()
     const page = await getPageByURI("/fund-manager/")
+    const otherFunds = await getOtherFunds()
     return {
         props: {
             preview,
             tickerData,
             boardMembers,
-            page
+            page,
+            otherFunds
         },
     }
 }
