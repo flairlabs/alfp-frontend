@@ -17,3 +17,10 @@ alfm-frontend:
         defaultTTL: 50
         forward:
           headers: [Origin, Authorization]
+    build:
+      env:
+        WORDPRESS_API_URL: https://aflm-backend-magpie.ph/graphql/
+        ENV_ALIAS: staging
+        ENV_URL: https://aflm-backend.magpie.ph/
+        EXPORT_MODE: true
+        PUBLIC_URL: https://aflm-backend.magpie.ph/
