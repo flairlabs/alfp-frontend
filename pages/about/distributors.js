@@ -22,7 +22,7 @@ export default function Distributors({tickerData, distributors, page}) {
 
     const pageContext = {
         title: page.title,
-        heading: `${page.title} ${CMS_NAME}`,
+        heading: page.title,
         content: page.content,
         coverImage: page.featuredImage?.node,
         persons: distributors

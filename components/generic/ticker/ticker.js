@@ -126,7 +126,6 @@ export default function Ticker(tickerData = []) {
         }
     }
 
-
     let items = []
     for(let i = 0; i < fundValues.length; i++){
         let fund = fundValues[i]

@@ -21,7 +21,7 @@ export default function FundManager({tickerData, boardMembers, page, otherFunds}
 
     const pageContext = {
         title: page.title,
-        heading: `${page.title}`,
+        heading: page.title,
         content: page.content,
         coverImage: page.featuredImage?.node,
         persons: boardMembers,
