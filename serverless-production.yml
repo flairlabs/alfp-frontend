@@ -19,8 +19,8 @@ alfm-frontend:
           headers: [Origin, Authorization]
     build:
       env:
-        WORDPRESS_API_URL: https://aflm-backend-magpie.ph/graphql/
-        ENV_ALIAS: staging
-        ENV_URL: https://aflm-backend.magpie.ph/
+        WORDPRESS_API_URL: https://alfm-backend-prod.magpie.ph/graphql/
+        ENV_ALIAS: production
+        ENV_URL: https://alfm-backend-prod.magpie.ph/
         EXPORT_MODE: true
-        PUBLIC_URL: https://aflm-backend.magpie.ph/
+        PUBLIC_URL: https://alfm-backend-prod.magpie.ph/
