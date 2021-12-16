@@ -1,16 +1,10 @@
 import React, {useState} from 'react';
 import Collapsible from 'react-collapsible';
-import {getFileLibraryItemByTypeSlug, getFunds, getFundValues} from "../lib/api";
-import Head from "next/head";
-import {CMS_NAME} from "../lib/constants";
-import Container from "../components/container";
-import Ticker from "../components/generic/ticker/ticker";
-import Layout from "../components/layout";
+import {getFileLibraryItemByTypeSlug, getFunds, getFundValues, getPageByURI} from "../lib/api";
 import {FileLibraryItemGroup} from "../components/generic/file-library/file-library-item-group";
 import {CustomInputText} from "../components/generic/form/custom-input-text";
 import {filterAnnualGeneralMeeting, filterAnnualReport, filterFundFactSheet, prepOtherFiles} from "../lib/file-library"
 import {CustomSelect} from "../components/generic/form/custom-select";
-import {FundFactSheetItems} from "../components/generic/file-library/fund-fact-sheet";
 import {FileLibraryListGroup} from "../components/generic/file-library/file-library-list-group";
 import {GenericListWrapper} from "../components/generic/file-library/generic-list-wrapper";
 import {OtherFileLibraryItems} from "../components/generic/file-library/others";
@@ -21,6 +15,7 @@ import PageLayout from "../layouts/PageLayout"; //react-icon
 
 
 export default function FileLibrary({
+                                        page,
                                         funds,
                                         tickerData,
                                         prospecti,
@@ -93,13 +88,27 @@ export default function FileLibrary({
         }
     }
 
+    let pageContext = {
+        title: "File Library Test",
+        splash: "https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder"
+    }
+
+    if(page){
+        if(page.title){
+            pageContext.title = page.title
+        }
+
+        if(page?.featuredImage?.node?.sourceUrl){
+            pageContext.splash = page.featuredImage.node?.sourceUrl
+        }
+    }
 
     return (
         <>
-            <PageLayout title="File Library" preview={false} tickerData={tickerData}>
-                <PageTitle title="File Library"/>
+            <PageLayout title={pageContext.title} preview={false} tickerData={tickerData}>
+                <PageTitle title={pageContext.title}/>
 
-                <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder"/>
+                <Splash srcFull={pageContext.splash}/>
                 <div className="tabs">
                     <Collapsible trigger={["Prospectus", <BsChevronDown/>]}>
                         <FileLibraryItemGroup props={prospecti}/>
@@ -293,8 +302,11 @@ export async function getServerSideProps() {
     const annualGeneralMeeting = await getFileLibraryItemByTypeSlug("annual-general-meeting")
     const otherFiles = await getFileLibraryItemByTypeSlug("other-documents-and-announcements")
 
+    const page = await getPageByURI("file-library")
+
     return {
         props: {
+            page,
             tickerData,
             funds,
             prospecti,
