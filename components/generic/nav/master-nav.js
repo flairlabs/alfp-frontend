@@ -24,20 +24,20 @@ export const top_navigation = [
                         [
                             {
                                 name: 'ALFM Money Market Fund',
-                                href: nav_urls.funds.alfm_money_market_fund.url,
+                                href: '/funds/alfm-money-market-fund',
                                 current: false
 
                             },
                             {
-                                name: 'ALFM Peso Bond Fund', href: '#', current: false
+                                name: 'ALFM Peso Bond Fund', href: '/funds/alfm-peso-bond-fund', current: false
 
                             },
                             {
-                                name: 'ALFM Dollar Bond Fund', href: '#', current: false
+                                name: 'ALFM Dollar Bond Fund', href: '/funds/alfm-dollar-bond-fund', current: false
 
                             },
                             {
-                                name: 'ALFM Euro Bond Fund', href: '#', current: false
+                                name: 'ALFM Euro Bond Fund', href: '/funds/alfm-euro-bond-fund', current: false
 
                             },
                         ]
@@ -46,7 +46,7 @@ export const top_navigation = [
                     name: 'Mixed Assets', href: '#', current: false, children:
                         [
                             {
-                                name: 'ALFM Global Multi-Asset Income Fund', href: '#', current: false
+                                name: 'ALFM Global Multi-Asset Income Fund', href: '/funds/alfm-global-muti-asset-income-fund', current: false
 
                             },
                         ]
@@ -54,11 +54,11 @@ export const top_navigation = [
                 {
                     name: 'Equity', href: '#', current: false, children: [
                         {
-                            name: 'ALFM Growth Fund', href: '#', current: false
+                            name: 'ALFM Growth Fund', href: '/funds/alfm-growth-fund', current: false
 
                         },
                         {
-                            name: 'Philippine Stock Index Fund', href: '#', current: false
+                            name: 'Philippine Stock Index Fund', href: '/funds/philippine-stock-index-fund', current: false
 
                         },
                     ]
