@@ -7,6 +7,7 @@ import Ticker from "../components/generic/ticker/ticker";
 import MasterNavbar from "../components/generic/nav/master-nav";
 
 export default function PageLayout({preview, title, children, tickerData, theme}) {
+    const env = process.env.ENV_ALIAS
     return (
         <>
             <Meta/>
@@ -14,7 +15,10 @@ export default function PageLayout({preview, title, children, tickerData, theme}
                 <title>{title} | {CMS_NAME}</title>
             </Head>
             <div className="min-h-screen">
-                <MasterNavbar theme={theme} />
+                {env === "production" ? <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJQ66LW"
+                                                          height="0" width="0" style={{display: "none", visibility: "hidden"}}></iframe></noscript> : <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3SCJ5M"
+                                                                                                                                                               height="0" width="0" style={{display: "none", visibility: "hidden"}}></iframe></noscript>}
+                <MasterNavbar theme={theme}/>
                 <Container>
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

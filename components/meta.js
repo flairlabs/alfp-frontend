@@ -1,8 +1,13 @@
 import Head from 'next/head'
 
+
 export default function Meta() {
+    const gtag = "/" + process.env.ENV_ALIAS + "/gtag.js"
+
     return (
         <Head>
+                <script src={gtag}></script>
+
             <link
                 rel="apple-touch-icon"
                 sizes="180x180"
