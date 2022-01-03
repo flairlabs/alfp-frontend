@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 
 export default function Meta() {
-    const gtag = "/" + process.env.ENV_ALIAS + "/gtag.js"
+    const gtag = "/staging/gtag.js"
 
     return (
         <Head>
