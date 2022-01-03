@@ -28,8 +28,7 @@ export default function RelatedSites({tickerData, page}) {
                 <PageTitle title={pageContext.heading}/>
                 <article className="page-text">
                     {pageContext.coverImage ? (
-                        <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
-                                    slug={pageContext.slug}/>
+                        <Splash srcFull={pageContext.coverImage.sourceUrl} />
                     ): <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" /> }
 
                     <PostBody content={page.content}/>
