@@ -36,7 +36,7 @@ export default function PersonCard(personData) {
                             </span>
                         </h4>
 
-                        <p className="my-3 font-normal">{content}</p>
+                        <p className="my-3 font-normal"><small>{content}</small></p>
 
                     </div>
                 </div>

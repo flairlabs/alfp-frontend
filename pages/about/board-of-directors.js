@@ -35,6 +35,7 @@ export default function BoardOfDirectors({tickerData, boardMembers, page}) {
 
                 <article className="page-text">
                     {pageContext.coverImage ? (
+
                         <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
                                     slug={pageContext.slug}/>
                     ): <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" /> }
@@ -43,7 +44,7 @@ export default function BoardOfDirectors({tickerData, boardMembers, page}) {
 
                 </article>
 
-                <div className="max-w-2xl mx-auto my-4 page-text my-4">
+                <div className="max-w mx-auto my-4 page-text my-4">
                     {pageContext.persons.map(( person) => (
                         <PersonCard
                             name={person.boardMemberFields.name}
