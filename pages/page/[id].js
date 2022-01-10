@@ -19,7 +19,7 @@ export default function Page({page, tickerData}) {
 
     const pageContext = {
         title: page.title,
-        heading: `${page.title} ${CMS_NAME}`,
+        heading: `${page.title}`,
         coverImage: page.featuredImage?.node
     }
 
