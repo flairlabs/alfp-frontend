@@ -36,8 +36,7 @@ export default function BoardOfDirectors({tickerData, boardMembers, page}) {
                 <article className="page-text">
                     {pageContext.coverImage ? (
 
-                        <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
-                                    slug={pageContext.slug}/>
+                        <img src={pageContext.coverImage.sourceUrl} width="100%"/>
                     ): <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" /> }
 
                     <PostBody content={page.content}/>

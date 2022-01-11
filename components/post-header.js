@@ -18,6 +18,7 @@ export default function PostHeader({
         <Avatar author={author} />
       </div>
       <div className="mb-8 md:mb-16 sm:mx-0">
+          <img src={coverImage?.sourceUrl} width="100%"/>
         {/*<CoverImage title={title} coverImage={coverImage} />*/}
       </div>
       <div className="max-w-2xl mx-auto">

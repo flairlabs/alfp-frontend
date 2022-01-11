@@ -33,8 +33,9 @@ export default function Page({page, tickerData}) {
                 <>
                     <article>
                         {pageContext.coverImage && (
-                            <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
-                                        slug={pageContext.slug}/>
+                            // <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
+                            //             slug={pageContext.slug}/>
+                            <img src={pageContext.coverImage.sourceUrl} width="100%"/>
                         )}
 
                         <PostBody content={page.content}/>
