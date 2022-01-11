@@ -42,7 +42,7 @@ export default function FundManager({tickerData, boardMembers, page, otherFunds}
 
                 </article>
 
-                <div className="max-w-3xl mx-auto my-4 page-text">
+                <div className="max mx-auto my-4 page-text">
                     <h2>Board of Directors</h2>
                     {pageContext.persons.map((person) => (
                         <PersonCard

@@ -44,7 +44,7 @@ export default function Distributors({tickerData, distributors, page}) {
 
                 </article>
 
-                <div className="max-w-3xl mx-auto my-4 page-text">
+                <div className="max-w mx-auto my-4 page-text">
                     {pageContext.persons.map(( person) => (
                         <PersonCard
                             name={person.distributorFields.name}
