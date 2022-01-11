@@ -68,15 +68,15 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                                className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
                                 ALFM Money Market Fund
                             </a>
-                            <a href="#!"
+                            <a href="/funds/alfm-peso-bond-fund"
                                className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
                                 ALFM Peso Bond Fund
                             </a>
-                            <a href="#!"
+                            <a href="/funds/alfm-dollar-bond-fund"
                                className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
                                 ALFM Dollar Bond Fund
                             </a>
-                            <a href="#!"
+                            <a href="/funds/alfm-euro-bond-fund"
                                className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
                                 ALFM Euro Bond Fund
                             </a>
@@ -90,11 +90,11 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                             <div className="font-bold text-xl mb-2">Equity Funds</div>
                         </div>
                         <div className="px-6 pt-4 pb-2">
-                            <a href="#!"
+                            <a href="/funds/alfm-growth-fund"
                                className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
                                 ALFM Growth Fund
                             </a>
-                            <a href="#!"
+                            <a href="/funds/philippine-stock-index-fund"
                                className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
                                 Philippine Stock Index Fund
                             </a>
@@ -107,7 +107,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                             <div className="font-bold text-xl mb-2">Mixed Asset Funds</div>
                         </div>
                         <div className="px-6 pt-4 pb-2">
-                            <a href="#!"
+                            <a href="/funds/alfm-global-muti-asset-income-fund"
                                className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
                                 ALFM Global Multi-Asset Income Fund
                             </a>
