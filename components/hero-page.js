@@ -22,7 +22,8 @@ export default function HeroPage({
                     </h3>
                     {coverImage && (
                         <Link href={`${url}`}>
-                            <CoverImage title={title} coverImage={coverImage} slug={slug}/>
+                            {/*<CoverImage title={title} coverImage={coverImage} slug={slug}/>*/}
+                            <img src={coverImage.sourceUrl} />
                         </Link>
                     )}
                 </div>
