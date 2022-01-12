@@ -31,7 +31,7 @@ export default function PostArchive({allPosts: {edges}, preview, tickerData}) {
     )
 }
 
-export async function getStaticProps({preview = false}) {
+export async function getServerSideProps({preview = false}) {
     const allPosts = await getAllPostsForHome(preview)
     const tickerData = await getFundValues(2)
     return {
