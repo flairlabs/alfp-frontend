@@ -12,7 +12,7 @@ export const top_navigation = [
         name: 'Home', href: nav_urls.home.url, current: false, slug: 0, children:
             [
                 {name: 'Investing 101', href: "/page/investment-basics", current: false, children: null},
-                {name: "Fund Manager's Corner", href: 'page/fund-managers-corner', current: false, children: null},
+                {name: "Fund Manager's Corner", href: '/page/fund-managers-corner', current: false, children: null},
                 {name: 'FAQs', href: '/faqs', current: false, children: null}
             ]
     },
