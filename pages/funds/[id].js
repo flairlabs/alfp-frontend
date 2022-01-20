@@ -165,7 +165,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                    <a href={fund.funds?.factSheet?.sourceUrl}>
+                                    <a href={fund.funds?.factSheet?.sourceUrl ? fund.funds?.factSheet?.sourceUrl : fund.funds?.factSheet?.mediaItemUrl}>
                                         Fact Sheet
                                     </a>
                                 </h3>
