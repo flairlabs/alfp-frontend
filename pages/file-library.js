@@ -3,7 +3,13 @@ import Collapsible from 'react-collapsible';
 import {getFileLibraryItemByTypeSlug, getFunds, getFundValues, getPageByURI} from "../lib/api";
 import {FileLibraryItemGroup} from "../components/generic/file-library/file-library-item-group";
 import {CustomInputText} from "../components/generic/form/custom-input-text";
-import {filterAnnualGeneralMeeting, filterAnnualReport, filterFundFactSheet, prepOtherFiles} from "../lib/file-library"
+import {
+    filterAnnualGeneralMeeting,
+    filterAnnualReport,
+    filterFundFactSheet,
+    filterInvestmentsWeekly,
+    prepOtherFiles
+} from "../lib/file-library"
 import {CustomSelect} from "../components/generic/form/custom-select";
 import {FileLibraryListGroup} from "../components/generic/file-library/file-library-list-group";
 import {GenericListWrapper} from "../components/generic/file-library/generic-list-wrapper";
@@ -11,7 +17,8 @@ import {OtherFileLibraryItems} from "../components/generic/file-library/others";
 import {BsChevronDown} from "react-icons/bs";
 import Splash from "../components/generic/splash/splash";
 import PageTitle from "../components/generic/titles/page-title";
-import PageLayout from "../layouts/PageLayout"; //react-icon
+import PageLayout from "../layouts/PageLayout";
+import {InvestmentsWeeklyItems} from "../components/generic/file-library/investments-weekly"; //react-icon
 
 
 export default function FileLibrary({
@@ -27,7 +34,8 @@ export default function FileLibrary({
                                         productHighlightSheet,
                                         annualReports,
                                         annualGeneralMeeting,
-                                        otherFiles
+                                        otherFiles,
+                                        investmentsWeekly
                                     }) {
     // const fileLibraryNodes = prepFileLibraryItemGroups(fileLibraryItems)
 
@@ -48,6 +56,24 @@ export default function FileLibrary({
             updateFundFactSheets(filterFundFactSheet(items, year, month, fund))
         }
     }
+
+    const [formInvestmentsWeekly, updateFormInvestmentsWeekly] = useState({})
+    let [investmentsWeeklyItems, updateInvestmentsWeeklyItems] = useState([])
+
+    function setFormInvestmentsWeekly(e) {
+        e.preventDefault()
+        let items = investmentsWeekly[0]?.fileLibraryItems?.nodes
+
+        let year = e.target[0].value
+        let month = e.target[1].value
+
+        if(items.length > 0){
+            updateInvestmentsWeeklyItems(filterInvestmentsWeekly(items, year, month))
+        }
+
+
+    }
+
 
     function updateFormFundFactSheetState() {
 
@@ -89,19 +115,23 @@ export default function FileLibrary({
     }
 
     let pageContext = {
-        title: "File Library Test",
+        title: "File Library",
         splash: "https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder"
     }
 
-    if(page){
-        if(page.title){
+    if (page) {
+        if (page.title) {
             pageContext.title = page.title
         }
 
-        if(page?.featuredImage?.node?.sourceUrl){
+        if (page?.featuredImage?.node?.sourceUrl) {
             pageContext.splash = page.featuredImage.node?.sourceUrl
         }
     }
+
+    const currentYear = new Date().getFullYear().toString()
+    let currentMonth = new Date().getMonth() + 1
+    currentMonth = currentMonth.toString()
 
     return (
         <>
@@ -126,7 +156,7 @@ export default function FileLibrary({
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2">Year</label>
                                 <CustomInputText name="fundFactSheetYear" id="fundFactSheetYear"
-                                                 type="number"/>
+                                                 type="number" placeholder={currentYear} />
                             </div>
 
                             <div className="mr-2">
@@ -136,18 +166,30 @@ export default function FileLibrary({
                                 <select name="fundFactSheetMonth" id="fundFactSheetMonth"
                                         className="w-full border bg-white rounded px-3 py-2 outline-none">
                                     <option></option>
-                                    <option value="0">January</option>
-                                    <option value="1">February</option>
-                                    <option value="2">March</option>
-                                    <option value="3">April</option>
-                                    <option value="4">May</option>
-                                    <option value="5">June</option>
-                                    <option value="6">July</option>
-                                    <option value="7">August</option>
-                                    <option value="8">September</option>
-                                    <option value="9">October</option>
-                                    <option value="10">November</option>
-                                    <option value="11">December</option>
+                                    {currentMonth === "1" ? <option value="1" selected="selected">January</option> :
+                                        <option value="1">January</option>}
+                                    {currentMonth === "2" ? <option value="2" selected="selected">February</option> :
+                                        <option value="2">February</option>}
+                                    {currentMonth === "3" ? <option value="3" selected="selected">March</option> :
+                                        <option value="3">March</option>}
+                                    {currentMonth === "4" ? <option value="4" selected="selected">April</option> :
+                                        <option value="4">April</option>}
+                                    {currentMonth === "5" ? <option value="5" selected="selected">May</option> :
+                                        <option value="5">May</option>}
+                                    {currentMonth === "6" ? <option value="6" selected="selected">June</option> :
+                                        <option value="6">June</option>}
+                                    {currentMonth === "7" ? <option value="7" selected="selected">July</option> :
+                                        <option value="7">July</option>}
+                                    {currentMonth === "8" ? <option value="8" selected="selected">August</option> :
+                                        <option value="8">August</option>}
+                                    {currentMonth === "9" ? <option value="9" selected="selected">September</option> :
+                                        <option value="9">September</option>}
+                                    {currentMonth === "10" ? <option value="10" selected="selected">October</option> :
+                                        <option value="10">October</option>}
+                                    {currentMonth === "11" ? <option value="11" selected="selected">November</option> :
+                                        <option value="11">November</option>}
+                                    {currentMonth === "12" ? <option value="12" selected="selected">December</option> :
+                                        <option value="12">December</option>}
                                 </select>
                             </div>
 
@@ -222,7 +264,7 @@ export default function FileLibrary({
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2">Year</label>
                                 <CustomInputText name="annualReportYear" id="annualReportYear"
-                                                 type="number"/>
+                                                 type="number" placeholder={currentYear} />
                             </div>
                             <div className="flex items-center">
                                 <button type="submit"
@@ -248,7 +290,7 @@ export default function FileLibrary({
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2">Year</label>
                                 <CustomInputText name="annualGeneralMeetingYear" id="annualGeneralMeetingYear"
-                                                 type="number"/>
+                                                 type="number" placeholder={currentYear} />
                             </div>
 
                             <div className="mr-2">
@@ -276,6 +318,73 @@ export default function FileLibrary({
                             <GenericListWrapper items={annualGeneralMeetingList}/> : ""}
 
                     </Collapsible>
+
+                    <Collapsible trigger={["Investments Weekly", <BsChevronDown/>]}>
+                        <form
+                            className="flex flex-row justify-between overflow-hidden items-stretch"
+                            onSubmit={setFormInvestmentsWeekly}>
+
+                            <div className="mr-2">
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Year</label>
+                                <CustomInputText name="investmentsWeeklyYear" id="investmentsWeeklyYear"
+                                                 type="number" placeholder={currentYear} />
+                            </div>
+
+                            <div className="mr-2">
+
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Month</label>
+                                <select name="investmentsWeeklyYear" id="investmentsWeeklyYear"
+                                        className="w-full border bg-white rounded px-3 py-2 outline-none">
+                                    <option></option>
+                                    {currentMonth === "1" ? <option value="1" selected="selected">January</option> :
+                                        <option value="1">January</option>}
+                                    {currentMonth === "2" ? <option value="2" selected="selected">February</option> :
+                                        <option value="2">February</option>}
+                                    {currentMonth === "3" ? <option value="3" selected="selected">March</option> :
+                                        <option value="3">March</option>}
+                                    {currentMonth === "4" ? <option value="4" selected="selected">April</option> :
+                                        <option value="4">April</option>}
+                                    {currentMonth === "5" ? <option value="5" selected="selected">May</option> :
+                                        <option value="5">May</option>}
+                                    {currentMonth === "6" ? <option value="6" selected="selected">June</option> :
+                                        <option value="6">June</option>}
+                                    {currentMonth === "7" ? <option value="7" selected="selected">July</option> :
+                                        <option value="7">July</option>}
+                                    {currentMonth === "8" ? <option value="8" selected="selected">August</option> :
+                                        <option value="8">August</option>}
+                                    {currentMonth === "9" ? <option value="9" selected="selected">September</option> :
+                                        <option value="9">September</option>}
+                                    {currentMonth === "10" ? <option value="10" selected="selected">October</option> :
+                                        <option value="10">October</option>}
+                                    {currentMonth === "11" ? <option value="11" selected="selected">November</option> :
+                                        <option value="11">November</option>}
+                                    {currentMonth === "12" ? <option value="12" selected="selected">December</option> :
+                                        <option value="12">December</option>}
+                                </select>
+                            </div>
+
+                            <div className="flex items-center">
+                                <button type="submit"
+                                        className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              strokeWidth={2}
+                                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </form>
+                        {investmentsWeeklyItems.length > 0 ?
+                            <div className="block my-3">
+                                <InvestmentsWeeklyItems items={investmentsWeeklyItems}/>
+                            </div>
+                            : ""}
+                    </Collapsible>
+
                     <Collapsible trigger={["Others", <BsChevronDown/>]}>
                         <OtherFileLibraryItems items={otherFileItems}/>
                     </Collapsible>
@@ -302,6 +411,8 @@ export async function getServerSideProps() {
     const annualGeneralMeeting = await getFileLibraryItemByTypeSlug("annual-general-meeting")
     const otherFiles = await getFileLibraryItemByTypeSlug("other-documents-and-announcements")
 
+    const investmentsWeekly = await getFileLibraryItemByTypeSlug("investments-weekly")
+
     const page = await getPageByURI("file-library")
 
     return {
@@ -318,7 +429,8 @@ export async function getServerSideProps() {
             productHighlightSheet,
             annualReports,
             annualGeneralMeeting,
-            otherFiles
+            otherFiles,
+            investmentsWeekly
         }
     }
 }
