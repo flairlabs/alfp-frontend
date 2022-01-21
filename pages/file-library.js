@@ -18,7 +18,8 @@ import {BsChevronDown} from "react-icons/bs";
 import Splash from "../components/generic/splash/splash";
 import PageTitle from "../components/generic/titles/page-title";
 import PageLayout from "../layouts/PageLayout";
-import {InvestmentsWeeklyItems} from "../components/generic/file-library/investments-weekly"; //react-icon
+import {InvestmentsWeeklyItems} from "../components/generic/file-library/investments-weekly";
+import {MutualFundsDailyMonitor} from "../components/generic/file-library/mutual-funds-daily-monitor"; //react-icon
 
 
 export default function FileLibrary({
@@ -35,7 +36,8 @@ export default function FileLibrary({
                                         annualReports,
                                         annualGeneralMeeting,
                                         otherFiles,
-                                        investmentsWeekly
+                                        investmentsWeekly,
+                                        mutualFundsDailyMonitor
                                     }) {
     // const fileLibraryNodes = prepFileLibraryItemGroups(fileLibraryItems)
 
@@ -70,8 +72,19 @@ export default function FileLibrary({
         if(items.length > 0){
             updateInvestmentsWeeklyItems(filterInvestmentsWeekly(items, year, month))
         }
+    }
 
+    let [mutualFundsDailyMonitorItems, updateMutualFundsDailyMonitorItems] = useState([])
+    function setFormMutualFundsDailyMonitor(e) {
+        e.preventDefault()
+        let items = mutualFundsDailyMonitor[0]?.fileLibraryItems?.nodes
 
+        let year = e.target[0].value
+        let month = e.target[1].value
+
+        if(items.length > 0){
+            updateMutualFundsDailyMonitorItems(filterInvestmentsWeekly(items, year, month))
+        }
     }
 
 
@@ -335,7 +348,7 @@ export default function FileLibrary({
 
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2">Month</label>
-                                <select name="investmentsWeeklyYear" id="investmentsWeeklyYear"
+                                <select name="investmentsWeeklyMonth" id="investmentsWeeklyMonth"
                                         className="w-full border bg-white rounded px-3 py-2 outline-none">
                                     <option></option>
                                     {currentMonth === "1" ? <option value="1" selected="selected">January</option> :
@@ -385,6 +398,72 @@ export default function FileLibrary({
                             : ""}
                     </Collapsible>
 
+                    <Collapsible trigger={["Mutual Funds Daily Monitor", <BsChevronDown/>]}>
+                        <form
+                            className="flex flex-row justify-between overflow-hidden items-stretch"
+                            onSubmit={setFormMutualFundsDailyMonitor}>
+
+                            <div className="mr-2">
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Year</label>
+                                <CustomInputText name="mutualFundsDailyMonitorYear" id="mutualFundsDailyMonitorYear"
+                                                 type="number" placeholder={currentYear} />
+                            </div>
+
+                            <div className="mr-2">
+
+                                <label
+                                    className="block text-gray-700 text-sm font-bold mb-2">Month</label>
+                                <select name="mutualFundsDailyMonitorMonth" id="mutualFundsDailyMonitorMonth"
+                                        className="w-full border bg-white rounded px-3 py-2 outline-none">
+                                    <option></option>
+                                    {currentMonth === "1" ? <option value="1" selected="selected">January</option> :
+                                        <option value="1">January</option>}
+                                    {currentMonth === "2" ? <option value="2" selected="selected">February</option> :
+                                        <option value="2">February</option>}
+                                    {currentMonth === "3" ? <option value="3" selected="selected">March</option> :
+                                        <option value="3">March</option>}
+                                    {currentMonth === "4" ? <option value="4" selected="selected">April</option> :
+                                        <option value="4">April</option>}
+                                    {currentMonth === "5" ? <option value="5" selected="selected">May</option> :
+                                        <option value="5">May</option>}
+                                    {currentMonth === "6" ? <option value="6" selected="selected">June</option> :
+                                        <option value="6">June</option>}
+                                    {currentMonth === "7" ? <option value="7" selected="selected">July</option> :
+                                        <option value="7">July</option>}
+                                    {currentMonth === "8" ? <option value="8" selected="selected">August</option> :
+                                        <option value="8">August</option>}
+                                    {currentMonth === "9" ? <option value="9" selected="selected">September</option> :
+                                        <option value="9">September</option>}
+                                    {currentMonth === "10" ? <option value="10" selected="selected">October</option> :
+                                        <option value="10">October</option>}
+                                    {currentMonth === "11" ? <option value="11" selected="selected">November</option> :
+                                        <option value="11">November</option>}
+                                    {currentMonth === "12" ? <option value="12" selected="selected">December</option> :
+                                        <option value="12">December</option>}
+                                </select>
+                            </div>
+
+                            <div className="flex items-center">
+                                <button type="submit"
+                                        className="bg-accent-1 hover:bg-accent-7 hover:text-white font-bold py-2 px-4 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              strokeWidth={2}
+                                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </form>
+                        {mutualFundsDailyMonitorItems.length > 0 ?
+                            <div className="block my-3">
+                                <MutualFundsDailyMonitor items={mutualFundsDailyMonitorItems}/>
+                            </div>
+                            : ""}
+                    </Collapsible>
+
                     <Collapsible trigger={["Others", <BsChevronDown/>]}>
                         <OtherFileLibraryItems items={otherFileItems}/>
                     </Collapsible>
@@ -412,6 +491,7 @@ export async function getServerSideProps() {
     const otherFiles = await getFileLibraryItemByTypeSlug("other-documents-and-announcements")
 
     const investmentsWeekly = await getFileLibraryItemByTypeSlug("investments-weekly")
+    const mutualFundsDailyMonitor = await getFileLibraryItemByTypeSlug("mutual-funds-daily-monitor")
 
     const page = await getPageByURI("file-library")
 
@@ -430,7 +510,8 @@ export async function getServerSideProps() {
             annualReports,
             annualGeneralMeeting,
             otherFiles,
-            investmentsWeekly
+            investmentsWeekly,
+            mutualFundsDailyMonitor
         }
     }
 }
