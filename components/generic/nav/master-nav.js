@@ -117,7 +117,7 @@ export default function MasterNavbar({theme}) {
     }, [nav])
 
     return (
-        <Disclosure as="nav" className="bg-gray-100">
+        <Disclosure as="nav" className="bg-gray-100 sticky top-0 z-[9999]">
             {({open}) => (
                 <>
                     <div className="bg-white">
