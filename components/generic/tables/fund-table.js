@@ -6,7 +6,7 @@ export default function FundTable({chartData}) {
                 <thead>
                 <tr>
                     <th className="w-1/2 text-left">Date</th>
-                    <th className="w-1/2 text-left">Value</th>
+                    <th className="w-1/2 text-left">Price</th>
                 </tr>
                 </thead>
                 <tbody>

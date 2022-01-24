@@ -1,12 +1,12 @@
 import Intro from '../components/intro'
-import {getAllPostsForHome, getFundValues, getMainCarouselItems, getPagePreview} from '../lib/api'
+import {getAllPostsForHome, getFundValues, getMainCarouselItems, getPagePreview, getRelatedSitesMenu} from '../lib/api'
 import {PAGE_URLS} from '../lib/constants'
 import HeroPage from "../components/hero-page";
 import {useContext} from "react";
 import GlobalContext from "../lib/global-context";
 import PageLayout from "../layouts/PageLayout";
 
-export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems = null, tickerData}) {
+export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems = null, tickerData, relatedSites = []}) {
     // const heroPost = edges[0]?.node
     const heroPage = frontPages["investment-basics"] ? frontPages["investment-basics"] : null
     // const morePosts = edges.slice(1)
@@ -17,7 +17,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
 
     return (
         <>
-            <PageLayout title="Home" preview={false} tickerData={tickerData}>
+            <PageLayout title="Home" preview={false} tickerData={tickerData} relatedSites={relatedSites}>
 
                 <Intro carouselItems={allMainCarouselItems}/>
 
@@ -191,8 +191,9 @@ export async function getServerSideProps({
     }
 
     const tickerData = await getFundValues(2)
+    const relatedSites = await getRelatedSitesMenu()
 
     return {
-        props: {allPosts, preview, frontPages, allMainCarouselItems, tickerData},
+        props: {allPosts, preview, frontPages, allMainCarouselItems, tickerData, relatedSites},
     }
 }

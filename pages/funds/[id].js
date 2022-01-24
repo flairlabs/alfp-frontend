@@ -93,7 +93,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                 transform.push(
                     {
                         name: rawData[i][0],
-                        val: rawData[i][1]
+                        Price: rawData[i][1]
                     }
                 )
             }
@@ -233,7 +233,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                         <YAxis/>
                         <Tooltip/>
                         <Legend/>
-                        <Line type="monotone" dataKey="val" stroke="#a4d65e"/>
+                        <Line type="monotone" dataKey="Price" stroke="#a4d65e"/>
                     </LineChart>
                 </ResponsiveContainer>
 

@@ -7,7 +7,7 @@ import Ticker from "../components/generic/ticker/ticker";
 import MasterNavbar from "../components/generic/nav/master-nav";
 import CookieConsent from "react-cookie-consent";
 
-export default function PageLayout({preview, title, children, tickerData, theme}) {
+export default function PageLayout({preview, title, children, tickerData, theme, relatedSites}) {
     const env = process.env.ENV_ALIAS
     return (
         <>
@@ -23,7 +23,7 @@ export default function PageLayout({preview, title, children, tickerData, theme}
                     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3SCJ5M"
                             height="0" width="0" style={{display: "none", visibility: "hidden"}}></iframe>
                 </noscript>}
-                <MasterNavbar theme={theme}/>
+                <MasterNavbar theme={theme} relatedSites={relatedSites}/>
                 <Container>
 
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
