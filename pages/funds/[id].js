@@ -144,7 +144,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     <div
                         className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
                         <div
-                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            className="bg-white flex items-center hover:bg-accent-1 hover:text-white p-3">
                             <div className="w-1/4 mr-3 px-3">
                                 <img src="/images/icons/finances.png" width="60%" height="60%"/>
                             </div>
@@ -159,7 +159,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     <div
                         className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
                         <div
-                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            className="bg-white flex items-center hover:bg-accent-1 hover:text-white p-3">
                             <div className="w-1/4 mr-3 px-3">
                                 <img src="/images/icons/presentation.png" width="60%" height="60%"/>
                             </div>
@@ -176,7 +176,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     <div
                         className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
                         <div
-                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            className="bg-white flex items-center hover:bg-accent-1 hover:text-white p-3">
                             <div className="w-1/4 mr-3 px-3">
                                 <img src="/images/icons/loudspeaker.png" width="60%" height="60%"/>
                             </div>
@@ -191,7 +191,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     <div
                         className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
                         <div
-                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            className="bg-white flex items-center hover:bg-accent-1 hover:text-white p-3">
                             <div className="w-1/4 mr-3 px-3">
                                 <img src="/images/icons/safebox.png" width="60%" height="60%"/>
                             </div>

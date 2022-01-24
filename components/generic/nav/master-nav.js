@@ -13,7 +13,9 @@ export const top_navigation = [
             [
                 {name: 'Investing 101', href: "/page/investment-basics", current: false, children: null},
                 {name: "Fund Manager's Corner", href: '/page/fund-managers-corner', current: false, children: null},
-                {name: 'FAQs', href: '/faqs', current: false, children: null}
+                {name: 'FAQs', href: '/faqs', current: false, children: null},
+                {name: 'Downloadable Files', href: '/file-library', current: false, children: null},
+                {name: 'Announcements', href: '/posts/archive', current: false, children: null}
             ]
     },
     {
@@ -147,7 +149,7 @@ export default function MasterNavbar({theme}) {
                     </div>
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                         <div className="relative flex items-center justify-between h-16">
-                            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                            <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
                                 <Disclosure.Button
                                     className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -159,8 +161,8 @@ export default function MasterNavbar({theme}) {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                                <div className="flex-shrink-0 flex items-center">
+                            <div className="flex-1 flex items-end justify-start sm:items-stretch sm:justify-start">
+                                <div className="flex-shrink-0 flex items-end">
                                     <img
                                         className="block h-8 w-auto"
                                         src="/images/logo.png"

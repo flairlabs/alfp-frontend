@@ -65,19 +65,19 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <a href="/funds/alfm-money-market-fund"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Money Market Fund
                             </a>
                             <a href="/funds/alfm-peso-bond-fund"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Peso Bond Fund
                             </a>
                             <a href="/funds/alfm-dollar-bond-fund"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Dollar Bond Fund
                             </a>
                             <a href="/funds/alfm-euro-bond-fund"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Euro Bond Fund
                             </a>
                         </div>
@@ -91,11 +91,11 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <a href="/funds/alfm-growth-fund"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Growth Fund
                             </a>
                             <a href="/funds/philippine-stock-index-fund"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 Philippine Stock Index Fund
                             </a>
                         </div>
@@ -108,7 +108,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <a href="/funds/alfm-global-muti-asset-income-fund"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Global Multi-Asset Income Fund
                             </a>
                         </div>
