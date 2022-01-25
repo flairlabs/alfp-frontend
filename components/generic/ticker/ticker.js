@@ -111,9 +111,9 @@ function parseTickerData(rawTickerData) {
         let prevVal = parsedFundValues[1][i].value
 
         if(currVal >= prevVal){
-            parsedFundValues[0][i].trend = "up"
-        }else{
             parsedFundValues[0][i].trend = "down"
+        }else{
+            parsedFundValues[0][i].trend = "up"
         }
     }
     return parsedFundValues
