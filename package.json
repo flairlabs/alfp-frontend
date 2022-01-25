@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.4.1",
     "classnames": "2.3.1",
     "date-fns": "2.22.1",
+    "datejs": "^1.0.0-rc3",
     "env-cmd": "^10.1.0",
     "moment": "^2.29.1",
     "next": "latest",
