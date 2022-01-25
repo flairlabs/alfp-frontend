@@ -84,6 +84,7 @@ const tempStyle = {
 }
 
 function parseTickerData(rawTickerData) {
+    rawTickerData.reverse()
     let parsedFundValues = []
     for(let i = 0; i < rawTickerData.length; i++){
 
@@ -111,9 +112,9 @@ function parseTickerData(rawTickerData) {
         let prevVal = parsedFundValues[1][i].value
 
         if(currVal >= prevVal){
-            parsedFundValues[0][i].trend = "down"
-        }else{
             parsedFundValues[0][i].trend = "up"
+        }else{
+            parsedFundValues[0][i].trend = "down"
         }
     }
     return parsedFundValues
