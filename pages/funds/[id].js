@@ -13,6 +13,7 @@ import ErrorPage from "next/error";
 import {getFund, getFundValues} from "../../lib/api";
 import FundTableButtonModal from "../../components/generic/modals/fund-table-button-modal";
 import {processFundValues} from "../../lib/fund-values";
+import {formatISODate} from "../../lib/utils";
 
 export default function Fund({fund = null, tickerData, fundValues}) {
     const global = useContext(GlobalContext)
@@ -85,14 +86,15 @@ export default function Fund({fund = null, tickerData, fundValues}) {
         let dataPoints = []
         let transform = []
         for (let i = 0; i < rawData.length; i++) {
-            let d = new Date(`${rawData[i][0]} 0:0:0`)
+            let d = rawData[i][0]
+            let d_str = formatISODate(d)
             if (d >= start && d <= end) {
                 dataPoints.push(
-                    [rawData[i][0], rawData[i][1]]
+                    [d_str, rawData[i][1]]
                 )
                 transform.push(
                     {
-                        name: rawData[i][0],
+                        name: d_str,
                         Price: rawData[i][1]
                     }
                 )
