@@ -86,7 +86,9 @@ export default function Fund({fund = null, tickerData, fundValues}) {
         let transform = []
         for (let i = 0; i < rawData.length; i++) {
             let d = new Date(`${rawData[i][0]} 0:0:0`)
+            console.log(i, d)
             if (d >= start && d <= end) {
+                console.log(start, d, end)
                 dataPoints.push(
                     [rawData[i][0], rawData[i][1]]
                 )
@@ -105,12 +107,14 @@ export default function Fund({fund = null, tickerData, fundValues}) {
     const [chartData, updateChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[0])
 
     function setChartData(v) {
+        updateChartData([])
         updateChartData(v)
     }
 
     const [transformedChartData, updateTransformedChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[1])
 
     function setTransformedChartData(v) {
+        updateTransformedChartData([])
         updateTransformedChartData(v)
     }
 
