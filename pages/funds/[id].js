@@ -89,7 +89,6 @@ export default function Fund({fund = null, tickerData, fundValues}) {
             let d = rawData[i][0]
             let d_str = formatISODate(d)
             if (d >= start && d <= end) {
-                console.log(start, d, end)
                 dataPoints.push(
                     [d_str, rawData[i][1]]
                 )
@@ -235,7 +234,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     >
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="name"/>
-                        <YAxis/>
+                        <YAxis domain={[0, dataMax => (dataMax * 2)]} />
                         <Tooltip/>
                         <Legend/>
                         <Line type="monotone" dataKey="Price" stroke="#a4d65e"/>
