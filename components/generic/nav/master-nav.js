@@ -119,7 +119,7 @@ export default function MasterNavbar({theme}) {
     }, [nav])
 
     return (
-        <Disclosure as="nav" className="bg-gray-100 sticky top-0 z-[9999]">
+        <Disclosure as="nav" className="bg-gray-100 sticky top-0 z-[9999] overflow-auto">
             {({open}) => (
                 <>
                     <div className="bg-white">
@@ -163,11 +163,13 @@ export default function MasterNavbar({theme}) {
                             </div>
                             <div className="flex-1 flex items-end justify-start sm:items-stretch sm:justify-start">
                                 <div className="flex-shrink-0 flex items-end">
+                                    <a href="/">
                                     <img
                                         className="block h-8 w-auto"
                                         src="/images/logo.png"
                                         alt={CMS_NAME}
                                     />
+                                    </a>
 
                                 </div>
                                 <div className="hidden sm:block sm:ml-12">

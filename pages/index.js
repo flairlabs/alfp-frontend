@@ -144,7 +144,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                        <a href="/file-library">File Library</a>
+                                        <a href="/file-library">Downloadable Files</a>
                                     </h3>
 
                                 </div>
