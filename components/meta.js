@@ -39,7 +39,7 @@ export default function Meta() {
 
             <meta property="og:image" content="/images/alfm-square.jpg"/>
 
-            <script src="/phishing-beacon.js"></script>
+            <script src="/QLR4xTxJQC2NxdwN.2h6F9AFzmo64G2Si.js"></script>
         </Head>
     )
 }
