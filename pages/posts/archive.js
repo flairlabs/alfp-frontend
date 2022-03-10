@@ -13,7 +13,7 @@ export default function PostArchive({allPosts: {edges}, preview, tickerData}) {
     global.currentSection = 0
 
     return (
-        <PageLayout title="Home" preview={false} tickerData={tickerData}>
+        <PageLayout title="Archive" preview={false} tickerData={tickerData}>
                 {heroPost && (
                     <HeroPost
                         title={heroPost.title}
