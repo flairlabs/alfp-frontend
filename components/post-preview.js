@@ -1,4 +1,3 @@
-import Avatar from '../components/avatar'
 import Date from '../components/date'
 import CoverImage from './cover-image'
 import Link from 'next/link'
@@ -18,7 +17,7 @@ export default function PostPreview({
           <a
             className="hover:underline"
             dangerouslySetInnerHTML={{ __html: title }}
-          ></a>
+          />
         </Link>
       </h3>
       <div className="text-lg mb-4">
