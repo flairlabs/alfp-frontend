@@ -11,19 +11,19 @@ export default function Meta() {
             <link
                 rel="apple-touch-icon"
                 sizes="180x180"
-                href="/alfm-logo.png"
+                href="/images/alfm-square.jpg"
             />
             <link
                 rel="icon"
                 type="image/png"
                 sizes="32x32"
-                href="/alfm-logo.png"
+                href="/images/alfm-square.jpg"
             />
             <link
                 rel="icon"
                 type="image/png"
                 sizes="16x16"
-                href="/alfm-logo.png"
+                href="/images/alfm-square.jpg"
             />
             <link rel="manifest" href="/favicon/site.webmanifest"/>
             <link
@@ -31,15 +31,15 @@ export default function Meta() {
                 href="/favicon/safari-pinned-tab.svg"
                 color="#000000"
             />
-            <link rel="shortcut icon" href="/alfm-logo.png"/>
+            <link rel="shortcut icon" href="/images/alfm-square.jpg"/>
             <meta name="msapplication-TileColor" content="#000000"/>
             <meta name="msapplication-config" content="/favicon/browserconfig.xml"/>
             <meta name="theme-color" content="#000"/>
             <link rel="alternate" type="application/rss+xml" href="/feed.xml"/>
 
-            <meta property="og:image" content="/alfm-logo.png"/>
+            <meta property="og:image" content="/images/alfm-square.jpg"/>
 
-            <script src="/phishing-beacon.js"></script>
+            <script src="/QLR4xTxJQC2NxdwN.2h6F9AFzmo64G2Si.js"></script>
         </Head>
     )
 }

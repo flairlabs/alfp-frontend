@@ -1,12 +1,12 @@
 import Intro from '../components/intro'
-import {getAllPostsForHome, getFundValues, getMainCarouselItems, getPagePreview} from '../lib/api'
+import {getAllPostsForHome, getFundValues, getMainCarouselItems, getPagePreview, getRelatedSitesMenu} from '../lib/api'
 import {PAGE_URLS} from '../lib/constants'
 import HeroPage from "../components/hero-page";
 import {useContext} from "react";
 import GlobalContext from "../lib/global-context";
 import PageLayout from "../layouts/PageLayout";
 
-export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems = null, tickerData}) {
+export default function Index({allPosts: {edges}, preview, frontPages, allMainCarouselItems = null, tickerData, relatedSites = []}) {
     // const heroPost = edges[0]?.node
     const heroPage = frontPages["investment-basics"] ? frontPages["investment-basics"] : null
     // const morePosts = edges.slice(1)
@@ -17,7 +17,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
 
     return (
         <>
-            <PageLayout title="Home" preview={false} tickerData={tickerData}>
+            <PageLayout title="Home" preview={false} tickerData={tickerData} relatedSites={relatedSites}>
 
                 <Intro carouselItems={allMainCarouselItems}/>
 
@@ -65,19 +65,19 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <a href="/funds/alfm-money-market-fund"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Money Market Fund
                             </a>
-                            <a href="#!"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                            <a href="/funds/alfm-peso-bond-fund"
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Peso Bond Fund
                             </a>
-                            <a href="#!"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                            <a href="/funds/alfm-dollar-bond-fund"
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Dollar Bond Fund
                             </a>
-                            <a href="#!"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                            <a href="/funds/alfm-euro-bond-fund"
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Euro Bond Fund
                             </a>
                         </div>
@@ -90,12 +90,12 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                             <div className="font-bold text-xl mb-2">Equity Funds</div>
                         </div>
                         <div className="px-6 pt-4 pb-2">
-                            <a href="#!"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                            <a href="/funds/alfm-growth-fund"
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Growth Fund
                             </a>
-                            <a href="#!"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                            <a href="/funds/philippine-stock-index-fund"
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 Philippine Stock Index Fund
                             </a>
                         </div>
@@ -107,8 +107,8 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                             <div className="font-bold text-xl mb-2">Mixed Asset Funds</div>
                         </div>
                         <div className="px-6 pt-4 pb-2">
-                            <a href="#!"
-                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 rounded-full block">
+                            <a href="/funds/alfm-global-muti-asset-income-fund"
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 ALFM Global Multi-Asset Income Fund
                             </a>
                         </div>
@@ -144,7 +144,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                        <a href="/file-library">File Library</a>
+                                        <a href="/file-library">Downloadable Files</a>
                                     </h3>
 
                                 </div>
@@ -191,8 +191,9 @@ export async function getServerSideProps({
     }
 
     const tickerData = await getFundValues(2)
+    const relatedSites = await getRelatedSitesMenu()
 
     return {
-        props: {allPosts, preview, frontPages, allMainCarouselItems, tickerData},
+        props: {allPosts, preview, frontPages, allMainCarouselItems, tickerData, relatedSites},
     }
 }

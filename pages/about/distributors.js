@@ -35,15 +35,16 @@ export default function Distributors({tickerData, distributors, page}) {
 
                 <article className="page-text">
                     {pageContext.coverImage ? (
-                        <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
-                                    slug={pageContext.slug}/>
+                        // <CoverImage title={pageContext.title} coverImage={pageContext.coverImage}
+                        //             slug={pageContext.slug}/>
+                        <img src={pageContext.coverImage.sourceUrl} width="100%"/>
                     ): <Splash srcFull="https://dummyimage.com/1920x300/dddddd/fff.jpg&text=placeholder" /> }
 
                     <PostBody content={page.content}/>
 
                 </article>
 
-                <div className="max-w-2xl mx-auto my-4 page-text">
+                <div className="max-w mx-auto my-4 page-text">
                     {pageContext.persons.map(( person) => (
                         <PersonCard
                             name={person.distributorFields.name}

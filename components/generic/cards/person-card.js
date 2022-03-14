@@ -26,17 +26,16 @@ export default function PersonCard(personData) {
                     <img className="antialiased"
                          src={img}/>
                 </div>
-                <div className="md:w-2/3 w-full px-3 flex flex-row flex-wrap">
+                <div className="md:w-5/6 w-full px-3 flex flex-row flex-wrap">
                     <div
                         className="w-full text-gray-700 font-semibold relative pt-3 md:pt-0">
-                        <h3 className="text-accent-2 card-title">{personData.name}</h3>
-                        <h4 className="text-normal text-gray-300">
-                            <span className="border-b border-dashed border-gray-500 pb-1">
-                                {personData.position}
-                            </span>
-                        </h4>
+                        <h3 className="text-accent-2 card-title">{personData.name}
+                            <br />
+                            <small>{personData.position}</small>
 
-                        <p className="my-3 font-normal">{content}</p>
+                        </h3>
+
+                        <p className="my-3 font-normal text-gray-700"><small>{content}</small></p>
 
                     </div>
                 </div>

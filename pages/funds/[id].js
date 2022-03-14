@@ -13,6 +13,7 @@ import ErrorPage from "next/error";
 import {getFund, getFundValues} from "../../lib/api";
 import FundTableButtonModal from "../../components/generic/modals/fund-table-button-modal";
 import {processFundValues} from "../../lib/fund-values";
+import {formatISODate} from "../../lib/utils";
 
 export default function Fund({fund = null, tickerData, fundValues}) {
     const global = useContext(GlobalContext)
@@ -60,7 +61,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
         fileLibrary: null // fund.funds?.fileLibrary
     }
 
-    const first = new Date(rawData[rawData.length - 1][0])
+    const first = rawData[rawData.length - 1][0]
     const lastWeek = moment(first).subtract(7, 'days')
     const [chartStartDate, updateChartStartDate] = useState(lastWeek.toDate())
 
@@ -68,7 +69,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
         updateChartStartDate(v)
     }
 
-    const [chartEndDate, updateChartEndDate] = useState(new Date(rawData[rawData.length - 1][0]))
+    const [chartEndDate, updateChartEndDate] = useState(first)
 
     function setChartEndDate(v) {
         updateChartEndDate(v)
@@ -85,15 +86,16 @@ export default function Fund({fund = null, tickerData, fundValues}) {
         let dataPoints = []
         let transform = []
         for (let i = 0; i < rawData.length; i++) {
-            let d = new Date(`${rawData[i][0]} 0:0:0`)
+            let d = rawData[i][0]
+            let d_str = formatISODate(d)
             if (d >= start && d <= end) {
                 dataPoints.push(
-                    [rawData[i][0], rawData[i][1]]
+                    [d_str, rawData[i][1]]
                 )
                 transform.push(
                     {
-                        name: rawData[i][0],
-                        val: rawData[i][1]
+                        name: d_str,
+                        Price: rawData[i][1]
                     }
                 )
             }
@@ -105,12 +107,14 @@ export default function Fund({fund = null, tickerData, fundValues}) {
     const [chartData, updateChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[0])
 
     function setChartData(v) {
+        updateChartData([])
         updateChartData(v)
     }
 
     const [transformedChartData, updateTransformedChartData] = useState(getDataPoints(chartStartDate, chartEndDate)[1])
 
     function setTransformedChartData(v) {
+        updateTransformedChartData([])
         updateTransformedChartData(v)
     }
 
@@ -144,7 +148,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     <div
                         className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
                         <div
-                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            className="bg-white flex items-center hover:bg-accent-1 hover:text-white p-3">
                             <div className="w-1/4 mr-3 px-3">
                                 <img src="/images/icons/finances.png" width="60%" height="60%"/>
                             </div>
@@ -159,13 +163,13 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     <div
                         className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
                         <div
-                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            className="bg-white flex items-center hover:bg-accent-1 hover:text-white p-3">
                             <div className="w-1/4 mr-3 px-3">
                                 <img src="/images/icons/presentation.png" width="60%" height="60%"/>
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                    <a href={fund.funds?.factSheet?.sourceUrl}>
+                                    <a href={fund.funds?.factSheet?.sourceUrl ? fund.funds?.factSheet?.sourceUrl : fund.funds?.factSheet?.mediaItemUrl}>
                                         Fact Sheet
                                     </a>
                                 </h3>
@@ -176,7 +180,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     <div
                         className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
                         <div
-                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            className="bg-white flex items-center hover:bg-accent-1 hover:text-white p-3">
                             <div className="w-1/4 mr-3 px-3">
                                 <img src="/images/icons/loudspeaker.png" width="60%" height="60%"/>
                             </div>
@@ -191,13 +195,13 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     <div
                         className="my-2 p-2 w-full overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 sm:p-4 btn-card">
                         <div
-                            className="bg-white flex items-center hover:bg-gray-200 p-3">
+                            className="bg-white flex items-center hover:bg-accent-1 hover:text-white p-3">
                             <div className="w-1/4 mr-3 px-3">
                                 <img src="/images/icons/safebox.png" width="60%" height="60%"/>
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">
-                                    <a href="/file-library">File Library</a>
+                                    <a href="/file-library">Downloadable Files</a>
                                 </h3>
 
                             </div>
@@ -211,7 +215,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     onChange={e => setChartStartDate(e)}
                     value={chartStartDate}
                     format="yyyy-MM-dd"
-                    minDate={new Date(rawData[0][0])}
+                    minDate={rawData[0][0]}
                     maxDate={chartEndDate}
                 />
 
@@ -220,7 +224,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     value={chartEndDate}
                     format="yyyy-MM-dd"
                     minDate={chartStartDate}
-                    maxDate={new Date(rawData[rawData.length - 1][0])}
+                    maxDate={rawData[rawData.length - 1][0]}
                 />
 
                 <ResponsiveContainer width={'99%'} height={300}>
@@ -230,10 +234,10 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     >
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="name"/>
-                        <YAxis/>
+                        <YAxis domain={[0, dataMax => (dataMax * 2)]} />
                         <Tooltip/>
                         <Legend/>
-                        <Line type="monotone" dataKey="val" stroke="#a4d65e"/>
+                        <Line type="monotone" dataKey="Price" stroke="#a4d65e"/>
                     </LineChart>
                 </ResponsiveContainer>
 

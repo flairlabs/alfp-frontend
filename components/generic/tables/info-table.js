@@ -3,13 +3,8 @@ function classNames(...classes) {
 }
 
 export default function InfoTable({data, theme}) {
-    let topLinkNormal = "text-gray-600 hover:bg-accent-1"
-    let topLinkHover = "bg-accent-1 text-gray-800"
-
-    if(theme === "350c"){
-        topLinkNormal = "text-gray-600 hover:text-white hover:bg-accent-2"
-        topLinkHover = "bg-accent-2 text-white"
-    }
+    let topLinkHover = "bg-gray-300 text-gray-800"
+    let topLinkNormal = topLinkHover // "text-gray-600 hover:bg-accent-1"
     return (
         <>
             <table className="table-auto w-full border-separate">
@@ -17,7 +12,7 @@ export default function InfoTable({data, theme}) {
                 {data.map( (d, idx) => (
                     <tr key={d[0]} className="my-1">
                         <td className={classNames(idx % 2 === 0 ? topLinkHover : topLinkNormal, "text-sm font-semibold px-3 py-2 w-1/2")}>{d[0]}</td>
-                        <td className={classNames(idx % 2 === 0 ? "bg-gray-300" : "", "text-sm px-3 py-2 w-1/2")}>{d[1]}</td>
+                        <td className={classNames(idx % 2 === 0 ? "bg-gray-100" : "", "text-sm px-3 py-2 w-1/2")}>{d[1]}</td>
                     </tr>
                 ))}
                 </tbody>

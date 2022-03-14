@@ -12,8 +12,10 @@ export const top_navigation = [
         name: 'Home', href: nav_urls.home.url, current: false, slug: 0, children:
             [
                 {name: 'Investing 101', href: "/page/investment-basics", current: false, children: null},
-                {name: "Fund Manager's Corner", href: '#', current: false, children: null},
-                {name: 'FAQs', href: '/faqs', current: false, children: null}
+                {name: "Fund Manager's Corner", href: '/page/fund-managers-corner', current: false, children: null},
+                {name: 'FAQs', href: '/faqs', current: false, children: null},
+                {name: 'Downloadable Files', href: '/file-library', current: false, children: null},
+                {name: 'Announcements', href: '/posts/archive', current: false, children: null}
             ]
     },
     {
@@ -117,7 +119,7 @@ export default function MasterNavbar({theme}) {
     }, [nav])
 
     return (
-        <Disclosure as="nav" className="bg-gray-100">
+        <Disclosure as="nav" className="bg-gray-100 sticky top-0 z-[9999]">
             {({open}) => (
                 <>
                     <div className="bg-white">
@@ -147,10 +149,10 @@ export default function MasterNavbar({theme}) {
                     </div>
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                         <div className="relative flex items-center justify-between h-16">
-                            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                            <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
                                 <Disclosure.Button
-                                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                    className="inline-flex items-center justify-center p-2 text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <XIcon className="block h-6 w-6" aria-hidden="true"/>
@@ -159,13 +161,15 @@ export default function MasterNavbar({theme}) {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                                <div className="flex-shrink-0 flex items-center">
+                            <div className="flex-1 flex items-end justify-start sm:items-stretch sm:justify-start">
+                                <div className="flex-shrink-0 flex items-end">
+                                    <a href="/">
                                     <img
                                         className="block h-8 w-auto"
                                         src="/images/logo.png"
                                         alt={CMS_NAME}
                                     />
+                                    </a>
 
                                 </div>
                                 <div className="hidden sm:block sm:ml-12">
@@ -178,7 +182,7 @@ export default function MasterNavbar({theme}) {
                                                             <Menu.Button
                                                                 key={"menuItemButtom-" + item.name}
                                                                 aria-current={item.current ? 'page' : undefined}
-                                                                className="inline-flex justify-center w-full px-3 py-2 rounded-md font-medium">
+                                                                className="inline-flex justify-center w-full px-3 font-medium">
                                                                 {item.name}
                                                                 <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5"
                                                                                  aria-hidden="true"/>
@@ -196,7 +200,7 @@ export default function MasterNavbar({theme}) {
                                                             leaveTo="transform opacity-0 scale-95"
                                                         >
                                                             <Menu.Items
-                                                                className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                                                className="origin-top-right absolute right-0 mt-2 w-56 shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                                                                 style={{zIndex: 999}} key={"menuItems-" + item.slug}>
                                                                 <div className="py-1" key={"divMenuItems-" + item.slug}>
                                                                     {item.children.map((child) => (
@@ -227,7 +231,7 @@ export default function MasterNavbar({theme}) {
                                                         href={item.href}
                                                         className={classNames(
                                                             item.current ? topLinkHover : topLinkNormal,
-                                                            'px-3 py-2 rounded-md font-medium'
+                                                            'px-3 py-2 font-medium'
                                                         )}
                                                         aria-current={item.current ? 'page' : undefined}
                                                     >
@@ -254,7 +258,7 @@ export default function MasterNavbar({theme}) {
                                         href={item.href}
                                         className={classNames(
                                             global.currentSection === item.slug ? topLinkHover : topLinkNormal,
-                                            'block px-3 py-2 rounded-md font-bold'
+                                            'block px-3 py-2 font-bold'
                                         )}
                                         aria-current={item.current ? 'page' : undefined}
                                     >
@@ -265,7 +269,7 @@ export default function MasterNavbar({theme}) {
                                             <a
                                                 key={"mobileDisclosureChildLink-" + child.name}
                                                 href={child.href}
-                                                className='block px-3 ml-2 py-2 rounded-md text-base font-medium'
+                                                className='block px-3 ml-2 py-2 text-base font-medium'
                                             >
                                                 {child.name}
                                             </a>
@@ -273,7 +277,7 @@ export default function MasterNavbar({theme}) {
                                                 <a
                                                     key={"mobileDisclosureSubChildLink-" + subchild.name}
                                                     href={subchild.href}
-                                                    className='block px-3 ml-5 pl-5 py-2 rounded-md text-base font-medium'
+                                                    className='block px-3 ml-5 pl-5 py-2 text-base font-medium'
                                                 >
                                                     {subchild.name}
                                                 </a>

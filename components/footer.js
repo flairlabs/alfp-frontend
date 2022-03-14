@@ -78,11 +78,7 @@ export default function Footer() {
                 </div>
                 <div className="bg-gray-700">
                     <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-                        <p className="text-white text-sm text-center sm:text-left">© 2021 ALFM Mutual Funds  —
-                            powered by
-                            <a href="https://magpie.im" rel="noopener noreferrer"
-                               className="text-gray-400 ml-1"
-                               target="_blank">Magpie</a>
+                        <p className="text-white text-sm text-center sm:text-left">© 2021 ALFM Mutual Funds
                         </p>
 
                     </div>

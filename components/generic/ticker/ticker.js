@@ -7,19 +7,19 @@ const handleDragStart = (e) => e.preventDefault();
 const fundKeys = {
     "alfmDollarBondFund": {
         name: "Dollar Bond Fund",
-        url: ""
+        url: "/funds/alfm-dollar-bond-fund"
     },
     "alfmEuroBondFund": {
         name: "Euro Bond Fund",
-        url: ""
+        url: "/funds/alfm-euro-bond-fund"
     },
     "alfmGlobalMultiAssetIncomeFund": {
         name: "Global Multi-Asset Income Fund",
-        url: ""
+        url: "/funds/alfm-global-muti-asset-income-fund"
     },
     "alfmGrowthFund": {
         name: "Growth Fund",
-        url: ""
+        url: "/funds/alfm-growth-fund"
     },
     "alfmMoneyMarketFund": {
         name: "Money Market Fund",
@@ -27,11 +27,11 @@ const fundKeys = {
     },
     "alfmPesoBondFund": {
         name: "Peso Bond Fund",
-        url: ""
+        url: "/funds/alfm-peso-bond-fund"
     },
     "alfmPhilippineStockIndexFund": {
         name: "Philippine Stock Index Fund",
-        url: ""
+        url: "/funds/philippine-stock-index-fund"
     },
 }
 
@@ -84,6 +84,7 @@ const tempStyle = {
 }
 
 function parseTickerData(rawTickerData) {
+    rawTickerData.reverse()
     let parsedFundValues = []
     for(let i = 0; i < rawTickerData.length; i++){
 
@@ -126,6 +127,7 @@ export default function Ticker(tickerData = []) {
         }
     }
 
+    let __items = []
     let items = []
     for(let i = 0; i < fundValues.length; i++){
         let fund = fundValues[i]
@@ -145,8 +147,25 @@ export default function Ticker(tickerData = []) {
                 {icon}
             </div>
         </div>
-        items.push(item)
+        __items.push(item)
     }
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
 
     return (
         <>
@@ -159,9 +178,8 @@ export default function Ticker(tickerData = []) {
                 autoPlayStrategy="none"
                 autoPlayInterval={3000}
                 animationDuration={1000}
-                animationType="slide"
-                infinite
-                touchTracking={false}
+                animationType="fadeout"
+                touchTracking={true}
                 disableDotsControls
                 disableButtonsControls
             />
