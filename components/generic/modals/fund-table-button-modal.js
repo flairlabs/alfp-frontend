@@ -9,7 +9,7 @@ export default function FundTableButtonModal({title, chartData, btnText}) {
             {showModal ? (
                 <>
                     <div
-                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        className="justify-center items-center flex overflow-x-hidden overflow-y-scroll fixed inset-0 z-[9999]"
                     >
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
                             {/*content*/}
@@ -25,15 +25,15 @@ export default function FundTableButtonModal({title, chartData, btnText}) {
                                         className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                                         onClick={() => setShowModal(false)}
                                     >
-                    <span
-                        className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                                        <span
+                                            className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                                          ×
+                                        </span>
                                     </button>
                                 </div>
                                 {/*body*/}
-                                <div className="relative p-6 flex-auto">
-                                    <FundTable chartData={chartData} />
+                                <div className="relative p-6 flex-auto vh50 overflow-y-scroll">
+                                    <FundTable chartData={chartData}/>
                                 </div>
                                 {/*footer*/}
                                 <div

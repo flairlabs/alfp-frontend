@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 
 export default function Meta() {
-    const gtag = "/staging/gtag.js"
+    const gtag = "/production/gtag.js"
 
     return (
         <Head>

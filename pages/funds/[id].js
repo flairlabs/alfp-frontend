@@ -128,14 +128,14 @@ export default function Fund({fund = null, tickerData, fundValues}) {
         <>
             <PageLayout title={pageContext.title} preview={false} tickerData={tickerData}>
                 <PageTitle title={pageContext.heading} allCaps={true}/>
-                <div className="flex flex-wrap mx-auto overflow-hidden">
+                <div className="flex flex-wrap mx-auto">
                     <div className="my-1 px-1 w-full overflow-hidden sm:w-full md:w-full lg:w-2/3">
                         <div className="page-text mb-3 page-text pr-3 mr-3"
                              dangerouslySetInnerHTML={{__html: pageContext.content}}/>
 
 
                     </div>
-                    <div className="my-1 px-1 w-full overflow-hidden sm:w-full md:w-full lg:w-1/3">
+                    <div className="my-1 px-1 w-full sm:w-full md:w-full lg:w-1/3 z-auto">
 
                         <InfoTable data={infoTable}/>
                     </div>
@@ -234,7 +234,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     >
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="name"/>
-                        <YAxis domain={[0, dataMax => (dataMax * 2)]} />
+                        <YAxis domain={[dataMin => dataMin, dataMax => dataMax]} />
                         <Tooltip/>
                         <Legend/>
                         <Line type="monotone" dataKey="Price" stroke="#a4d65e"/>

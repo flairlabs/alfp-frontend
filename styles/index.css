@@ -217,3 +217,12 @@ body {
 p, .leading-relaxed {
     text-align: justify !important;
 }
+
+
+.vh50 {
+    height: 50vh;
+}
+
+.vh75 {
+    height: 75vh;
+}

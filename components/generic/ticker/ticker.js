@@ -6,33 +6,42 @@ const handleDragStart = (e) => e.preventDefault();
 
 const fundKeys = {
     "alfmDollarBondFund": {
-        name: "Dollar Bond Fund",
+        name: "ALFM Dollar Bond Fund",
         url: "/funds/alfm-dollar-bond-fund"
     },
     "alfmEuroBondFund": {
-        name: "Euro Bond Fund",
+        name: "ALFM Euro Bond Fund",
         url: "/funds/alfm-euro-bond-fund"
     },
     "alfmGlobalMultiAssetIncomeFund": {
-        name: "Global Multi-Asset Income Fund",
+        name: "ALFM Global Multi-Asset Income Fund (USD)",
         url: "/funds/alfm-global-muti-asset-income-fund"
     },
+    "alfmGlobalMultiAssetIncomeFundPhp": {
+        name: "ALFM Global Multi-Asset Income Fund (PHP)",
+        url: "/funds/alfm-global-muti-asset-income-fund-php"
+    },
     "alfmGrowthFund": {
-        name: "Growth Fund",
+        name: "ALFM Growth Fund",
         url: "/funds/alfm-growth-fund"
     },
     "alfmMoneyMarketFund": {
-        name: "Money Market Fund",
+        name: "ALFM Money Market Fund",
         url: "/funds/alfm-money-market-fund"
     },
     "alfmPesoBondFund": {
-        name: "Peso Bond Fund",
+        name: "ALFM Peso Bond Fund",
         url: "/funds/alfm-peso-bond-fund"
     },
     "alfmPhilippineStockIndexFund": {
-        name: "Philippine Stock Index Fund",
+        name: "ALFM Philippine Stock Index Fund",
         url: "/funds/philippine-stock-index-fund"
     },
+    "alfmPhilippineStockIndexFundUnits": {
+        name: "ALFM Philippine Stock Index Fund (UNITS)",
+        url: "/funds/philippine-stock-index-fund-units"
+    },
+
 }
 
 let fundValues = [
@@ -75,8 +84,8 @@ let fundValues = [
 
 const responsive = {
     0: {items: 1},
-    1024: {items: 2},
-    1200: {items: 3}
+    1024: {items: 1},
+    1200: {items: 2}
 };
 
 const tempStyle = {
@@ -86,7 +95,7 @@ const tempStyle = {
 function parseTickerData(rawTickerData) {
     rawTickerData.reverse()
     let parsedFundValues = []
-    for(let i = 0; i < rawTickerData.length; i++){
+    for(let i = rawTickerData.length - 1; i >= 0; i--){
 
         let rtd = rawTickerData[i]
         let fundValueForDay = []

@@ -48,7 +48,11 @@ export const top_navigation = [
                     name: 'Mixed Assets', href: '#', current: false, children:
                         [
                             {
-                                name: 'ALFM Global Multi-Asset Income Fund', href: '/funds/alfm-global-muti-asset-income-fund', current: false
+                                name: 'ALFM Global Multi-Asset Income Fund (USD)', href: '/funds/alfm-global-muti-asset-income-fund', current: false
+
+                            },
+                            {
+                                name: 'ALFM Global Multi-Asset Income Fund (PHP)', href: '/funds/alfm-global-muti-asset-income-fund-php', current: false
 
                             },
                         ]
@@ -61,6 +65,10 @@ export const top_navigation = [
                         },
                         {
                             name: 'Philippine Stock Index Fund', href: '/funds/philippine-stock-index-fund', current: false
+
+                        },
+                        {
+                            name: 'Philippine Stock Index Fund (UNITS)', href: '/funds/philippine-stock-index-fund-units', current: false
 
                         },
                     ]
