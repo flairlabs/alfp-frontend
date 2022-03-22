@@ -7,7 +7,7 @@ phases:
     commands:
       - echo Installing app dependencies...
       - yarn install
-      - npm install -g serverless@1.83.3
+      - npm install -g serverless@2.71.0
       - yarn add @sls-next/serverless-component@3.6.0
 
   build:
