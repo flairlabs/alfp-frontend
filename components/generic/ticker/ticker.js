@@ -147,7 +147,7 @@ export default function Ticker(tickerData = []) {
         </svg>
 
         let item = <div onDragStart={handleDragStart} role="presentation" className="flex flex-row items-end space-x-4 items-center mt-1 mb-2 bg-accent-7 text-accent-2 p-3" style={tempStyle}>
-            <div className="w-2/3">
+            <div className="w-4/5">
                 <a className="block text-accent-1" href={fund.url}>{fund.name}</a>
                 <small className="text-white">{fund.date}</small>
             </div>
