@@ -1,6 +1,6 @@
 name: alfm-frontend-staging
 alfm-frontend-staging:
-  component: "@sls-next/serverless-component@3.7.0-alpha.12"
+  component: "@sls-next/serverless-component@3.5.3"
   inputs:
     domain: ["alfm-frontend-staging", "magpie.ph"]
     useServerlessTraceTarget: true
