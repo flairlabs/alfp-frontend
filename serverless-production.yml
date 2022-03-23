@@ -2,9 +2,10 @@ name: alfm-frontend
 alfm-frontend:
   component: "@sls-next/serverless-component@3.6.0"
   inputs:
+    aliases: ["alfmmutualfunds.com", "www.alfmmutualfunds.com"]
     useServerlessTraceTarget: true
     roleArn: "arn:aws:iam::347059883387:role/alfm-frontend"
-    certificateArn: "arn:aws:acm:us-east-1:347059883387:certificate/5fa0bb1d-caa2-4dc8-abe8-472afa5bff96"
+    certificateArn: "arn:aws:acm:us-east-1:347059883387:certificate/71bc8dba-a941-432a-b7ee-000693fb9eaf"
     timeout:
       defaultLambda: 30
       apiLambda: 30
