@@ -34,11 +34,11 @@ const fundKeys = {
         url: "/funds/alfm-peso-bond-fund"
     },
     "alfmPhilippineStockIndexFund": {
-        name: "ALFM Philippine Stock Index Fund",
+        name: "Philippine Stock Index Fund",
         url: "/funds/philippine-stock-index-fund"
     },
     "alfmPhilippineStockIndexFundUnits": {
-        name: "ALFM Philippine Stock Index Fund (UNITS)",
+        name: "Philippine Stock Index Fund (Units)",
         url: "/funds/philippine-stock-index-fund-units"
     },
 

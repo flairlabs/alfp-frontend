@@ -21,9 +21,42 @@ export default function Footer() {
                         <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
                             <span className="text-xl text-white">CONTACT US</span>
                         </a>
-                        <p className="mt-2 text-sm text-white">
+                        <p className="mt-2 text-sm text-white flex">
+                            <svg className="h-5 w-5 text-white mr-3" width="24" height="24" viewBox="0 0 24 24"
+                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"/>
+                                <path
+                                    d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>
+                            </svg>
                             (02) 8580 0900
 
+                        </p>
+                        <p className="mt-2 text-sm text-white flex">
+                            <svg className="h-8 w-8 text-white mr-3" width="24" height="24" viewBox="0 0 24 24"
+                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"/>
+                                <line x1="3" y1="21" x2="21" y2="21"/>
+                                <line x1="9" y1="8" x2="10" y2="8"/>
+                                <line x1="9" y1="12" x2="10" y2="12"/>
+                                <line x1="9" y1="16" x2="10" y2="16"/>
+                                <line x1="14" y1="8" x2="15" y2="8"/>
+                                <line x1="14" y1="12" x2="15" y2="12"/>
+                                <line x1="14" y1="16" x2="15" y2="16"/>
+                                <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16"/>
+                            </svg>
+                            19F BPI Buendia Center, Sen. Gil J. Puyat Ave., Makati City 1209
+                        </p>
+                        <p className="mt-2 text-sm text-white flex">
+                            <svg className="h-5 w-5 text-white mr-3" width="24" height="24" viewBox="0 0 24 24"
+                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"/>
+                                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                <polyline points="3 7 12 13 21 7"/>
+                            </svg>
+                            <a href="mailto:bpi_investment@bpi.com.ph">bpi_investment@bpi.com.ph</a>
                         </p>
                     </div>
                     <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">

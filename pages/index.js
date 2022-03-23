@@ -98,6 +98,10 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                                className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
                                 Philippine Stock Index Fund
                             </a>
+                            <a href="/funds/philippine-stock-index-fund-units"
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
+                                Philippine Stock Index Fund (Units)
+                            </a>
                         </div>
                     </div>
 
@@ -109,7 +113,11 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                         <div className="px-6 pt-4 pb-2">
                             <a href="/funds/alfm-global-muti-asset-income-fund"
                                className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
-                                ALFM Global Multi-Asset Income Fund
+                                ALFM Global Multi-Asset Income Fund (USD)
+                            </a>
+                            <a href="/funds/alfm-global-muti-asset-income-fund-php"
+                               className="text-accent-2 hover:bg-accent-1 hover:text-white py-2 px-4 block">
+                                ALFM Global Multi-Asset Income Fund (PHP)
                             </a>
                         </div>
                     </div>
