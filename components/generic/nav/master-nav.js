@@ -64,11 +64,11 @@ export const top_navigation = [
 
                         },
                         {
-                            name: 'Philippine Stock Index Fund', href: '/funds/philippine-stock-index-fund', current: false
+                            name: 'ALFM Philippine Stock Index Fund', href: '/funds/philippine-stock-index-fund', current: false
 
                         },
                         {
-                            name: 'Philippine Stock Index Fund (UNITS)', href: '/funds/philippine-stock-index-fund-units', current: false
+                            name: 'ALFM Philippine Stock Index Fund (UNITS)', href: '/funds/philippine-stock-index-fund-units', current: false
 
                         },
                     ]
