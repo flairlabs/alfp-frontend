@@ -59,7 +59,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                     className="py-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
 
                     <div className="rounded overflow-hidden shadow-lg pb-2">
-                        <img src="/images/revenue-box.png" className="w-full"/>
+                        <img src="/images/revenue-box.png" className="w-auto h-64 mx-auto"/>
                         <div className="px-6 py-4">
                             <div className="font-bold text-xl mb-2">Fixed Income Fund</div>
                         </div>
@@ -85,7 +85,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
 
 
                     <div className="rounded overflow-hidden shadow-lg pb-2">
-                        <img src="/images/investing-box.png" className="w-full"/>
+                            <img src="/images/investing-box.png" className="w-auto h-64 mx-auto object-center"/>
                         <div className="px-6 py-4">
                             <div className="font-bold text-xl mb-2">Equity Funds</div>
                         </div>
@@ -106,7 +106,7 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
                     </div>
 
                     <div className="rounded overflow-hidden shadow-lg pb-2">
-                        <img src="/images/factors-box.png" className="w-full"/>
+                        <img src="/images/factors-box.png" className="w-auto h-64 mx-auto"/>
                         <div className="px-6 py-4">
                             <div className="font-bold text-xl mb-2">Mixed Asset Funds</div>
                         </div>
