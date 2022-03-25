@@ -260,6 +260,7 @@ export async function getServerSideProps({
                                          }) {
     const data = await getFund(params.id)
     const tickerData = await getFundValues(2)
+    console.log(tickerData)
     const fundValues = await getFundValues(null)
     return {
         props: {
