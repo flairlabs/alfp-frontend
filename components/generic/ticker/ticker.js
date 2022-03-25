@@ -93,7 +93,7 @@ const tempStyle = {
 }
 
 function parseTickerData(rawTickerData) {
-    // rawTickerData.reverse()
+    rawTickerData.reverse()
     let parsedFundValues = []
     for(let i = rawTickerData.length - 1; i >= 0; i--){
 
@@ -130,81 +130,71 @@ function parseTickerData(rawTickerData) {
 }
 
 export default function Ticker(tickerData = []) {
+    alert(JSON.stringify(tickerData))
     if(tickerData){
         if(tickerData.tickerData?.length === 2){
             fundValues = parseTickerData(tickerData.tickerData)[0]
-
-            let __items = []
-            let items = []
-            for(let i = 0; i < fundValues.length; i++){
-                let fund = fundValues[i]
-                let icon = fund.trend === "up" ? <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-accent-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
-                </svg> : <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13l-5 5m0 0l-5-5m5 5V6" />
-                </svg>
-
-                let item = <div onDragStart={handleDragStart} role="presentation" className="flex flex-row items-end space-x-4 items-center mt-1 mb-2 bg-accent-7 text-accent-2 p-3" style={tempStyle}>
-                    <div className="w-4/5">
-                        <a className="block text-accent-1" href={fund.url}>{fund.name}</a>
-                        <small className="text-white">{fund.date}</small>
-                    </div>
-                    <div className="flex space-x-2 text-white">
-                        <strong>{fund.value}</strong>
-                        {icon}
-                    </div>
-                </div>
-                __items.push(item)
-            }
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-            items.push(...__items)
-
-            return (
-                <>
-                    {JSON.stringify(tickerData)}
-                    <hr />
-
-                    {JSON.stringify(fundValues)}
-
-                    <AliceCarousel
-                        mouseTracking
-                        items={items}
-                        responsive={responsive}
-                        autoPlay
-                        autoPlayControls={false}
-                        autoPlayStrategy="none"
-                        autoPlayInterval={3000}
-                        animationDuration={1000}
-                        animationType="fadeout"
-                        touchTracking={true}
-                        disableDotsControls
-                        disableButtonsControls
-                    />
-                </>
-
-            )
         }
-    }else{
-        return (
-            <>No tickerData</>
-        )
     }
 
+    let __items = []
+    let items = []
+    for(let i = 0; i < fundValues.length; i++){
+        let fund = fundValues[i]
+        let icon = fund.trend === "up" ? <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-accent-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
+        </svg> : <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13l-5 5m0 0l-5-5m5 5V6" />
+        </svg>
 
+        let item = <div onDragStart={handleDragStart} role="presentation" className="flex flex-row items-end space-x-4 items-center mt-1 mb-2 bg-accent-7 text-accent-2 p-3" style={tempStyle}>
+            <div className="w-4/5">
+                <a className="block text-accent-1" href={fund.url}>{fund.name}</a>
+                <small className="text-white">{fund.date}</small>
+            </div>
+            <div className="flex space-x-2 text-white">
+                <strong>{fund.value}</strong>
+                {icon}
+            </div>
+        </div>
+        __items.push(item)
+    }
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+    items.push(...__items)
+
+    return (
+        <>
+            <AliceCarousel
+                mouseTracking
+                items={items}
+                responsive={responsive}
+                autoPlay
+                autoPlayControls={false}
+                autoPlayStrategy="none"
+                autoPlayInterval={3000}
+                animationDuration={1000}
+                animationType="fadeout"
+                touchTracking={true}
+                disableDotsControls
+                disableButtonsControls
+            />
+        </>
+
+    )
 }
 
