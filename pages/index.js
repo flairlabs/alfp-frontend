@@ -161,13 +161,6 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
 
                     </div>
                 </div>
-                {tickerData.map((item) => (
-                    <>{item.title}
-                        <pre>{JSON.stringify(item)}</pre>
-
-                        <hr/>
-                    </>
-                ))}
 
 
             </PageLayout>

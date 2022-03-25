@@ -93,9 +93,8 @@ const tempStyle = {
 }
 
 function parseTickerData(rawTickerData) {
-    rawTickerData.reverse()
     let parsedFundValues = []
-    for(let i = rawTickerData.length - 1; i >= 0; i--){
+    for(let i = 0; i < rawTickerData.length; i++){
 
         let rtd = rawTickerData[i]
         let fundValueForDay = []
@@ -126,17 +125,13 @@ function parseTickerData(rawTickerData) {
             parsedFundValues[0][i].trend = "down"
         }
     }
-    return parsedFundValues
+    return parsedFundValues[0]
 }
 
 export default function Ticker(tickerData = []) {
-    console.log(tickerData)
     if(tickerData){
-        console.log("tickerData")
         if(tickerData.tickerData?.length === 2){
-            console.log("length 2")
-            fundValues = parseTickerData(tickerData.tickerData)[0]
-            console.log(fundValues)
+            fundValues = parseTickerData(tickerData.tickerData)
         }
     }
 
