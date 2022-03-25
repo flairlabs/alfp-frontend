@@ -130,10 +130,13 @@ function parseTickerData(rawTickerData) {
 }
 
 export default function Ticker(tickerData = []) {
-    alert(JSON.stringify(tickerData))
+    console.log(tickerData)
     if(tickerData){
+        console.log("tickerData")
         if(tickerData.tickerData?.length === 2){
+            console.log("length 2")
             fundValues = parseTickerData(tickerData.tickerData)[0]
+            console.log(fundValues)
         }
     }
 
