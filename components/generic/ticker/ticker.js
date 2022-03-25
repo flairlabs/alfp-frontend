@@ -199,6 +199,10 @@ export default function Ticker(tickerData = []) {
 
             )
         }
+    }else{
+        return (
+            <>No tickerData</>
+        )
     }
 
 
