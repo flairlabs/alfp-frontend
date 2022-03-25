@@ -200,6 +200,7 @@ export async function getServerSideProps({
 
     const tickerData = await getFundValues(2)
     const relatedSites = await getRelatedSitesMenu()
+    const fundValues = await getFundValues(null)
 
     return {
         props: {allPosts, preview, frontPages, allMainCarouselItems, tickerData, relatedSites},
