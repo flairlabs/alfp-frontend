@@ -18,7 +18,6 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
     return (
         <>
             <PageLayout title="Home" preview={false} tickerData={tickerData} relatedSites={relatedSites}>
-
                 <Intro carouselItems={allMainCarouselItems}/>
 
                 {heroPage && (
@@ -162,6 +161,8 @@ export default function Index({allPosts: {edges}, preview, frontPages, allMainCa
 
                     </div>
                 </div>
+
+
             </PageLayout>
         </>
     )
@@ -200,6 +201,8 @@ export async function getServerSideProps({
 
     const tickerData = await getFundValues(2)
     const relatedSites = await getRelatedSitesMenu()
+
+    console.log(tickerData)
 
     return {
         props: {allPosts, preview, frontPages, allMainCarouselItems, tickerData, relatedSites},
