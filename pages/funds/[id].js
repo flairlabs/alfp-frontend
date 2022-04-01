@@ -61,8 +61,18 @@ export default function Fund({fund = null, tickerData, fundValues}) {
         fileLibrary: null // fund.funds?.fileLibrary
     }
 
-    const first = rawData[rawData.length - 1][0]
+    let first = new Date()
+    let minDate = first
+    let maxDate = first
+
+    if(rawData.length > 0){
+        first = rawData[rawData.length - 1][0]
+        minDate = rawData[0][0]
+        maxDate = rawData[rawData.length - 1][0]
+
+    }
     const lastWeek = moment(first).subtract(7, 'days')
+
     const [chartStartDate, updateChartStartDate] = useState(lastWeek.toDate())
 
     function setChartStartDate(v) {
@@ -215,7 +225,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     onChange={e => setChartStartDate(e)}
                     value={chartStartDate}
                     format="yyyy-MM-dd"
-                    minDate={rawData[0][0]}
+                    minDate={minDate}
                     maxDate={chartEndDate}
                 />
 
@@ -224,7 +234,7 @@ export default function Fund({fund = null, tickerData, fundValues}) {
                     value={chartEndDate}
                     format="yyyy-MM-dd"
                     minDate={chartStartDate}
-                    maxDate={rawData[rawData.length - 1][0]}
+                    maxDate={maxDate}
                 />
 
                 <ResponsiveContainer width={'99%'} height={300}>
