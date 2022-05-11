@@ -70,6 +70,9 @@ export const top_navigation = [
                         {
                             name: 'Philippine Stock Index Fund (Units)', href: '/funds/philippine-stock-index-fund-units', current: false
 
+                        },{
+                            name: 'ALFM Real Estate Fund', href: '/funds/alfm-real-estate-income-fund', current: false
+
                         },
                     ]
                 }
