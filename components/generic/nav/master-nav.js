@@ -129,28 +129,35 @@ export default function MasterNavbar({theme}) {
     return (
         <Disclosure as="nav" className="bg-gray-100 sticky top-0 z-[9999]">
             {({open}) => (
-                <>
+                <>  
                     <div className="bg-white">
                         <div className="max-w-7xl mx-auto">
                             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                                <div className="hidden sm:block sm:ml-6">
-                                    <div className="flex justify-items-center" id="navWrapperMain">
+                                <div className="hidden w-full sm:block sm:ml-6">
+                                    <div className="flex w-full justify-between" id="navWrapperMain">
+                                       
+                                        <div className="flex justify-items-center">
+                                            {/* Top Navigation Menus */}
+                                            {top_navigation.map((item, idx) => (
+                                                <a
+                                                    key={"topNav-" + item.name}
+                                                    href={item.href}
+                                                    onMouseOver={event => setNav(idx)}
+                                                    className={classNames(
+                                                        global.currentSection === item.slug ? topLinkHover : topLinkNormal,
+                                                        'px-3 py-2 font-medium display-block'
+                                                    )}
+                                                    aria-current={global.currentSection === item.slug ? 'page' : undefined}
+                                                >
+                                                    {item.name}
+                                                </a>
+                                            ))}
+                                        </div>
 
-                                        {top_navigation.map((item, idx) => (
-                                            <a
-                                                key={"topNav-" + item.name}
-                                                href={item.href}
-                                                onMouseOver={event => setNav(idx)}
-                                                className={classNames(
-                                                    global.currentSection === item.slug ? topLinkHover : topLinkNormal,
-                                                    'px-3 py-2 font-medium display-block'
-                                                )}
-                                                aria-current={global.currentSection === item.slug ? 'page' : undefined}
-                                            >
-                                                {item.name}
-                                            </a>
-                                        ))}
+                                        <a href="/" className="bg-accent-1 px-4 my-2 text-sm font-semibold">Start Investing</a>               
+                                        
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
