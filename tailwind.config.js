@@ -36,6 +36,7 @@ module.exports = {
         'accent-3': '#8adec1',
         'accent-4': '#EAEAEA',
         'accent-7': '#333',
+        'accent-8': '#BDC1C9',
         'gray-700': '#444',
         success: '#0070f3',
         cyan: '#79FFE1',
