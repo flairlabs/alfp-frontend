@@ -5,6 +5,7 @@ import {CMS_NAME, PAGE_URLS} from "../../../lib/constants";
 import {Fragment, useContext, useEffect, useState} from 'react'
 import {ChevronDownIcon} from '@heroicons/react/solid'
 import GlobalContext from "../../../lib/global-context";
+import MobileNavItem from './mobile-nav-item';
 const env = process.env.NODE_ENV
 const nav_urls = PAGE_URLS[env]
 export const top_navigation = [
@@ -132,28 +133,35 @@ export default function MasterNavbar({theme}) {
     return (
         <Disclosure as="nav" className="bg-gray-100 sticky top-0 z-[9999]">
             {({open}) => (
-                <>
+                <>  
                     <div className="bg-white">
                         <div className="max-w-7xl mx-auto">
                             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                                <div className="hidden sm:block sm:ml-6">
-                                    <div className="flex justify-items-center" id="navWrapperMain">
+                                <div className="hidden w-full sm:block sm:ml-6">
+                                    <div className="flex w-full justify-between" id="navWrapperMain">
+                                       
+                                        <div className="flex justify-items-center">
+                                            {/* Top Navigation Menus */}
+                                            {top_navigation.map((item, idx) => (
+                                                <a
+                                                    key={"topNav-" + item.name}
+                                                    href={item.href}
+                                                    onMouseOver={event => setNav(idx)}
+                                                    className={classNames(
+                                                        global.currentSection === item.slug ? topLinkHover : topLinkNormal,
+                                                        'px-3 py-2 font-medium display-block'
+                                                    )}
+                                                    aria-current={global.currentSection === item.slug ? 'page' : undefined}
+                                                >
+                                                    {item.name}
+                                                </a>
+                                            ))}
+                                        </div>
 
-                                        {top_navigation.map((item, idx) => (
-                                            <a
-                                                key={"topNav-" + item.name}
-                                                href={item.href}
-                                                onMouseOver={event => setNav(idx)}
-                                                className={classNames(
-                                                    global.currentSection === item.slug ? topLinkHover : topLinkNormal,
-                                                    'px-3 py-2 font-medium display-block'
-                                                )}
-                                                aria-current={global.currentSection === item.slug ? 'page' : undefined}
-                                            >
-                                                {item.name}
-                                            </a>
-                                        ))}
+                                        <a href="/" className="bg-accent-1 px-4 my-2 text-sm font-semibold">Start Investing</a>               
+                                        
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -183,6 +191,7 @@ export default function MasterNavbar({theme}) {
                                     </a>
 
                                 </div>
+                                
                                 <div className="hidden sm:block sm:ml-12">
                                     <div className="flex space-x-4">
                                         {top_navigation[nav].children.map((item) => (
@@ -262,41 +271,24 @@ export default function MasterNavbar({theme}) {
 
                     <Disclosure.Panel className="sm:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1" id="navWrapperMobileMain">
+
                             {top_navigation.map((item, idx) => (
-                                <span key={"span-" + item.name}>
-                                    <a
-                                        key={"mobileDisclosureItem-" + item.name}
-                                        href={item.href}
-                                        className={classNames(
-                                            global.currentSection === item.slug ? topLinkHover : topLinkNormal,
-                                            'block px-3 py-2 font-bold'
-                                        )}
-                                        aria-current={item.current ? 'page' : undefined}
-                                    >
-                                        {item.name}
-                                    </a>
-                                    {item.children && item.children.map((child) => (
-                                        <div className="ml-3" key={"mobileDisclosureChildDiv-" + child.name}>
-                                            <a
-                                                key={"mobileDisclosureChildLink-" + child.name}
-                                                href={child.href}
-                                                className='block px-3 ml-2 py-2 text-base font-medium'
-                                            >
-                                                {child.name}
-                                            </a>
-                                            {child.children && child.children.map((subchild) => (
-                                                <a
-                                                    key={"mobileDisclosureSubChildLink-" + subchild.name}
-                                                    href={subchild.href}
-                                                    className='block px-3 ml-5 pl-5 py-2 text-base font-medium'
-                                                >
-                                                    {subchild.name}
-                                                </a>
-                                            ))}
-                                        </div>
-                                    ))}
-                                </span>
+                               <MobileNavItem item={item} idx={idx}/>
                             ))}
+  
+                            <span key={"span-" + 'cta'}>
+                                <a
+                                    key={"mobileDisclosureItem-" + 'cta'}
+                                    href={``}
+                                    className={classNames(
+                                        'block px-3 py-2 font-bold border-b border-accent-8'
+                                    )}
+                                   
+                                >
+                                    Start Investing
+                                    
+                                </a>
+                            </span>
                         </div>
                     </Disclosure.Panel>
                 </>
