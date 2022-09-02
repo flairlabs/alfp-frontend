@@ -155,7 +155,7 @@ export default function MasterNavbar({theme}) {
                                             ))}
                                         </div>
 
-                                        <a href="/" className="bg-accent-1 px-4 my-2 text-sm font-semibold">Start Investing</a>               
+                                        <a href="http://bpimanagedfunds.com" className="bg-accent-1 px-4 my-2 text-sm font-semibold" target="_blank">Start Investing</a >               
                                         
                                     </div>
                                     
@@ -276,11 +276,11 @@ export default function MasterNavbar({theme}) {
                             <span key={"span-" + 'cta'}>
                                 <a
                                     key={"mobileDisclosureItem-" + 'cta'}
-                                    href={``}
+                                    href={`http://bpimanagedfunds.com`}
                                     className={classNames(
                                         'block px-3 py-2 font-bold border-b border-accent-8'
                                     )}
-                                   
+                                    target="_blank"
                                 >
                                     Start Investing
                                     
