@@ -6,6 +6,7 @@ import {Fragment, useContext, useEffect, useState} from 'react'
 import {ChevronDownIcon} from '@heroicons/react/solid'
 import GlobalContext from "../../../lib/global-context";
 import MobileNavItem from './mobile-nav-item';
+import BaseModal from '../modals/base-modal';
 const env = process.env.NODE_ENV
 const nav_urls = PAGE_URLS[env]
 export const top_navigation = [
@@ -155,8 +156,10 @@ export default function MasterNavbar({theme}) {
                                             ))}
                                         </div>
 
-                                        <a href="http://bpimanagedfunds.com" className="bg-accent-1 px-4 my-2 text-sm font-semibold" target="_blank">Start Investing</a >               
+                                        <a href="https://uat.bpimanagedfunds.com/alfm" className="bg-accent-1 px-4 my-2 text-sm font-semibold" target="_blank">Start Investing</a >               
                                         
+
+                                       {/*  <BaseModal title="Disclaimer" content="Description"/> */}
                                     </div>
                                     
                                 </div>
@@ -276,7 +279,7 @@ export default function MasterNavbar({theme}) {
                             <span key={"span-" + 'cta'}>
                                 <a
                                     key={"mobileDisclosureItem-" + 'cta'}
-                                    href={`http://bpimanagedfunds.com`}
+                                    href={`https://uat.bpimanagedfunds.com/alfm`}
                                     className={classNames(
                                         'block px-3 py-2 font-bold border-b border-accent-8'
                                     )}
