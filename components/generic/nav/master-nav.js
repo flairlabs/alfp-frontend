@@ -7,6 +7,7 @@ import {ChevronDownIcon} from '@heroicons/react/solid'
 import GlobalContext from "../../../lib/global-context";
 import MobileNavItem from './mobile-nav-item';
 import BaseModal from '../modals/base-modal';
+import ConfirmModal from '../modals/confirm-modal';
 const env = process.env.NODE_ENV
 const nav_urls = PAGE_URLS[env]
 export const top_navigation = [
@@ -91,6 +92,12 @@ export default function MasterNavbar({theme}) {
     const router = useRouter()
     const global = useContext(GlobalContext)
 
+    const confirmDetails = {
+        title: 'Disclaimer',
+        content: 'Once you leave the BPI Mobile App, you\'ll be covered by the policy and security measures of the site you are visiting.',
+        url: 'https://uat.bpimanagedfunds.com/alfm'
+    }
+
     let topLinkNormal = "text-gray-600 hover:bg-accent-1"
     let topLinkHover = "bg-accent-1 text-gray-800"
 
@@ -154,12 +161,10 @@ export default function MasterNavbar({theme}) {
                                                     {item.name}
                                                 </a>
                                             ))}
-                                        </div>
-
-                                        <a href="https://uat.bpimanagedfunds.com/alfm" className="bg-accent-1 px-4 my-2 text-sm font-semibold" target="_blank">Start Investing</a >               
+                                        </div>       
                                         
 
-                                       {/*  <BaseModal title="Disclaimer" content="Description"/> */}
+                                        <ConfirmModal title={confirmDetails.title} content={confirmDetails.content} isDesktop={true} url={confirmDetails.url}/>
                                     </div>
                                     
                                 </div>
@@ -277,17 +282,7 @@ export default function MasterNavbar({theme}) {
                             ))}
   
                             <span key={"span-" + 'cta'}>
-                                <a
-                                    key={"mobileDisclosureItem-" + 'cta'}
-                                    href={`https://uat.bpimanagedfunds.com/alfm`}
-                                    className={classNames(
-                                        'block px-3 py-2 font-bold border-b border-accent-8'
-                                    )}
-                                    target="_blank"
-                                >
-                                    Start Investing
-                                    
-                                </a>
+                            <ConfirmModal title={confirmDetails.title} content={confirmDetails.content} isDesktop={false} url={confirmDetails.url}/>
                             </span>
                         </div>
                     </Disclosure.Panel>
