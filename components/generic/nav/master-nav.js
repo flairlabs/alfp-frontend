@@ -97,7 +97,7 @@ export default function MasterNavbar({theme}) {
 
     const confirmDetails = {
         title: 'Disclaimer',
-        content: 'Once you leave the BPI Mobile App, you\'ll be covered by the policy and security measures of the site you are visiting.',
+        content: 'Once you leave the website, you\'ll be covered by the policy and security measures of the site you are visiting.',
         url: 'https://uat.bpimanagedfunds.com/alfm'
     }
 
