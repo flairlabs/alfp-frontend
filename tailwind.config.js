@@ -22,6 +22,7 @@ module.exports = withFonts({
 });
 
 module.exports = {
+  important : true,
   mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
@@ -36,6 +37,7 @@ module.exports = {
         'accent-3': '#8adec1',
         'accent-4': '#EAEAEA',
         'accent-7': '#333',
+        'accent-8': '#BDC1C9',
         'gray-700': '#444',
         success: '#0070f3',
         cyan: '#79FFE1',
@@ -59,6 +61,14 @@ module.exports = {
         small: '0 5px 10px rgba(0, 0, 0, 0.12)',
         medium: '0 8px 30px rgba(0, 0, 0, 0.12)',
       },
+      aspectRatio: {
+        '16/9': '16 / 9',
+      },
+      height: {
+        'screen-45': '45vh',
+        'screen-50': '50vh',
+        'screen-75': '75vh'
+      }
     },
   },
   variants: {

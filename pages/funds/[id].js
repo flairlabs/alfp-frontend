@@ -29,6 +29,10 @@ export default function Fund({fund = null, tickerData, fundValues}) {
     let infoTable = []
 
     function parseRawInfo() {
+        if( !rawInfoTable){
+            return false
+        }
+
         let infoByLine = rawInfoTable.split(/\r\n/)
         for (let i = 0; i < infoByLine.length; i++) {
             let info = infoByLine[i].trim()
