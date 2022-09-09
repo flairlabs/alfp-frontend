@@ -11,7 +11,7 @@ export default function ConfirmModal({title, content, isDesktop, url}) {
         <>  
             {isDesktop == true ? 
                 (
-                    <a href="/" className="bg-accent-1 px-4 my-2 text-sm font-semibold" target="_blank"     onClick={(e) => {
+                    <a href="/" className="bg-accent-1 px-4 my-2 mr-8 text-sm font-semibold" target="_blank"     onClick={(e) => {
                         e.preventDefault()
                         setShowModal(true)
                     }}
