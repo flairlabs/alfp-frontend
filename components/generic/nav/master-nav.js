@@ -92,10 +92,11 @@ export default function MasterNavbar({theme}) {
     const router = useRouter()
     const global = useContext(GlobalContext)
 
+    /* Start Investing button */
     const confirmDetails = {
         title: 'Disclaimer',
         content: 'Once you leave the website, you\'ll be covered by the policy and security measures of the site you are visiting.',
-        url: 'https://uat.bpimanagedfunds.com/alfm'
+        url: 'https://bpimanagedfunds.com/alfm'
     }
 
     let topLinkNormal = "text-gray-600 hover:bg-accent-1"
