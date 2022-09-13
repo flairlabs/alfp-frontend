@@ -97,7 +97,7 @@ export default function MasterNavbar({theme}) {
 
     /* Start Investing button */
     const confirmDetails = {
-        title: 'Disclaimer',
+        title: '',
         content: 'Once you leave the website, you\'ll be covered by the policy and security measures of the site you are visiting.',
         url: 'https://bpimanagedfunds.com/alfm'
     }
@@ -167,8 +167,9 @@ export default function MasterNavbar({theme}) {
                                             ))}
                                         </div>       
                                         
-
-                                        <ConfirmModal title={confirmDetails.title} content={confirmDetails.content} isDesktop={true} url={confirmDetails.url}/>
+                                        <a href={confirmDetails.url} className="bg-accent-1 px-4 my-2 mr-8 text-sm font-semibold" target="_blank">
+                                        Start Investing</a >
+                                       {/*  <ConfirmModal title={confirmDetails.title} content={confirmDetails.content} isDesktop={true} url={confirmDetails.url}/> */}
                                     </div>
                                     
                                 </div>
@@ -286,7 +287,14 @@ export default function MasterNavbar({theme}) {
                             ))}
   
                             <span key={"span-" + 'cta'}>
-                            <ConfirmModal title={confirmDetails.title} content={confirmDetails.content} isDesktop={false} url={confirmDetails.url}/>
+                            <a key={"mobileDisclosureItem-" + 'cta'} href={confirmDetails.url}
+                                className={classNames(
+                                    'block px-3 py-2 font-bold border-b border-accent-8'
+                                )} target="_blank" >
+                                
+                                Start Investing
+                                
+                                </a>
                             </span>
                         </div>
                     </Disclosure.Panel>
