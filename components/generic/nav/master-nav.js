@@ -34,6 +34,12 @@ export const top_navigation = [
 
                             },
                             {
+                                name: 'ALFM Money Market Fund (Units)',
+                                href: '/funds/alfm-money-market-fund-units',
+                                current: false
+
+                            },
+                            {
                                 name: 'ALFM Peso Bond Fund', href: '/funds/alfm-peso-bond-fund', current: false
 
                             },
