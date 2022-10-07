@@ -41,6 +41,11 @@ export default function FileLibrary({
                                     }) {
     // const fileLibraryNodes = prepFileLibraryItemGroups(fileLibraryItems)
 
+    const customFunds = [
+        {id: "specialCase", title: "Mutual Funds"},
+
+    ]
+
     const otherFileItems = prepOtherFiles(otherFiles[0]?.fileLibraryItems?.nodes)
 
     const [formFundFactSheet, updateFormFundFactSheet] = useState({})
@@ -210,7 +215,7 @@ export default function FileLibrary({
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2">Fund</label>
                                 <CustomSelect name="fundFactSheetFund" id="fundFactSheetFund"
-                                              options={funds}/>
+                                              options={customFunds}/>
                             </div>
 
                             <div className="flex items-center">
