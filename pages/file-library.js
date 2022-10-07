@@ -41,11 +41,30 @@ export default function FileLibrary({
                                     }) {
     // const fileLibraryNodes = prepFileLibraryItemGroups(fileLibraryItems)
 
+    //Passes Funds Array and slug you want to remove
+    function removeObjectWithId(arr, id) {
+        const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
+        arr.splice(objWithIdIndex, 1);
+      
+        return arr;
+    }
+
+    //Remove the USD version
+    removeObjectWithId(funds, "cG9zdDoyODc=");
+
     const customFunds = [
         {id: "specialCase", title: "Mutual Funds"},
 
     ]
 
+    // Special Fund to be consolidated
+    const alfmGMAIF = funds.filter(fund => fund.id == 'cG9zdDoxMjg1');
+    alfmGMAIF[0].title = 'ALFM Global Multi-Asset Income Funds';
+
+    //removeObjectWithId(funds, "cG9zdDoxMjg1");
+    funds.push(alfmGMAIF);
+
+    
     const otherFileItems = prepOtherFiles(otherFiles[0]?.fileLibraryItems?.nodes)
 
     const [formFundFactSheet, updateFormFundFactSheet] = useState({})
@@ -215,7 +234,7 @@ export default function FileLibrary({
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2">Fund</label>
                                 <CustomSelect name="fundFactSheetFund" id="fundFactSheetFund"
-                                              options={customFunds}/>
+                                              options={funds}/>
                             </div>
 
                             <div className="flex items-center">
