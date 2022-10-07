@@ -59,7 +59,7 @@ export default function FileLibrary({
 
     // Special Fund to be consolidated
     const alfmGMAIF = funds.filter(fund => fund.id == 'cG9zdDoxMjg1');
-    alfmGMAIF[0].title = 'ALFM Global Multi-Asset Income Funds';
+    alfmGMAIF[0].title = 'ALFM Global Multi-Asset Income Fund';
 
     //removeObjectWithId(funds, "cG9zdDoxMjg1");
     funds.push(alfmGMAIF);
