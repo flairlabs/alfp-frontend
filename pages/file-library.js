@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Collapsible from 'react-collapsible';
-import {getFileLibraryItemByTypeSlug, getFunds, getFundValues, getPageByURI} from "../lib/api";
+import {getFileLibraryItemByTypeSlug, getFunds, getFundValues, getPageByURI, getDailyMutualFunds} from "../lib/api";
 import {FileLibraryItemGroup} from "../components/generic/file-library/file-library-item-group";
 import {CustomInputText} from "../components/generic/form/custom-input-text";
 import {
@@ -98,17 +98,80 @@ export default function FileLibrary({
         }
     }
 
+    /* Mutual Funds Daily Monitor */
     let [mutualFundsDailyMonitorItems, updateMutualFundsDailyMonitorItems] = useState([])
-    function setFormMutualFundsDailyMonitor(e) {
+    async function setFormMutualFundsDailyMonitor(e) {
         e.preventDefault()
-        let items = mutualFundsDailyMonitor[0]?.fileLibraryItems?.nodes
+        //let items = mutualFundsDailyMonitor[0]?.fileLibraryItems?.nodes
 
         let year = e.target[0].value
         let month = e.target[1].value
 
+        //const items = await getDailyMutualFunds("mutual-funds-daily-monitor");
+
+        /* Had to put front end fetching of data here, because server side doesn't allow me to fetch data on button press */
+
+        await fetch('https://alfm-backend-prod.magpie.ph/graphql/', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                query: `
+                query FileLibraryItems {
+                    fileLibraryItemTypes(
+                      first: 1000000
+                      where: {slug: "mutual-funds-daily-monitor"}
+                    ) {
+                      nodes {
+                        name
+                        slug
+                        fileLibraryItems(
+                          first: 1000000
+                          where: {status: PUBLISH, orderby: {field: DATE, order: DESC}, dateQuery: {month: ${month}, year: ${year}}}
+                        ) {
+                          nodes {
+                            id
+                            title
+                            fileLibraryItem {
+                              document
+                              fund {
+                                ... on Fund {
+                                  id
+                                  title
+                                }
+                              }
+                              month
+                              year
+                              file {
+                                sourceUrl
+                                mediaItemUrl
+                              }
+                            }
+                          }
+                        }
+                        fileLibraryTaxonomyFields {
+                          fileLibraryType
+                          order
+                        }
+                      }
+                    }
+                  }     
+                `
+            })
+        })
+	.then(res => res.json())
+	.then(res => {
+        const data = res.data;
+
+        const items = data.fileLibraryItemTypes.nodes[0].fileLibraryItems.nodes
+
+
         if(items.length > 0){
-            updateMutualFundsDailyMonitorItems(filterInvestmentsWeekly(items, year, month))
+            updateMutualFundsDailyMonitorItems(filterInvestmentsWeekly(items))
         }
+    })
+
+
+        
     }
 
 
@@ -177,13 +240,17 @@ export default function FileLibrary({
 
                 <Splash srcFull={pageContext.splash}/>
                 <div className="tabs">
+
+                    {/* Prospectus */}
                     <Collapsible trigger={["Prospectus", <BsChevronDown/>]}>
                         <FileLibraryItemGroup props={prospecti}/>
                     </Collapsible>
+
+                    {/* Product Highlight Sheet */}
                     <Collapsible trigger={["Product Highlight Sheets", <BsChevronDown/>]}>
                         <FileLibraryItemGroup props={productHighlightSheet}/>
                     </Collapsible>
-
+                    {/* Fund Facts Sheet */}
                     <Collapsible trigger={["Fund Fact Sheets", <BsChevronDown/>]}>
                         <form
                             className="flex flex-row justify-between overflow-hidden items-stretch"
@@ -256,7 +323,7 @@ export default function FileLibrary({
                             </div>
                             : ""}
                     </Collapsible>
-
+                    {/* Forms */}
                     <Collapsible trigger={["Forms", <BsChevronDown/>]}>
                         <div className="flex flex-wrap -mx-2 overflow-hidden">
                             <div className="my-2 px-2 w-full overflow-hidden md:w-1/2 lg:w-1/2 xl:w-1/2">
@@ -291,7 +358,7 @@ export default function FileLibrary({
                             </div>
                         </div>
                     </Collapsible>
-
+                    {/* Annual Reports */}
                     <Collapsible trigger={["Annual Reports", <BsChevronDown/>]}>
                         <form
                             className="flex flex-row justify-between overflow-hidden items-stretch"
@@ -317,7 +384,7 @@ export default function FileLibrary({
                         </form>
                         {annualReportList.length > 0 ? <GenericListWrapper items={annualReportList}/> : ""}
                     </Collapsible>
-
+                    {/* Annual General Meetigns */}
                     <Collapsible trigger={["Annual General Meetings", <BsChevronDown/>]}>
                         <form
                             className="flex flex-row justify-between overflow-hidden items-stretch"
@@ -355,7 +422,7 @@ export default function FileLibrary({
                             <GenericListWrapper items={annualGeneralMeetingList}/> : ""}
 
                     </Collapsible>
-
+                    {/* Investments Weekly */}
                     <Collapsible trigger={["Investments Weekly", <BsChevronDown/>]}>
                         <form
                             className="flex flex-row justify-between overflow-hidden items-stretch"
@@ -421,7 +488,7 @@ export default function FileLibrary({
                             </div>
                             : ""}
                     </Collapsible>
-
+                    {/* Mutual Funds Daily Monitor */}
                     <Collapsible trigger={["Mutual Funds Daily Monitor", <BsChevronDown/>]}>
                         <form
                             className="flex flex-row justify-between overflow-hidden items-stretch"
@@ -439,7 +506,7 @@ export default function FileLibrary({
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2">Month</label>
                                 <select name="mutualFundsDailyMonitorMonth" id="mutualFundsDailyMonitorMonth"
-                                        className="w-full border bg-white rounded px-3 py-2 outline-none">
+                                        className="w-full border bg-white rounded px-3 py-2 outline-none" required>
                                     <option></option>
                                     {currentMonth === "1" ? <option value="1" selected="selected">January</option> :
                                         <option value="1">January</option>}
@@ -487,7 +554,7 @@ export default function FileLibrary({
                             </div>
                             : ""}
                     </Collapsible>
-
+                    {/* Others */}
                     <Collapsible trigger={["Others", <BsChevronDown/>]}>
                         <OtherFileLibraryItems items={otherFileItems}/>
                     </Collapsible>
@@ -498,6 +565,10 @@ export default function FileLibrary({
     )
 
 }
+
+
+
+
 
 export async function getServerSideProps() {
     const funds = await getFunds()
@@ -515,7 +586,10 @@ export async function getServerSideProps() {
     const otherFiles = await getFileLibraryItemByTypeSlug("other-documents-and-announcements")
 
     const investmentsWeekly = await getFileLibraryItemByTypeSlug("investments-weekly")
-    const mutualFundsDailyMonitor = await getFileLibraryItemByTypeSlug("mutual-funds-daily-monitor")
+
+    //const mutualFundsDailyMonitor = await mutualFundsDailyMonitor("mutual-funds-daily-monitor")
+    //const mutualFundsDailyMonitor = await getFileLibraryItemByTypeSlug("mutual-funds-daily-monitor")
+    
 
     const page = await getPageByURI("file-library")
 
@@ -535,7 +609,7 @@ export async function getServerSideProps() {
             annualGeneralMeeting,
             otherFiles,
             investmentsWeekly,
-            mutualFundsDailyMonitor
+            //mutualFundsDailyMonitor
         }
     }
 }
