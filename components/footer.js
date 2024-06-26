@@ -29,7 +29,7 @@ export default function Footer() {
                                 <path
                                     d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>
                             </svg>
-                            (02) 8580 0900
+                            (+632) 889-10000
 
                         </p>
                         <p className="mt-2 text-sm text-white flex">
