@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 
 /* Write your own custom base styles here */
@@ -15,6 +17,11 @@
 @import "react-alice-carousel/lib/alice-carousel.css";
 
 /* Your own custom utilities */
+@layer base {
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  }
 
 .has-text-align-left {
     @apply text-left;
