@@ -1,3 +1,4 @@
+// tailwind.config.js
 const withFonts = require("next-fonts");
 
 module.exports = withFonts({
@@ -22,14 +23,14 @@ module.exports = withFonts({
 });
 
 module.exports = {
-  important : true,
+  important: true, // Ensures Tailwind CSS utilities have high specificity
   mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
-        custom: ["ProximaNova", "sans-serif"]
+        sans: ['Poppins', 'sans-serif'], // Use the `sans` key for global application
       },
       colors: {
         'accent-1': '#a4d65e',
