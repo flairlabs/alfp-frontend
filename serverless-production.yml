@@ -17,6 +17,10 @@ alfm-frontend:
         defaultTTL: 50
         forward:
           headers: [Origin, Authorization]
+    runtime:
+      defaultLambda: 'nodejs16.x'
+      apiLambda: 'nodejs16.x'
+      imageLambda: 'nodejs16.x'
     build:
       env:
         WORDPRESS_API_URL: https://alfm-backend-prod.magpie.ph/graphql/
