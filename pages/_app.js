@@ -23,7 +23,7 @@ export default function MyApp({Component, pageProps}) {
         //  - This must be an exact match of your domain.
         //  - If you're using www. for your domain, make sure you include that here.
         Fathom.load('QRNFOKRN', {
-          includedDomains: ['localhost:3000', 'alfmmutualfunds.com', 'alfm-frontend-staging.magpie.ph'],
+          includedDomains: ['localhost:3000', 'alfmmutualfunds.com', 'alfm-frontend-staging.magpie.tech'],
         });
     
         function onRouteChangeComplete() {

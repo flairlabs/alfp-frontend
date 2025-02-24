@@ -18,13 +18,13 @@ alfm-frontend:
         forward:
           headers: [Origin, Authorization]
     runtime:
-      defaultLambda: 'nodejs16.x'
-      apiLambda: 'nodejs16.x'
-      imageLambda: 'nodejs16.x'
+      defaultLambda: 'nodejs18.x'
+      apiLambda: 'nodejs18.x'
+      imageLambda: 'nodejs18.x'
     build:
       env:
-        WORDPRESS_API_URL: https://alfm-backend-prod.magpie.ph/graphql/
+        WORDPRESS_API_URL: https://alfm-backend-prod.magpie.tech/graphql/
         ENV_ALIAS: production
-        ENV_URL: https://alfm-backend-prod.magpie.ph/
+        ENV_URL: https://alfm-backend-prod.magpie.tech/
         EXPORT_MODE: true
-        PUBLIC_URL: https://alfm-backend-prod.magpie.ph/
+        PUBLIC_URL: https://alfm-backend-prod.magpie.tech/
