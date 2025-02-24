@@ -2,10 +2,10 @@ name: alfm-frontend-staging
 alfm-frontend-staging:
   component: "@sls-next/serverless-component@3.6.0"
   inputs:
-    domain: ["alfm-frontend-staging", "magpie.ph"]
+    domain: ["alfm-frontend-staging", "magpie.tech"]
     useServerlessTraceTarget: true
     roleArn: "arn:aws:iam::347059883387:role/alfm-frontend"
-    certificateArn: "arn:aws:acm:us-east-1:347059883387:certificate/05801cdb-4e42-4ad9-a4b6-76beb5adf5f9"
+    certificateArn: "arn:aws:acm:us-east-1:347059883387:certificate/04a06f98-be81-4846-a737-41292210c874"
     timeout:
       defaultLambda: 30
       apiLambda: 30
@@ -18,13 +18,13 @@ alfm-frontend-staging:
         forward:
           headers: [Origin, Authorization]
     runtime:
-      defaultLambda: 'nodejs16.x'
-      apiLambda: 'nodejs16.x'
-      imageLambda: 'nodejs16.x'
+      defaultLambda: 'nodejs18.x'
+      apiLambda: 'nodejs18.x'
+      imageLambda: 'nodejs18.x'
     build:
       env:
-        WORDPRESS_API_URL: https://alfm-backend-prod.magpie.ph/graphql/
+        WORDPRESS_API_URL: https://alfm-backend-prod.magpie.tech/graphql/
         ENV_ALIAS: production
-        ENV_URL: https://alfm-backend-prod.magpie.ph/
+        ENV_URL: https://alfm-backend-prod.magpie.tech/
         EXPORT_MODE: true
-        PUBLIC_URL: https://alfm-backend-prod.magpie.ph/
+        PUBLIC_URL: https://alfm-backend-prod.magpie.tech/

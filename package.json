@@ -7,8 +7,6 @@
     "export": "next build && next export",
     "build:staging": "env-cmd -f .env.staging yarn build && yarn start"
   },
-  
-
   "dependencies": {
     "@bugsnag/js": "^7.11.0",
     "@headlessui/react": "^1.4.1",
@@ -18,7 +16,7 @@
     "env-cmd": "^10.1.0",
     "fathom-client": "^3.5.0",
     "moment": "^2.29.1",
-    "next": "^11.1.2",
+    "next": "^12.2.0",
     "next-fonts": "^1.5.1",
     "react": "^17.0.2",
     "react-alice-carousel": "^2.5.1",

@@ -289,7 +289,7 @@ export default function MasterNavbar({theme}) {
                         <div className="px-2 pt-2 pb-3 space-y-1" id="navWrapperMobileMain">
 
                             {top_navigation.map((item, idx) => (
-                               <MobileNavItem item={item} idx={idx}/>
+                               <MobileNavItem key={idx} item={item} idx={idx}/>
                             ))}
   
                             <span key={"span-" + 'cta'}>

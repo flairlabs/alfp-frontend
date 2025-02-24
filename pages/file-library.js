@@ -111,7 +111,7 @@ export default function FileLibrary({
 
         /* Had to put front end fetching of data here, because server side doesn't allow me to fetch data on button press */
 
-        await fetch('https://alfm-backend-prod.magpie.ph/graphql/', {
+        await fetch('https://alfm-backend-prod.magpie.tech/graphql/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
