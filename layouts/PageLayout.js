@@ -34,7 +34,7 @@ export default function PageLayout({preview, title, children, tickerData, theme,
             </div>
             <Footer/>
             <CookieConsent
-                buttonStyle={{"background": "#a4d65e", "font-size": ".8rem", "color": "white"}}
+                buttonStyle={{"background": "#a4d65e", "fontSize": ".8rem", "color": "white"}}
             >
                 <small>BPI uses cookies which help us know how you use our website. These cookies help us improve your browsing experience and how we serve you with content tailored to your interests. To continue using our website, you agree and accept our use of cookies.
                     <a href="/page/privacy-policy" className="ml-2 hover:text-white text-accent-1">Learn more</a></small>
